@@ -1,0 +1,24 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl coixi_cadira
+Ns 82.352936
+Ka 1.000000 1.000000 1.000000
+Kd 0.789571 0.719253 0.516258
+Ks 0.002000 0.002000 0.002000
+Ke 0.0 0.0 0.0
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd wood_bump.jpg
+
+newmtl fusta_taula
+Ns 52.941188
+Ka 1.000000 1.000000 1.000000
+Kd 0.111700 0.111700 0.111700
+Ks 0.264438 0.264438 0.264438
+Ke 0.0 0.0 0.0
+Ni 1.200000
+d 1.000000
+illum 2
+map_Kd wood_bump.jpg

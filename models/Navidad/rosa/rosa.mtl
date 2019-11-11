@@ -1,0 +1,50 @@
+# Blender MTL File: 'None'
+# Material Count: 4
+
+newmtl leaf
+Ns 10.000002
+Ka 1.000000 1.000000 1.000000
+Kd 0.639200 0.890200 0.560800
+Ks 0.000000 0.000000 0.000000
+Ke 0.0 0.0 0.0
+Ni 1.500000
+d 1.000000
+illum 1
+map_Bump -bm 0.300000 leaf12_d.jpg
+map_Kd leaf12_d.jpg
+
+newmtl petal
+Ns 10.000002
+Ka 1.000000 1.000000 1.000000
+Kd 0.890200 0.302000 0.184300
+Ks 0.000000 0.000000 0.000000
+Ke 0.0 0.0 0.0
+Ni 1.500000
+d 1.000000
+illum 1
+map_Bump -bm 0.300000 flower12.jpg
+map_Kd flower12.jpg
+
+newmtl tich
+Ns 10.000002
+Ka 1.000000 1.000000 1.000000
+Kd 0.945100 0.768600 0.231400
+Ks 0.000000 0.000000 0.000000
+Ke 0.0 0.0 0.0
+Ni 1.500000
+d 1.000000
+illum 1
+map_Bump giallo.jpg
+map_Kd giallo.jpg
+
+newmtl trunk
+Ns 10.000002
+Ka 1.000000 1.000000 1.000000
+Kd 0.980400 0.952900 0.768600
+Ks 0.000000 0.000000 0.000000
+Ke 0.0 0.0 0.0
+Ni 1.500000
+d 1.000000
+illum 1
+map_Bump -bm 0.300000 trunk11d.jpg
+map_Kd trunk11d.jpg

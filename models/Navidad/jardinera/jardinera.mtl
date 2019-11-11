@@ -1,0 +1,38 @@
+# Blender MTL File: 'None'
+# Material Count: 3
+
+newmtl bark
+Ns 10.000002
+Ka 1.000000 1.000000 1.000000
+Kd 0.588200 0.588200 0.588200
+Ks 0.000000 0.000000 0.000000
+Ke 0.0 0.0 0.0
+Ni 1.500000
+d 1.000000
+illum 1
+map_Bump -bm 0.300000 016_bark.jpg
+map_Kd 016_bark.jpg
+
+newmtl branch
+Ns 70.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.992200 0.980400 0.894100
+Ks 0.630000 0.630000 0.630000
+Ke 0.0 0.0 0.0
+Ni 1.500000
+d 1.000000
+illum 2
+map_Bump -bm 0.500000 a61_bark.jpg
+map_Kd a61_bark.jpg
+
+newmtl leaf.001
+Ns 10.000002
+Ka 1.000000 1.000000 1.000000
+Kd 0.815700 0.905900 0.768600
+Ks 0.000000 0.000000 0.000000
+Ke 0.0 0.0 0.0
+Ni 1.500000
+d 1.000000
+illum 1
+map_Bump -bm 0.300000 016_leaf.jpg
+map_Kd 016_leaf.jpg

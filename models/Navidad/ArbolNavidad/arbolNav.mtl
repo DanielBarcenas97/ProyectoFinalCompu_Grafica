@@ -1,0 +1,150 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 06.11.2019 21:52:29
+
+newmtl Material_001
+	Ns 96.0784
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 0.6400 0.6400 0.6400
+	Ks 0.5000 0.5000 0.5000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\Textures\verde1.jpg
+	map_Kd C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\Textures\verde1.jpg
+
+newmtl 09___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\Textures\color-rojo.jpg
+	map_Kd C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\Textures\color-rojo.jpg
+
+newmtl 03___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\Textures\dorado1.jpg
+	map_Kd C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\Textures\dorado1.jpg
+
+newmtl 08___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\Textures\dorado1.jpg
+	map_Kd C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\Textures\dorado1.jpg
+
+newmtl 11566_Bell_Bow
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 0.0000 0.0000
+	Kd 1.0000 0.0000 0.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl 11566_Bell_Tree
+	Ns 50.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 0.0000 0.0000
+	Kd 1.0000 0.0000 0.0000
+	Ks 0.5400 0.5400 0.5400
+	Ke 0.0000 0.0000 0.0000
+
+newmtl 11566_Bell_Bell
+	Ns 50.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.5400 0.5400 0.5400
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\models\ArbolNavidad\11566_Bell_Bell_Diffuse.jpg
+	map_Kd C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\models\ArbolNavidad\11566_Bell_Bell_Diffuse.jpg
+	map_bump C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\models\ArbolNavidad\11566_Bell_Bell_Bump.jpg
+	bump C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\models\ArbolNavidad\11566_Bell_Bell_Bump.jpg
+
+newmtl 07___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\sayun\Documents\CompuGrafica\experimento\navidad\depositphotos_102822324-stock-illustration-abstract-background-with-red-diagonal.jpg
+	map_Kd C:\Users\sayun\Documents\CompuGrafica\experimento\navidad\depositphotos_102822324-stock-illustration-abstract-background-with-red-diagonal.jpg
+
+newmtl 11566_Bell_Star
+	Ns 75.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1882 0.9922 0.0000
+	Kd 0.1882 0.9922 0.0000
+	Ks 0.9000 0.9000 0.9000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl 11566_Bell_MAt_Blue
+	Ns 35.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0471 0.0000 0.9922
+	Kd 0.0471 0.0000 0.9922
+	Ks 0.5400 0.5400 0.5400
+	Ke 0.0000 0.0000 0.0000
+
+newmtl matHook
+	Ns 55.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.4500 0.4500 0.4500
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\models\ArbolNavidad\Plane001DiffuseMap.jpg
+	map_Kd C:\Users\sayun\Desktop\PROYECTO FINAL\ProyectoFinalCGeIHC-master\P9\models\ArbolNavidad\Plane001DiffuseMap.jpg

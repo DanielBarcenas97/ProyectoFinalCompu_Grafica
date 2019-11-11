@@ -1,0 +1,101 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 11.01.2012 13:54:58
+
+newmtl 13110_fireplace_marblewhite
+	Ns 38.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.3780 0.3780 0.3780
+	Ke 0.0000 0.0000 0.0000
+	map_Ka 13110_fireplace_marblew_diffuse.jpg
+	map_Kd 13110_fireplace_marblew_diffuse.jpg
+
+newmtl 13110_fireplace_marblegreen
+	Ns 38.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.3780 0.3780 0.3780
+	Ke 0.0000 0.0000 0.0000
+	map_Ka 13110_fireplace_marbleg_diffuse.jpg
+	map_Kd 13110_fireplace_marbleg_diffuse.jpg
+
+newmtl 13110_fireplace_base
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka 13110_fireplace_base_diffuse.jpg
+	map_Kd 13110_fireplace_base_diffuse.jpg
+
+newmtl 13110_fireplace_woodsburn
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka 13110_fireplace_woodsburne_diffuse.jpg
+	map_Kd 13110_fireplace_woodsburne_diffuse.jpg
+
+newmtl 13110_fireplace_woods
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka 13110_fireplace_woods_diffuse.jpg
+	map_Kd 13110_fireplace_woods_diffuse.jpg
+
+newmtl 13110_fireplace_fire
+	Ns 10.0000
+	Ni 1.5000
+	d 0.6000
+	Tr 0.4000
+	Tf 0.6000 0.6000 0.6000 
+	illum 2
+	Ka 0.9373 0.7020 0.1961
+	Kd 0.9373 0.7020 0.1961
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.9373 0.7020 0.1961
+	map_Ka 13110_fireplace_fire_diffuse.jpg
+	map_Kd 13110_fireplace_fire_diffuse.jpg
+	map_Ke 13110_fireplace_fire_selfillum.jpg
+
+newmtl 13110_fireplace_metal
+	Ns 21.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.3960 0.3960 0.3960
+	Ke 0.0000 0.0000 0.0000
+	map_Ka 13110_fireplace_metals_diffuse.jpg
+	map_Kd 13110_fireplace_metals_diffuse.jpg
