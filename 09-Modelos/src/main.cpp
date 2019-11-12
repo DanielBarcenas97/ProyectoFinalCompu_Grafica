@@ -51,7 +51,16 @@ Shader shaderSkybox;
 // Shader con multiples luces
 Shader shaderMulLighting;
 
-std::shared_ptr<FirstPersonCamera> camera(new FirstPersonCamera());
+//std::shared_ptr<FirstPersonCamera> camera(new FirstPersonCamera());
+//creacion de elementos para las camaras, camaras para la escena
+std::shared_ptr<FirstPersonCamera> cameraHorrorHouseFree(new FirstPersonCamera());
+std::shared_ptr<FirstPersonCamera> cameraChristmastHouseFree(new FirstPersonCamera());
+std::shared_ptr<FirstPersonCamera> cameraHorrorHouseAutomatic(new FirstPersonCamera());
+std::shared_ptr<FirstPersonCamera> cameraChristmastHouseAutomatic(new FirstPersonCamera());
+std::shared_ptr<FirstPersonCamera> cameraOfrenda(new FirstPersonCamera());
+std::shared_ptr<FirstPersonCamera> cameraChristmasTree(new FirstPersonCamera());
+int cambioCamara = 0;
+//--------------------------------------------------
 
 Sphere sphere1(20, 20);
 Sphere sphere2(20, 20);
@@ -469,8 +478,14 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	pieR2D2.setShader(&shader);
 	pieR2D2.setColor(glm::vec4(0.6f, 0.6f, 0.6f, 1.0f));
 
-	/*Posicion de la Camara al iniciar*/
-	camera->setPosition(glm::vec3(-30.0, 03.0, -10.0));
+	//Posicion inicial de la camaras**********************
+	cameraHorrorHouseFree->setPosition(glm::vec3(3.077236, -2.52848, -86.0336));
+	cameraChristmastHouseFree->setPosition(glm::vec3(-3.077236, -2.52848, -86.0336));
+	cameraHorrorHouseAutomatic->setPosition(glm::vec3(5.077236, -2.52848, 86.0336));
+	cameraChristmastHouseAutomatic->setPosition(glm::vec3(-72.0461, -6.87082, 86.0336));
+	cameraOfrenda->setPosition(glm::vec3(0.0, 0.0, 0.0));
+	cameraChristmasTree->setPosition(glm::vec3(0.0, 0.0, 0.0));
+	//----------------------------------------------------------------
 
 	/*Se cargan las Texturas*/
 	// Definimos el tamanio de la imagen
@@ -1753,6 +1768,13 @@ void destroy() {
 	pieR2D2.destroy();
 
 	shader.destroy();
+	shaderMulLighting.destroy();
+	shaderSkybox.destroy();
+	shaderMaterialLighting.destroy();
+	shaderColorLighting.destroy();
+	shaderSkybox.destroy();
+	shaderTexture.destroy();
+	shaderTextureLighting.destroy();
 }
 
 void reshapeCallback(GLFWwindow* Window, int widthRes, int heightRes) {
@@ -1767,6 +1789,29 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action,
 		switch (key) {
 		case GLFW_KEY_ESCAPE:
 			exitApp = true;
+			break;
+		case GLFW_KEY_0:
+			cambioCamara = 0;//camara libre de la casa de terror
+			break;
+		case GLFW_KEY_1:
+			cambioCamara = 1;//camara libre de la casa de navidad
+			break;
+		case GLFW_KEY_2:
+			cambioCamara = 2;//camara recorrido de la casa de terror
+			break;
+		case GLFW_KEY_3:
+			cambioCamara = 3;//camara recorrido de la casa de navidad
+			break;
+		case GLFW_KEY_4:
+			cambioCamara = 4;//camara en frente de la ofrenda de navidad
+			break;
+		case GLFW_KEY_5:
+			cambioCamara = 5;//camara en frente del arbol de navidad
+			break;
+		case GLFW_KEY_9:
+			std::cout << cameraHorrorHouseFree->getPosition().x << " , " << cameraHorrorHouseFree->getPosition().y
+				<< " , " << cameraHorrorHouseFree->getPosition().z << std::endl;
+		default:
 			break;
 		}
 	}
@@ -1803,16 +1848,46 @@ bool processInput(bool continueApplication) {
 	TimeManager::Instance().CalculateFrameRate(false);
 	deltaTime = TimeManager::Instance().DeltaTime;
 
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		camera->moveFrontCamera(true, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		camera->moveFrontCamera(false, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		camera->moveRightCamera(false, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		camera->moveRightCamera(true, deltaTime);
-	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
-		camera->mouseMoveCamera(offsetX, offsetY, 0.01);
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+		if (cambioCamara == 0) {
+			cameraHorrorHouseFree->moveFrontCamera(true, deltaTime);
+		}
+		else if (cambioCamara == 1) {
+			cameraChristmastHouseFree->moveFrontCamera(true, deltaTime);
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+		if (cambioCamara == 0) {
+			cameraHorrorHouseFree->moveFrontCamera(false, deltaTime);
+		}
+		else if (cambioCamara == 1) {
+			cameraChristmastHouseFree->moveFrontCamera(false, deltaTime);
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+		if (cambioCamara == 0) {
+			cameraHorrorHouseFree->moveRightCamera(false, deltaTime);
+		}
+		else if (cambioCamara == 1) {
+			cameraChristmastHouseFree->moveRightCamera(false, deltaTime);
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+		if (cambioCamara == 0) {
+			cameraHorrorHouseFree->moveRightCamera(true, deltaTime);
+		}
+		else if (cambioCamara == 1) {
+			cameraChristmastHouseFree->moveRightCamera(true, deltaTime);
+		}
+	}
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
+		if (cambioCamara == 0) {
+			cameraHorrorHouseFree->mouseMoveCamera(offsetX, offsetY, 0.01);
+		}
+		else if (cambioCamara == 1) {
+			cameraChristmastHouseFree->mouseMoveCamera(offsetX, offsetY, 0.01);
+		}
+	}
 	offsetX = 0;
 	offsetY = 0;
 	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)///3
@@ -1913,6 +1988,10 @@ void applicationLoop() {
 	modelMatrixDart = glm::translate(modelMatrixDart, glm::vec3(3.0, 0.0, 20.0));
 	modelMatrixDart = glm::scale(modelMatrixDart, glm::vec3(0.5, 0.5, 0.5));
 
+	int stateHouseRecorrido = 0;
+	float recorridoCamara = 0;
+	float giroCamaraY = 0;
+
 	/////////////////////////
 	while (psi) {
 		psi = processInput(true);
@@ -1920,7 +1999,31 @@ void applicationLoop() {
 
 		glm::mat4 projection = glm::perspective(glm::radians(45.0f),
 			(float)screenWidth / (float)screenHeight, 0.01f, 100.0f);
-		glm::mat4 view = camera->getViewMatrix();
+		//segun la camara, sera la matriz de vista
+		glm::mat4 view;
+		switch (cambioCamara) {
+		case 0:
+			view = cameraHorrorHouseFree->getViewMatrix();
+			break;
+		case 1:
+			view = cameraChristmastHouseFree->getViewMatrix();
+			break;
+		case 2:
+			view = cameraHorrorHouseAutomatic->getViewMatrix();
+			break;
+		case 3:
+			view = cameraChristmastHouseAutomatic->getViewMatrix();
+			break;
+		case 4:
+			view = cameraOfrenda->getViewMatrix();
+			break;
+		case 5:
+			view = cameraChristmasTree->getViewMatrix();
+			break;
+		default:
+			view = cameraHorrorHouseFree->getViewMatrix();
+			break;
+		}
 
 		// Settea la matriz de vista y projection al shader con solo color
 		shader.setMatrix4("projection", 1, false, glm::value_ptr(projection));
@@ -1960,8 +2063,30 @@ void applicationLoop() {
 			glm::value_ptr(view));
 
 		// Propiedades de la luz para objetos con color
-		shaderColorLighting.setVectorFloat3("viewPos",
-			glm::value_ptr(camera->getPosition()));
+		//	segun la camra seleccionada, se cargar el shader en la escena
+		switch (cambioCamara) {
+		case 0:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		case 1:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseFree->getPosition()));
+			break;
+		case 2:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseAutomatic->getPosition()));
+			break;
+		case 3:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseAutomatic->getPosition()));
+			break;
+		case 4:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraOfrenda->getPosition()));
+			break;
+		case 5:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmasTree->getPosition()));
+			break;
+		default:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		}
 		shaderColorLighting.setVectorFloat3("light.ambient",
 			glm::value_ptr(glm::vec3(0.3, 0.3, 0.3)));
 		shaderColorLighting.setVectorFloat3("light.diffuse",
@@ -1970,8 +2095,30 @@ void applicationLoop() {
 			glm::value_ptr(glm::vec3(0.9, 0.0, 0.0)));
 
 		// Propiedades de la luz para objetos con textura
-		shaderTextureLighting.setVectorFloat3("viewPos",
-			glm::value_ptr(camera->getPosition()));
+		//	segun la camra seleccionada, se cargar el shader en la escena
+		switch (cambioCamara) {
+		case 0:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		case 1:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseFree->getPosition()));
+			break;
+		case 2:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseAutomatic->getPosition()));
+			break;
+		case 3:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseAutomatic->getPosition()));
+			break;
+		case 4:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraOfrenda->getPosition()));
+			break;
+		case 5:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmasTree->getPosition()));
+			break;
+		default:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		}
 		shaderTextureLighting.setVectorFloat3("light.ambient",
 			glm::value_ptr(glm::vec3(0.3, 0.3, 0.3)));
 		shaderTextureLighting.setVectorFloat3("light.diffuse",
@@ -1980,22 +2127,97 @@ void applicationLoop() {
 			glm::value_ptr(glm::vec3(0.9, 0.0, 0.0)));
 
 		// Propiedades de la luz para objetos con textura
-		shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(camera->getPosition()));
+		//	segun la camra seleccionada, se cargar el shader en la escena
+		switch (cambioCamara) {
+		case 0:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		case 1:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseFree->getPosition()));
+			break;
+		case 2:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseAutomatic->getPosition()));
+			break;
+		case 3:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseAutomatic->getPosition()));
+			break;
+		case 4:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraOfrenda->getPosition()));
+			break;
+		case 5:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmasTree->getPosition()));
+			break;
+		default:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		}
 		shaderMaterialLighting.setVectorFloat3("light.ambient", glm::value_ptr(glm::vec3(0.3, 0.3, 0.3)));
 		shaderMaterialLighting.setVectorFloat3("light.diffuse", glm::value_ptr(glm::vec3(0.5, 0.5, 0.5)));
 		shaderMaterialLighting.setVectorFloat3("light.specular", glm::value_ptr(glm::vec3(0.9, 0.9, 0.9)));
 
 		// Propiedades de la luz para objetos con multiples luces
 		///////////////////////////////////////////////////////Intensidad de luz
-		shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(camera->getPosition()));
+		//	segun la camra seleccionada, se cargar el shader en la escena
+		switch (cambioCamara) {
+		case 0:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		case 1:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseFree->getPosition()));
+			break;
+		case 2:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseAutomatic->getPosition()));
+			break;
+		case 3:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseAutomatic->getPosition()));
+			break;
+		case 4:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraOfrenda->getPosition()));
+			break;
+		case 5:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmasTree->getPosition()));
+			break;
+		default:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		}
 		shaderMulLighting.setVectorFloat3("directionalLight.light.ambient", glm::value_ptr(glm::vec3(0.3, 0.3, 0.3)));
 		shaderMulLighting.setVectorFloat3("directionalLight.light.diffuse", glm::value_ptr(glm::vec3(0.4, 0.4, 0.4)));
 		shaderMulLighting.setVectorFloat3("directionalLight.light.specular", glm::value_ptr(glm::vec3(0.7, 0.7, 0.7)));
 		shaderMulLighting.setVectorFloat3("directionalLight.direction", glm::value_ptr(glm::vec3(-1.0, 0.0, 1.0)));
 		//SpotLight
 		shaderMulLighting.setInt("spotLightCount", 1);
-		shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(camera->getPosition()));
-		shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(camera->getFront()));
+		//	segun la camra seleccionada, se cargar el shader en la escena
+		switch (cambioCamara) {
+		case 0:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraHorrorHouseFree->getFront()));
+			break;
+		case 1:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraChristmastHouseFree->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraChristmastHouseFree->getFront()));
+			break;
+		case 2:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraHorrorHouseAutomatic->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraHorrorHouseAutomatic->getFront()));
+			break;
+		case 3:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraChristmastHouseAutomatic->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraChristmastHouseAutomatic->getFront()));
+			break;
+		case 4:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraOfrenda->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraOfrenda->getFront()));
+			break;
+		case 5:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraChristmasTree->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraChristmasTree->getFront()));
+			break;
+		default:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraHorrorHouseFree->getFront()));
+			break;
+		}
 		shaderMulLighting.setVectorFloat3("spotLights[0].light.ambient", glm::value_ptr(glm::vec3(0.1, 0.1, 0.1)));
 		shaderMulLighting.setVectorFloat3("spotLights[0].light.diffuse", glm::value_ptr(glm::vec3(0.4, 0.4, 0.4)));
 		shaderMulLighting.setVectorFloat3("spotLights[0].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.6)));
@@ -6352,8 +6574,8 @@ void applicationLoop() {
 
 		switch (state2) {
 		case 3:
-			std::cout << "Land the plane" << std::endl;
-			std::cout << offsetAircraftAdvanceII << std::endl;
+			//std::cout << "Land the plane" << std::endl;
+			//std::cout << offsetAircraftAdvanceII << std::endl;
 			modelMatrixHeli = glm::translate(modelMatrixHeli, glm::vec3(0.0, -0.015, 0.00));
 			offsetAircraftAdvanceII += 0.01;
 
@@ -6370,8 +6592,8 @@ void applicationLoop() {
 			}
 			break;
 		case 4:
-			std::cout << "Fly" << std::endl;
-			std::cout << offsetAircraftAdvanceII << std::endl;
+			//std::cout << "Fly" << std::endl;
+			//std::cout << offsetAircraftAdvanceII << std::endl;
 			modelMatrixHeli = glm::translate(modelMatrixHeli, glm::vec3(0.0, 0.0, 0.02));
 
 			modelMatrixHeliHeli = glm::translate(modelMatrixHeliHeli, glm::vec3(0.0, 0.0, -0.249548));
@@ -6388,8 +6610,8 @@ void applicationLoop() {
 			break;
 		case 5:
 
-			std::cout << "Stop" << std::endl;
-			std::cout << rotHelHelYStop << std::endl;
+			//std::cout << "Stop" << std::endl;
+			//std::cout << rotHelHelYStop << std::endl;
 			if (offsetAircraftAdvanceII == 0.0) {
 				rotHelHelYStop -= 0.10;
 				offsetAircraftAdvanceII = 1.0;
@@ -6426,8 +6648,8 @@ void applicationLoop() {
 		 // State machine for eclipse car
 		switch (state) {
 		case 0:
-			std::cout << "Advance" << std::endl;
-			std::cout << offsetAircraftAdvance << std::endl;
+			//std::cout << "Advance" << std::endl;
+			//std::cout << offsetAircraftAdvance << std::endl;
 			modelMatrixEclipse = glm::translate(modelMatrixEclipse, glm::vec3(0.0, 0.0, 0.1));
 			advanceCount += 0.1;
 			rotWheelsX += 0.05;
@@ -6440,8 +6662,8 @@ void applicationLoop() {
 			}
 			break;
 		case 1:
-			modelMatrixEclipse = glm::translate(modelMatrixEclipse, glm::vec3(0.0, 0.0, 0.025));
-			modelMatrixEclipse = glm::rotate(modelMatrixEclipse, glm::radians(0.5f), glm::vec3(0, 1, 0));
+			//modelMatrixEclipse = glm::translate(modelMatrixEclipse, glm::vec3(0.0, 0.0, 0.025));
+			//modelMatrixEclipse = glm::rotate(modelMatrixEclipse, glm::radians(0.5f), glm::vec3(0, 1, 0));
 			rotCount += 0.5f;
 			rotWheelsX += 0.05;
 			rotWheelsY += 0.02;
@@ -6468,6 +6690,47 @@ void applicationLoop() {
 				stateDoor = 0;
 			}
 			break;
+		}
+
+		//machine state for the tour casa
+		if (cambioCamara == 2 || cambioCamara == 3) {
+			//TimeManager::Instance().CalculateFrameRate(false);
+			deltaTime = TimeManager::Instance().DeltaTime;
+			switch (stateHouseRecorrido) {
+			case 0:
+				recorridoCamara += 0.1;
+
+				if (cambioCamara == 2) {
+					cameraHorrorHouseAutomatic->moveFrontCamera(true, deltaTime);
+				}
+				else if (cambioCamara == 3) {
+					cameraChristmastHouseAutomatic->moveFrontCamera(true, deltaTime);
+				}
+
+				if (recorridoCamara > 90) {
+					recorridoCamara = 0;
+					stateHouseRecorrido = 1;
+				}
+				break;
+			case 1:
+				giroCamaraY += glm::radians(1.0f);
+
+				if (cambioCamara == 2) {
+					cameraHorrorHouseAutomatic->mouseMoveCamera(1.0f, 0.0f, 0.01);
+				}
+				else if (cambioCamara = 3) {
+					//cameraChristmastHouseAutomatic->moveRightCamera(true, deltaTime);
+					cameraChristmastHouseAutomatic->mouseMoveCamera(1.0f, 0.0f, 0.01);
+				}
+
+				if (giroCamaraY > glm::radians(90.0f)) {
+					giroCamaraY = 0.0f;
+					stateHouseRecorrido = 0;
+				}
+				break;
+			default:
+				break;
+			}
 		}
 
 		/////////////////////////////
