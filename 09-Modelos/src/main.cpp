@@ -34,6 +34,9 @@ GLFWwindow* window;
 
 //Suma para duplicar la casa
 float suma = 65.0f;
+float aumentoLuces = 10.0f;
+float aumentoLuces2 = 13.0f;
+float aumentoLuces3 = 15.0f;
 
 Shader shader;
 //Shader de texturizado
@@ -51,7 +54,16 @@ Shader shaderSkybox;
 // Shader con multiples luces
 Shader shaderMulLighting;
 
-std::shared_ptr<FirstPersonCamera> camera(new FirstPersonCamera());
+//std::shared_ptr<FirstPersonCamera> camera(new FirstPersonCamera());
+//creacion de elementos para las camaras, camaras para la escena
+std::shared_ptr<FirstPersonCamera> cameraHorrorHouseFree(new FirstPersonCamera());
+std::shared_ptr<FirstPersonCamera> cameraChristmastHouseFree(new FirstPersonCamera());
+std::shared_ptr<FirstPersonCamera> cameraHorrorHouseAutomatic(new FirstPersonCamera());
+std::shared_ptr<FirstPersonCamera> cameraChristmastHouseAutomatic(new FirstPersonCamera());
+std::shared_ptr<FirstPersonCamera> cameraOfrenda(new FirstPersonCamera());
+std::shared_ptr<FirstPersonCamera> cameraChristmasTree(new FirstPersonCamera());
+int cambioCamara = 0;
+//--------------------------------------------------
 
 Sphere sphere1(20, 20);
 Sphere sphere2(20, 20);
@@ -73,10 +85,8 @@ Box boxMaterials;
 Model modelRock;
 Model modelCami;
 Model modelRailRoad;
-Model Aircraft;
 Model ModelAircraft;
 Model ModelMesa;
-Model ModelPlanta;
 Model ModelEjemplo;
 Model modelEclipseChasis;
 Model modelEclipseRearWheels;
@@ -89,6 +99,7 @@ Model modelLamboRightDor;
 Model modelLamboWheelsFrontal;
 Model modelLamboWheelsRear;
 
+Model ModelBell;
 Model modelMesa;
 Model ModelSilla;
 Model ModelBaston;
@@ -314,120 +325,10 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	box7.init();
 	box7.setShader(&shaderMulLighting);
 
-	/*Cosas de Navidad*/
-
-	modelMesa.loadModel("../models/table/table.obj");
-	modelMesa.setShader(&shaderMulLighting);
-
-	ModelSilla.loadModel("../models/SillaComedor/Chair.obj");
-	ModelSilla.setShader(&shaderMulLighting);
-
-	Modeljardinera.loadModel("../models/Navidad/jardinera/jardinera.obj");
-	Modeljardinera.setShader(&shaderMulLighting);
-
-	ModelWC.loadModel("../models/toilet/toilet.obj");
-	ModelWC.setShader(&shaderMulLighting);
-
-	ModelPinata.loadModel("../models/Navidad/pinata/pinata.obj");
-	ModelPinata.setShader(&shaderMulLighting);
-	
-	ModelTrineo.loadModel("../models/Navidad/trineo/trineo.obj");
-	ModelTrineo.setShader(&shaderMulLighting);
-
-	ModelPinoNavidad.loadModel("../models/Navidad/christmas_tree/Christmas+tree.obj");
-	ModelPinoNavidad.setShader(&shaderMulLighting);
-	
-	ModelEstrella.loadModel("../models/Navidad/bell/11566_Bell_V5_l3.obj");
-	ModelEstrella.setShader(&shaderMulLighting);
-
-	//ModelEsfera.loadModel("../models/Navidad/ArbolNavidad/11.obj");
-	//ModelEsfera.setShader(&shaderMulLighting);
-
-	/*
-
-	ModelBaston.loadModel("../models/Navidad/baston/baston1.obj");
-	ModelBaston.setShader(&shaderMulLighting);
-
-	ModelCaballito.loadModel("../models/Navidad/caballito/caballito.obj");
-	ModelCaballito.setShader(&shaderMulLighting);
-
-	
-
-	ModelPinoNavidad.loadModel("../models/Navidad/pino/pine_tree.obj");
-	ModelPinoNavidad.setShader(&shaderMulLighting);
-
-	ModelHat.loadModel("../models/Navidad/hat/santa_hat(BLENDER).obj");
-	ModelHat.setShader(&shaderMulLighting);
-
-	ModelSpiderman.loadModel("../models/Navidad/spiderman/M-CoC_iOS_HERO_Peter_Parker_Spider-Man_Stark_Enhanced.obj");
-	ModelSpiderman.setShader(&shaderMulLighting);
-
-	ModelRegaloUno.loadModel("../models/Navidad/regalo/REGALO_Alex.obj");
-	ModelRegaloUno.setShader(&shaderMulLighting);
-
-	ModelRegaloDos.loadModel("../models/Navidad/regalo2/regalo.obj");
-	ModelRegaloDos.setShader(&shaderMulLighting);
-
-	ModelRosa.loadModel("../models/Navidad/rosa/rosa.obj");
-	ModelRosa.setShader(&shaderMulLighting);
-
-	ModelNochebuena.loadModel("../models/Navidad/nochebuena/nochebuena.obj");
-	ModelNochebuena.setShader(&shaderMulLighting);
-
-	
-
-	ModelDinosaur.loadModel("../models/Navidad/Dinosaur/Dinosaur.obj");
-	ModelDinosaur.setShader(&shaderMulLighting);
-
-	ModelTren.loadModel("../models/Navidad/rock/rock.obj");
-	ModelTren.setShader(&shaderMulLighting);
-
-	ModelTrineo.loadModel("../models/Navidad/trineo/trineo.obj");
-	ModelTrineo.setShader(&shaderMulLighting);
-
-
-
-
-
-
-
-
-	ModelPrueba.loadModel("../models/Navidad/calceta/calceta_roja.obj");
-	ModelPrueba.setShader(&shaderMulLighting);
-	*/
-	/*Fin cosas de Navidad*/
-
-	ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
-	ModelSofa.setShader(&shaderMulLighting);
-
-	ModelSofaP.loadModel("../models/Navidad/sofap/sofap.obj");
-	ModelSofaP.setShader(&shaderMulLighting);
-
-	/*Ubicacion de los modelos*/
-	modelRock.loadModel("../models/rock/rock.obj");
-	modelRock.setShader(&shaderMulLighting);
-
+	/*Modelos Transporte
 	ModelAircraft.loadModel("../models/Aircraft_obj/E 45 Aircraft_obj.obj");
 	ModelAircraft.setShader(&shaderMulLighting);
 
-	Aircraft.loadModel("../models/Eclipse/2003eclipse.obj");
-	Aircraft.setShader(&shaderMulLighting);
-
-	modelRailRoad.loadModel("../models/railroad/railroad_track.obj");
-	modelRailRoad.setShader(&shaderMulLighting);
-
-	modelCami.loadModel("../models/dog/12228_Dog_v1_L2.obj");
-	modelCami.setShader(&shaderMulLighting);
-
-	ModelMesa.loadModel("../models/Wood_Table/Wood_Table.obj");
-	ModelMesa.setShader(&shaderMulLighting);
-
-
-	ModelPlanta.loadModel("../models/Helicopter/Mi_24.obj");
-	ModelPlanta.setShader(&shaderMulLighting);
-
-	ModelEjemplo.loadModel("../models/silla/10239_Office_Chair_v1_L3.obj");
-	ModelEjemplo.setShader(&shaderMulLighting);
 	// Eclipse
 	modelEclipseChasis.loadModel("../models/Eclipse/2003eclipse_chasis.obj");
 	modelEclipseChasis.setShader(&shaderMulLighting);
@@ -452,6 +353,112 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelLamboWheelsRear.loadModel("../models/Lamborginhi_Aventador_OBJ/Lamborghini_Aventador_wheels.obj");
 	modelLamboWheelsRear.setShader(&shaderMulLighting);
 
+	/*Modelos de la Casa
+	modelMesa.loadModel("../models/table/table.obj");
+	modelMesa.setShader(&shaderMulLighting);
+
+	ModelSilla.loadModel("../models/SillaComedor/Chair.obj");
+	ModelSilla.setShader(&shaderMulLighting);
+
+	ModelWC.loadModel("../models/toilet/toilet.obj");
+	ModelWC.setShader(&shaderMulLighting);
+
+	ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
+	ModelSofa.setShader(&shaderMulLighting);
+
+	ModelSofaP.loadModel("../models/Navidad/sofap/sofap.obj");
+	ModelSofaP.setShader(&shaderMulLighting);
+
+	ModelMesa.loadModel("../models/Wood_Table/Wood_Table.obj");
+	ModelMesa.setShader(&shaderMulLighting);
+
+	ModelEjemplo.loadModel("../models/silla/10239_Office_Chair_v1_L3.obj");
+	ModelEjemplo.setShader(&shaderMulLighting);
+
+	/*Modelos Otros /Plantas/Roca/Perro/ViasDelTren
+	Modeljardinera.loadModel("../models/Navidad/jardinera/jardinera.obj");
+	Modeljardinera.setShader(&shaderMulLighting);
+
+	modelRock.loadModel("../models/rock/rock.obj");
+	modelRock.setShader(&shaderMulLighting);
+
+	modelCami.loadModel("../models/dog/12228_Dog_v1_L2.obj");
+	modelCami.setShader(&shaderMulLighting);
+
+	modelRailRoad.loadModel("../models/railroad/railroad_track.obj");
+	modelRailRoad.setShader(&shaderMulLighting);
+
+	/*Cosas de Navidad
+	ModelPinata.loadModel("../models/Navidad/pinata/pinata.obj");
+	ModelPinata.setShader(&shaderMulLighting);
+
+	ModelTrineo.loadModel("../models/Navidad/trineo/trineo.obj");
+	ModelTrineo.setShader(&shaderMulLighting);
+
+	ModelPinoNavidad.loadModel("../models/Navidad/christmas_tree/Christmas+tree.obj");
+	ModelPinoNavidad.setShader(&shaderMulLighting);
+
+	ModelEstrella.loadModel("../models/Navidad/ArbolChido/estrella.obj");
+	ModelEstrella.setShader(&shaderMulLighting);
+
+	ModelBell.loadModel("../models/Navidad/bell/11566_Bell_V5_l3.obj");
+	ModelBell.setShader(&shaderMulLighting);
+
+	*/
+
+	//---------------------------------------------------------------------
+	//ModelEsfera.loadModel("../models/Navidad/ArbolNavidad/11.obj");
+	//ModelEsfera.setShader(&shaderMulLighting);
+
+	/*
+
+	ModelBaston.loadModel("../models/Navidad/baston/baston1.obj");
+	ModelBaston.setShader(&shaderMulLighting);
+
+	ModelCaballito.loadModel("../models/Navidad/caballito/caballito.obj");
+	ModelCaballito.setShader(&shaderMulLighting);
+
+	ModelPinoNavidad.loadModel("../models/Navidad/pino/pine_tree.obj");
+	ModelPinoNavidad.setShader(&shaderMulLighting);
+
+	ModelHat.loadModel("../models/Navidad/hat/santa_hat(BLENDER).obj");
+	ModelHat.setShader(&shaderMulLighting);
+
+	ModelSpiderman.loadModel("../models/Navidad/spiderman/M-CoC_iOS_HERO_Peter_Parker_Spider-Man_Stark_Enhanced.obj");
+	ModelSpiderman.setShader(&shaderMulLighting);
+
+	ModelRegaloUno.loadModel("../models/Navidad/regalo/REGALO_Alex.obj");
+	ModelRegaloUno.setShader(&shaderMulLighting);
+
+	ModelRegaloDos.loadModel("../models/Navidad/regalo2/regalo.obj");
+	ModelRegaloDos.setShader(&shaderMulLighting);
+
+	ModelRosa.loadModel("../models/Navidad/rosa/rosa.obj");
+	ModelRosa.setShader(&shaderMulLighting);
+
+	ModelNochebuena.loadModel("../models/Navidad/nochebuena/nochebuena.obj");
+	ModelNochebuena.setShader(&shaderMulLighting);
+
+	ModelDinosaur.loadModel("../models/Navidad/Dinosaur/Dinosaur.obj");
+	ModelDinosaur.setShader(&shaderMulLighting);
+
+	ModelTren.loadModel("../models/Navidad/rock/rock.obj");
+	ModelTren.setShader(&shaderMulLighting);
+
+
+
+	ModelPrueba.loadModel("../models/Navidad/calceta/calceta_roja.obj");
+	ModelPrueba.setShader(&shaderMulLighting);
+	*/
+	/*Fin cosas de Navidad*/
+
+	/*Dia de Muertos*/
+
+
+
+
+
+
 	//Se inicializan los objetos para el modelo de R2D2
 	torsoR2D2.init();
 	torsoR2D2.setShader(&shader);
@@ -469,8 +476,14 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	pieR2D2.setShader(&shader);
 	pieR2D2.setColor(glm::vec4(0.6f, 0.6f, 0.6f, 1.0f));
 
-	/*Posicion de la Camara al iniciar*/
-	camera->setPosition(glm::vec3(-30.0, 03.0, -10.0));
+	//Posicion inicial de la camaras**********************
+	cameraHorrorHouseFree->setPosition(glm::vec3(3.077236, -2.52848, -86.0336));
+	cameraChristmastHouseFree->setPosition(glm::vec3(-3.077236, -2.52848, -86.0336));
+	cameraHorrorHouseAutomatic->setPosition(glm::vec3(5.077236, -2.52848, 86.0336));
+	cameraChristmastHouseAutomatic->setPosition(glm::vec3(-72.0461, -6.87082, 86.0336));
+	cameraOfrenda->setPosition(glm::vec3(0.0, 0.0, 0.0));
+	cameraChristmasTree->setPosition(glm::vec3(0.0, 0.0, 0.0));
+	//----------------------------------------------------------------
 
 	/*Se cargan las Texturas*/
 	// Definimos el tamanio de la imagen
@@ -1753,6 +1766,13 @@ void destroy() {
 	pieR2D2.destroy();
 
 	shader.destroy();
+	shaderMulLighting.destroy();
+	shaderSkybox.destroy();
+	shaderMaterialLighting.destroy();
+	shaderColorLighting.destroy();
+	shaderSkybox.destroy();
+	shaderTexture.destroy();
+	shaderTextureLighting.destroy();
 }
 
 void reshapeCallback(GLFWwindow* Window, int widthRes, int heightRes) {
@@ -1767,6 +1787,29 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action,
 		switch (key) {
 		case GLFW_KEY_ESCAPE:
 			exitApp = true;
+			break;
+		case GLFW_KEY_0:
+			cambioCamara = 0;//camara libre de la casa de terror
+			break;
+		case GLFW_KEY_1:
+			cambioCamara = 1;//camara libre de la casa de navidad
+			break;
+		case GLFW_KEY_2:
+			cambioCamara = 2;//camara recorrido de la casa de terror
+			break;
+		case GLFW_KEY_3:
+			cambioCamara = 3;//camara recorrido de la casa de navidad
+			break;
+		case GLFW_KEY_4:
+			cambioCamara = 4;//camara en frente de la ofrenda de navidad
+			break;
+		case GLFW_KEY_5:
+			cambioCamara = 5;//camara en frente del arbol de navidad
+			break;
+		case GLFW_KEY_9:
+			std::cout << cameraHorrorHouseFree->getPosition().x << " , " << cameraHorrorHouseFree->getPosition().y
+				<< " , " << cameraHorrorHouseFree->getPosition().z << std::endl;
+		default:
 			break;
 		}
 	}
@@ -1803,16 +1846,46 @@ bool processInput(bool continueApplication) {
 	TimeManager::Instance().CalculateFrameRate(false);
 	deltaTime = TimeManager::Instance().DeltaTime;
 
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		camera->moveFrontCamera(true, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		camera->moveFrontCamera(false, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		camera->moveRightCamera(false, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		camera->moveRightCamera(true, deltaTime);
-	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
-		camera->mouseMoveCamera(offsetX, offsetY, 0.01);
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+		if (cambioCamara == 0) {
+			cameraHorrorHouseFree->moveFrontCamera(true, deltaTime);
+		}
+		else if (cambioCamara == 1) {
+			cameraChristmastHouseFree->moveFrontCamera(true, deltaTime);
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+		if (cambioCamara == 0) {
+			cameraHorrorHouseFree->moveFrontCamera(false, deltaTime);
+		}
+		else if (cambioCamara == 1) {
+			cameraChristmastHouseFree->moveFrontCamera(false, deltaTime);
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+		if (cambioCamara == 0) {
+			cameraHorrorHouseFree->moveRightCamera(false, deltaTime);
+		}
+		else if (cambioCamara == 1) {
+			cameraChristmastHouseFree->moveRightCamera(false, deltaTime);
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+		if (cambioCamara == 0) {
+			cameraHorrorHouseFree->moveRightCamera(true, deltaTime);
+		}
+		else if (cambioCamara == 1) {
+			cameraChristmastHouseFree->moveRightCamera(true, deltaTime);
+		}
+	}
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
+		if (cambioCamara == 0) {
+			cameraHorrorHouseFree->mouseMoveCamera(offsetX, offsetY, 0.01);
+		}
+		else if (cambioCamara == 1) {
+			cameraChristmastHouseFree->mouseMoveCamera(offsetX, offsetY, 0.01);
+		}
+	}
 	offsetX = 0;
 	offsetY = 0;
 	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)///3
@@ -1913,6 +1986,10 @@ void applicationLoop() {
 	modelMatrixDart = glm::translate(modelMatrixDart, glm::vec3(3.0, 0.0, 20.0));
 	modelMatrixDart = glm::scale(modelMatrixDart, glm::vec3(0.5, 0.5, 0.5));
 
+	int stateHouseRecorrido = 0;
+	float recorridoCamara = 0;
+	float giroCamaraY = 0;
+
 	/////////////////////////
 	while (psi) {
 		psi = processInput(true);
@@ -1920,7 +1997,31 @@ void applicationLoop() {
 
 		glm::mat4 projection = glm::perspective(glm::radians(45.0f),
 			(float)screenWidth / (float)screenHeight, 0.01f, 100.0f);
-		glm::mat4 view = camera->getViewMatrix();
+		//segun la camara, sera la matriz de vista
+		glm::mat4 view;
+		switch (cambioCamara) {
+		case 0:
+			view = cameraHorrorHouseFree->getViewMatrix();
+			break;
+		case 1:
+			view = cameraChristmastHouseFree->getViewMatrix();
+			break;
+		case 2:
+			view = cameraHorrorHouseAutomatic->getViewMatrix();
+			break;
+		case 3:
+			view = cameraChristmastHouseAutomatic->getViewMatrix();
+			break;
+		case 4:
+			view = cameraOfrenda->getViewMatrix();
+			break;
+		case 5:
+			view = cameraChristmasTree->getViewMatrix();
+			break;
+		default:
+			view = cameraHorrorHouseFree->getViewMatrix();
+			break;
+		}
 
 		// Settea la matriz de vista y projection al shader con solo color
 		shader.setMatrix4("projection", 1, false, glm::value_ptr(projection));
@@ -1960,8 +2061,30 @@ void applicationLoop() {
 			glm::value_ptr(view));
 
 		// Propiedades de la luz para objetos con color
-		shaderColorLighting.setVectorFloat3("viewPos",
-			glm::value_ptr(camera->getPosition()));
+		//	segun la camra seleccionada, se cargar el shader en la escena
+		switch (cambioCamara) {
+		case 0:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		case 1:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseFree->getPosition()));
+			break;
+		case 2:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseAutomatic->getPosition()));
+			break;
+		case 3:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseAutomatic->getPosition()));
+			break;
+		case 4:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraOfrenda->getPosition()));
+			break;
+		case 5:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmasTree->getPosition()));
+			break;
+		default:
+			shaderColorLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		}
 		shaderColorLighting.setVectorFloat3("light.ambient",
 			glm::value_ptr(glm::vec3(0.3, 0.3, 0.3)));
 		shaderColorLighting.setVectorFloat3("light.diffuse",
@@ -1970,8 +2093,30 @@ void applicationLoop() {
 			glm::value_ptr(glm::vec3(0.9, 0.0, 0.0)));
 
 		// Propiedades de la luz para objetos con textura
-		shaderTextureLighting.setVectorFloat3("viewPos",
-			glm::value_ptr(camera->getPosition()));
+		//	segun la camra seleccionada, se cargar el shader en la escena
+		switch (cambioCamara) {
+		case 0:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		case 1:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseFree->getPosition()));
+			break;
+		case 2:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseAutomatic->getPosition()));
+			break;
+		case 3:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseAutomatic->getPosition()));
+			break;
+		case 4:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraOfrenda->getPosition()));
+			break;
+		case 5:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmasTree->getPosition()));
+			break;
+		default:
+			shaderTextureLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		}
 		shaderTextureLighting.setVectorFloat3("light.ambient",
 			glm::value_ptr(glm::vec3(0.3, 0.3, 0.3)));
 		shaderTextureLighting.setVectorFloat3("light.diffuse",
@@ -1980,22 +2125,97 @@ void applicationLoop() {
 			glm::value_ptr(glm::vec3(0.9, 0.0, 0.0)));
 
 		// Propiedades de la luz para objetos con textura
-		shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(camera->getPosition()));
+		//	segun la camra seleccionada, se cargar el shader en la escena
+		switch (cambioCamara) {
+		case 0:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		case 1:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseFree->getPosition()));
+			break;
+		case 2:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseAutomatic->getPosition()));
+			break;
+		case 3:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseAutomatic->getPosition()));
+			break;
+		case 4:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraOfrenda->getPosition()));
+			break;
+		case 5:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmasTree->getPosition()));
+			break;
+		default:
+			shaderMaterialLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		}
 		shaderMaterialLighting.setVectorFloat3("light.ambient", glm::value_ptr(glm::vec3(0.3, 0.3, 0.3)));
 		shaderMaterialLighting.setVectorFloat3("light.diffuse", glm::value_ptr(glm::vec3(0.5, 0.5, 0.5)));
 		shaderMaterialLighting.setVectorFloat3("light.specular", glm::value_ptr(glm::vec3(0.9, 0.9, 0.9)));
 
 		// Propiedades de la luz para objetos con multiples luces
 		///////////////////////////////////////////////////////Intensidad de luz
-		shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(camera->getPosition()));
+		//	segun la camra seleccionada, se cargar el shader en la escena
+		switch (cambioCamara) {
+		case 0:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		case 1:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseFree->getPosition()));
+			break;
+		case 2:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseAutomatic->getPosition()));
+			break;
+		case 3:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmastHouseAutomatic->getPosition()));
+			break;
+		case 4:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraOfrenda->getPosition()));
+			break;
+		case 5:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraChristmasTree->getPosition()));
+			break;
+		default:
+			shaderMulLighting.setVectorFloat3("viewPos", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			break;
+		}
 		shaderMulLighting.setVectorFloat3("directionalLight.light.ambient", glm::value_ptr(glm::vec3(0.3, 0.3, 0.3)));
 		shaderMulLighting.setVectorFloat3("directionalLight.light.diffuse", glm::value_ptr(glm::vec3(0.4, 0.4, 0.4)));
 		shaderMulLighting.setVectorFloat3("directionalLight.light.specular", glm::value_ptr(glm::vec3(0.7, 0.7, 0.7)));
 		shaderMulLighting.setVectorFloat3("directionalLight.direction", glm::value_ptr(glm::vec3(-1.0, 0.0, 1.0)));
 		//SpotLight
 		shaderMulLighting.setInt("spotLightCount", 1);
-		shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(camera->getPosition()));
-		shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(camera->getFront()));
+		//	segun la camra seleccionada, se cargar el shader en la escena
+		switch (cambioCamara) {
+		case 0:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraHorrorHouseFree->getFront()));
+			break;
+		case 1:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraChristmastHouseFree->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraChristmastHouseFree->getFront()));
+			break;
+		case 2:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraHorrorHouseAutomatic->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraHorrorHouseAutomatic->getFront()));
+			break;
+		case 3:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraChristmastHouseAutomatic->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraChristmastHouseAutomatic->getFront()));
+			break;
+		case 4:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraOfrenda->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraOfrenda->getFront()));
+			break;
+		case 5:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraChristmasTree->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraChristmasTree->getFront()));
+			break;
+		default:
+			shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(cameraHorrorHouseFree->getPosition()));
+			shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(cameraHorrorHouseFree->getFront()));
+			break;
+		}
 		shaderMulLighting.setVectorFloat3("spotLights[0].light.ambient", glm::value_ptr(glm::vec3(0.1, 0.1, 0.1)));
 		shaderMulLighting.setVectorFloat3("spotLights[0].light.diffuse", glm::value_ptr(glm::vec3(0.4, 0.4, 0.4)));
 		shaderMulLighting.setVectorFloat3("spotLights[0].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.6)));
@@ -2504,7 +2724,7 @@ void applicationLoop() {
 		sphereLamp.setPosition(glm::vec3(22.6, 15, -45.0));
 		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
 		sphereLamp.render();
-		
+
 
 		//Amarillo 
 		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
@@ -2737,12 +2957,2597 @@ void applicationLoop() {
 		sphereLamp.setPosition(glm::vec3(45.4, 15, -45.0));
 		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
 		sphereLamp.render();
+		/*Fin  Luces*/
 
-	
+		/*Luces piso Abajo*/
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-14.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-13.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-13.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-12.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Morada
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-12.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		///::_________
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-11.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-10.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-10.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+		//_---------
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-9.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-9.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-8.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-8.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-7.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
 
 
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-6.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-6.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-5.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-5.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-4.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-3.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-3.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-2.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-2.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-1.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-0.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-0.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(0.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(1.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(1.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(2.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(2.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(3.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(4.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(4.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(5.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(5.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(6.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(7.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(7.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(8.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(8.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(9.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(10.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(10.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(11.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(11.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(12.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(13, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(13.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(14.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(14.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(15.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(16.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(16.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(17.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(17.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(18.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(19.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(19.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(20.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(20.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(21.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(22.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(22.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(23.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(23.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(24.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(25.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		/////////////////////
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(25.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(26.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(26.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(27.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(28.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(28.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(29.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(29.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(30.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(31.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(31.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(32.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(32.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(33.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(34.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(34.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(35.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(35.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(36.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(37.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(37.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(38.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(38.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(39.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		///////////
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(40.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(40.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(41.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(41.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(42.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(43.0, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(43.6, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(44.2, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(44.8, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(45.4, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+		/*Fin  Luces*/
+
+		///luces 3
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-14.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-13.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-13.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-12.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Morada
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-12.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		///::_________
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-11.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-10.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-10.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+		//_---------
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-9.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-9.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-8.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-8.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-7.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-8.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-7.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-6.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-6.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-5.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-5.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-4.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-3.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-3.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-2.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-2.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-1.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-0.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-0.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(0.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(1.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(1.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(2.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(2.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(3.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(4.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(4.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(5.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(5.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(6.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(7.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(7.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(8.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(8.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(9.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(10.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(10.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(11.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(11.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(12.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(13, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(13.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(14.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(14.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(15.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(16.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(16.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(17.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(17.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(18.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(19.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(19.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(20.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(20.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(21.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(22.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(22.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(23.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(23.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(24.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(25.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		/////////////////////
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(25.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(26.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(26.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(27.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(28.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(28.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(29.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(29.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(30.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(31.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(31.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(32.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(32.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(33.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(34.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(34.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(35.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(35.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(36.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(37.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(37.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(38.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(38.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(39.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		///////////
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(40.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(40.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(41.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(41.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(42.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(43.0, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(43.6, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(44.2, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(44.8, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(45.4, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
 
 		/*Fin  Luces*/
+
+		////luces4
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-14.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-13.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-13.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-12.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Morada
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-12.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		///::_________
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-11.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-10.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-10.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+		//_---------
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-9.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-9.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-8.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-8.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-7.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-8.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-7.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-6.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-6.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-5.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-5.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-4.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-3.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-3.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-2.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-2.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-1.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-0.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-0.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(0.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(1.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(1.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(2.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(2.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(3.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(4.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(4.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(5.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(5.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(6.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(7.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(7.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(8.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(8.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(9.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(10.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(10.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(11.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(11.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(12.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(13, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(13.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(14.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(14.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(15.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(16.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(16.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(17.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(17.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(18.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(19.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(19.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(20.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(20.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(21.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(22.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(22.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(23.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(23.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(24.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(25.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		/////////////////////
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(25.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(26.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(26.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(27.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(28.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(28.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(29.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(29.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(30.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(31.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(31.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(32.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(32.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(33.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(34.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(34.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(35.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(35.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(36.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(37.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(37.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(38.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(38.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(39.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		///////////
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(40.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(40.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(41.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(41.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(42.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(43.0, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(43.6, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(44.2, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(44.8, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(45.4, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		/*Fin  Luces*/
+
+		//Inician luces laterales 1
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -44.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -43.8));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -43.2));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Morada
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -42.6));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -42.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -41.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -40.8));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -40.2));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -39.6));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -39.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -38.4));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -37.8));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -37.20));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -36.60));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -36.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -35.4));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -34.8));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -34.20));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -33.60));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -33.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -32.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -31.80));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -31.20));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -30.60));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -29.40));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		///
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -28.80));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -28.20));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -27.60));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15, -27.00));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Inician luces laterales 2
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -44.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -43.8));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -43.2));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Morada
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -42.6));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -42.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -41.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -40.8));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -40.2));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -39.6));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -39.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -38.4));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -37.8));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -37.20));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -36.60));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -36.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -35.4));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -34.8));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -34.20));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -33.60));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -33.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -32.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -31.80));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -31.20));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -30.60));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -29.40));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		///
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -28.80));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -28.20));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -27.60));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces2, -27.00));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Inician luces laterales 3
+			///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -44.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -43.8));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -43.2));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Morada
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -42.6));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -42.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -41.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -40.8));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -40.2));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -39.6));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -39.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -38.4));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -37.8));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -37.20));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -36.60));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -36.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -35.4));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -34.8));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -34.20));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -33.60));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -33.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -32.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -31.80));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -31.20));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -30.60));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -29.40));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		///
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -28.80));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -28.20));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -27.60));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces3, -27.00));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Inician luces laterales 4
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -45.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -44.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -43.8));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -43.2));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Morada
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -42.6));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -42.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -41.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -40.8));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -40.2));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -39.6));
+		sphereLamp.setColor(glm::vec4(0.34, 0.13, 0.39, 1.0));
+		sphereLamp.render();
+
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -39.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -38.4));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -37.8));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -37.20));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -36.60));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -36.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -35.4));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -34.8));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -34.20));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -33.60));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -33.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -32.4));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -31.80));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -31.20));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -30.60));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -29.40));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
+		///
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -28.80));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0));
+		sphereLamp.render();
+
+		///Verde
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -28.20));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -27.60));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Azul
+		sphereLamp.setScale(glm::vec3(0.2, 0.2, 0.3));
+		sphereLamp.setPosition(glm::vec3(-15.5, 15 - aumentoLuces, -27.00));
+		sphereLamp.setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+		sphereLamp.render();
+
 
 		glm::mat4 lightModelmatrix = glm::rotate(glm::mat4(1.0f), angle,
 			glm::vec3(1.0f, 0.0f, 0.0f));
@@ -2881,11 +5686,53 @@ void applicationLoop() {
 		/* ------------ Fin de Escaleras --------------------*/
 
 		/* ----------------- Barandal -----------------------*/
-		/*Cadena de luces*/
+		/*Cadena de luces1*/
 		glBindTexture(GL_TEXTURE_2D, textureID4);
 		box.setPosition(glm::vec3(15.0, 15.04, -45.04));
 		box.setScale(glm::vec3(60.0, 0.050, 0.0050));
 		box.render();
+
+		/*Cadena de luces2*/
+		glBindTexture(GL_TEXTURE_2D, textureID4);
+		box.setPosition(glm::vec3(15.0, 15.04 - aumentoLuces, -45.04));
+		box.setScale(glm::vec3(60.0, 0.050, 0.0050));
+		box.render();
+
+		/*Cadena de luces3*/
+		glBindTexture(GL_TEXTURE_2D, textureID4);
+		box.setPosition(glm::vec3(15.0, 15.04 - aumentoLuces2, -45.04));
+		box.setScale(glm::vec3(60.0, 0.050, 0.0050));
+		box.render();
+
+		/*Cadena de luces4*/
+		glBindTexture(GL_TEXTURE_2D, textureID4);
+		box.setPosition(glm::vec3(15.0, 15.04 - aumentoLuces3, -45.04));
+		box.setScale(glm::vec3(60.0, 0.050, 0.0050));
+		box.render();
+
+		/*Cadena de luces lateral 1*/
+		glBindTexture(GL_TEXTURE_2D, textureID4);
+		box.setPosition(glm::vec3(-15.50, 15.04, -36.00));
+		box.setScale(glm::vec3(0.0050, 0.050, 18.5));
+		box.render();
+
+		/*Cadena de luces lateral 1*/
+		glBindTexture(GL_TEXTURE_2D, textureID4);
+		box.setPosition(glm::vec3(-15.50, 15.04 - aumentoLuces, -36.00));
+		box.setScale(glm::vec3(0.0050, 0.050, 18.5));
+		box.render();
+
+		/*Cadena de luces lateral 1*/
+		glBindTexture(GL_TEXTURE_2D, textureID4);
+		box.setPosition(glm::vec3(-15.50, 15.04 - aumentoLuces2, -36.00));
+		box.setScale(glm::vec3(0.0050, 0.050, 18.5));
+		box.render();
+		/*Cadena de luces lateral 1*/
+		glBindTexture(GL_TEXTURE_2D, textureID4);
+		box.setPosition(glm::vec3(-15.50, 15.04 - aumentoLuces3, -36.00));
+		box.setScale(glm::vec3(0.0050, 0.050, 18.5));
+		box.render();
+
 
 		//Esfera
 		glBindTexture(GL_TEXTURE_2D, textureID13);
@@ -4339,13 +7186,6 @@ void applicationLoop() {
 
 		*/
 
-		//El AirCraft
-		//glm::mat4 matrixAircraft = glm::mat4(1.0);
-		//matrixAircraft = glm::translate(matrixAircraft, glm::vec3(60.0, -10.0, -55.0));
-		Aircraft.render(matrixModelAircraft);
-		//Forze to enable the unit texture 0 always ............ IMPORTANT
-		glActiveTexture(GL_TEXTURE0);
-
 		//Perro
 		glm::mat4 perro = glm::mat4(1.0);
 		perro = glm::translate(perro, glm::vec3(35.0, 1.0, -42.0));
@@ -5084,7 +7924,7 @@ void applicationLoop() {
 		box9.render();
 
 		/* -----------------------Inician Accesorios ----------------------------------*/
-		
+
 		/*Comedor*/
 
 		//___________________Cuadros  Sala
@@ -5137,7 +7977,7 @@ void applicationLoop() {
 		box9.setScale(glm::vec3(0.15, 4.5, 8.0));
 		box9.render();
 
-	
+
 
 		/* Primer Cuarto */
 
@@ -5697,14 +8537,7 @@ void applicationLoop() {
 		box.setScale(glm::vec3(1, 11.0, 6.0));
 		box.render();
 
-		//Helicopter
-		//glm::mat4 Helicopter = glm::mat4(1.0);
-		//Helicopter = glm::translate(Helicopter, glm::vec3(-35.0, -14.0, -30.0));
-		//Helicopter = glm::scale(Helicopter, glm::vec3(3.0, 3.0, 3.00));
-		//Helicopter = glm::rotate(Helicopter, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
-		ModelPlanta.render(Helicopter);
-		//Forze to enable the unit texture 0 always ............ IMPORTANT
-		glActiveTexture(GL_TEXTURE0);
+
 
 		//Aircraf Real
 		glm::mat4 Air = glm::mat4(1.0);
@@ -6086,7 +8919,7 @@ void applicationLoop() {
 
 		glm::mat4 sofa = glm::mat4(1.0);
 		sofa = glm::translate(sofa, glm::vec3(-12.0, -14.0, -21.0));
-		sofa = glm::scale(sofa, glm::vec3(1.8000, 2.000,2.00));
+		sofa = glm::scale(sofa, glm::vec3(1.8000, 2.000, 2.00));
 		sofa = glm::rotate(sofa, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
 		ModelSofaP.render(sofa);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
@@ -6115,7 +8948,7 @@ void applicationLoop() {
 
 		//Mesa Comedor
 		glm::mat4 mesa2 = glm::mat4(1.0);
-		mesa2 = glm::translate(mesa2, glm::vec3(-4.0 + suma , -14.0, 10.0));
+		mesa2 = glm::translate(mesa2, glm::vec3(-4.0 + suma, -14.0, 10.0));
 		mesa2 = glm::scale(mesa2, glm::vec3(8.0, 6.5, 8.00));
 		//silla = glm::rotate(silla, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
 		modelMesa.render(mesa2);
@@ -6233,7 +9066,7 @@ void applicationLoop() {
 		Modeljardinera.render(JardineraB2);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-		
+
 		/*Objetos de Navidad*/
 
 		//PINATA
@@ -6268,7 +9101,7 @@ void applicationLoop() {
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
 
-		
+
 		//ModelTrineo
 		glm::mat4 trineo = glm::mat4(1.0);
 		trineo = glm::translate(trineo, glm::vec3(-12.0, 6.0, -44.0));
@@ -6289,7 +9122,7 @@ void applicationLoop() {
 		glm::mat4 estrella = glm::mat4(1.0);
 		estrella = glm::translate(estrella, glm::vec3(-11.0, -14.0, 30.0));
 		estrella = glm::scale(estrella, glm::vec3(3.0, 3.0, 3.00));
-		ModelEstrella.render(estrella);
+		ModelBell.render(estrella);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
 
@@ -6300,9 +9133,9 @@ void applicationLoop() {
 		ModelEsfera.render(esfera);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-		
-		
-			
+
+
+
 
 		/*
 
@@ -6352,8 +9185,8 @@ void applicationLoop() {
 
 		switch (state2) {
 		case 3:
-			std::cout << "Land the plane" << std::endl;
-			std::cout << offsetAircraftAdvanceII << std::endl;
+			//std::cout << "Land the plane" << std::endl;
+			//std::cout << offsetAircraftAdvanceII << std::endl;
 			modelMatrixHeli = glm::translate(modelMatrixHeli, glm::vec3(0.0, -0.015, 0.00));
 			offsetAircraftAdvanceII += 0.01;
 
@@ -6370,8 +9203,8 @@ void applicationLoop() {
 			}
 			break;
 		case 4:
-			std::cout << "Fly" << std::endl;
-			std::cout << offsetAircraftAdvanceII << std::endl;
+			//std::cout << "Fly" << std::endl;
+			//std::cout << offsetAircraftAdvanceII << std::endl;
 			modelMatrixHeli = glm::translate(modelMatrixHeli, glm::vec3(0.0, 0.0, 0.02));
 
 			modelMatrixHeliHeli = glm::translate(modelMatrixHeliHeli, glm::vec3(0.0, 0.0, -0.249548));
@@ -6388,8 +9221,8 @@ void applicationLoop() {
 			break;
 		case 5:
 
-			std::cout << "Stop" << std::endl;
-			std::cout << rotHelHelYStop << std::endl;
+			//std::cout << "Stop" << std::endl;
+			//std::cout << rotHelHelYStop << std::endl;
 			if (offsetAircraftAdvanceII == 0.0) {
 				rotHelHelYStop -= 0.10;
 				offsetAircraftAdvanceII = 1.0;
@@ -6426,8 +9259,8 @@ void applicationLoop() {
 		 // State machine for eclipse car
 		switch (state) {
 		case 0:
-			std::cout << "Advance" << std::endl;
-			std::cout << offsetAircraftAdvance << std::endl;
+			//std::cout << "Advance" << std::endl;
+			//std::cout << offsetAircraftAdvance << std::endl;
 			modelMatrixEclipse = glm::translate(modelMatrixEclipse, glm::vec3(0.0, 0.0, 0.1));
 			advanceCount += 0.1;
 			rotWheelsX += 0.05;
@@ -6440,8 +9273,8 @@ void applicationLoop() {
 			}
 			break;
 		case 1:
-			modelMatrixEclipse = glm::translate(modelMatrixEclipse, glm::vec3(0.0, 0.0, 0.025));
-			modelMatrixEclipse = glm::rotate(modelMatrixEclipse, glm::radians(0.5f), glm::vec3(0, 1, 0));
+			//modelMatrixEclipse = glm::translate(modelMatrixEclipse, glm::vec3(0.0, 0.0, 0.025));
+			//modelMatrixEclipse = glm::rotate(modelMatrixEclipse, glm::radians(0.5f), glm::vec3(0, 1, 0));
 			rotCount += 0.5f;
 			rotWheelsX += 0.05;
 			rotWheelsY += 0.02;
@@ -6468,6 +9301,47 @@ void applicationLoop() {
 				stateDoor = 0;
 			}
 			break;
+		}
+
+		//machine state for the tour casa
+		if (cambioCamara == 2 || cambioCamara == 3) {
+			//TimeManager::Instance().CalculateFrameRate(false);
+			deltaTime = TimeManager::Instance().DeltaTime;
+			switch (stateHouseRecorrido) {
+			case 0:
+				recorridoCamara += 0.1;
+
+				if (cambioCamara == 2) {
+					cameraHorrorHouseAutomatic->moveFrontCamera(true, deltaTime);
+				}
+				else if (cambioCamara == 3) {
+					cameraChristmastHouseAutomatic->moveFrontCamera(true, deltaTime);
+				}
+
+				if (recorridoCamara > 90) {
+					recorridoCamara = 0;
+					stateHouseRecorrido = 1;
+				}
+				break;
+			case 1:
+				giroCamaraY += glm::radians(1.0f);
+
+				if (cambioCamara == 2) {
+					cameraHorrorHouseAutomatic->mouseMoveCamera(1.0f, 0.0f, 0.01);
+				}
+				else if (cambioCamara = 3) {
+					//cameraChristmastHouseAutomatic->moveRightCamera(true, deltaTime);
+					cameraChristmastHouseAutomatic->mouseMoveCamera(1.0f, 0.0f, 0.01);
+				}
+
+				if (giroCamaraY > glm::radians(90.0f)) {
+					giroCamaraY = 0.0f;
+					stateHouseRecorrido = 0;
+				}
+				break;
+			default:
+				break;
+			}
 		}
 
 		/////////////////////////////
