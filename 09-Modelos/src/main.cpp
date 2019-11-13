@@ -144,7 +144,9 @@ textureID32, textureID33, textureID34, textureID35, textureID36, textureID37, te
 //baño
 , textureID61, textureID62, textureID63, textureID64, textureID65, textureID66
 //cocina
-, textureID67, textureID68, textureID69, textureID70, textureID71, textureID72;
+, textureID67, textureID68, textureID69, textureID70, textureID71, textureID72, textureID73, textureID74
+//Naciminto
+,textureID75, textureID76, textureID77, textureID78, textureID79, textureID81, textureID80, textureID82, textureID83, textureID84;
 
 Cylinder torsoR2D2(20, 20, 0.5, 0.5);//se declara el torso de nuevo modelo
 Sphere cabezaR2D2(20, 20);//se declara la cabeza del modelo
@@ -325,6 +327,10 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	box7.init();
 	box7.setShader(&shaderMulLighting);
 
+	
+	//ModelChimenea.loadModel("../models/Navidad/fuego/13110_Fireplace_v2_l3.obj");
+	//ModelChimenea.setShader(&shaderMulLighting);
+
 	/*Modelos Transporte
 	ModelAircraft.loadModel("../models/Aircraft_obj/E 45 Aircraft_obj.obj");
 	ModelAircraft.setShader(&shaderMulLighting);
@@ -477,7 +483,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	pieR2D2.setColor(glm::vec4(0.6f, 0.6f, 0.6f, 1.0f));
 
 	//Posicion inicial de la camaras**********************
-	cameraHorrorHouseFree->setPosition(glm::vec3(3.077236, -2.52848, -86.0336));
+	cameraHorrorHouseFree->setPosition(glm::vec3(3.077236, -2.52848, 30.0336));
 	cameraChristmastHouseFree->setPosition(glm::vec3(-3.077236, -2.52848, -86.0336));
 	cameraHorrorHouseAutomatic->setPosition(glm::vec3(5.077236, -2.52848, 86.0336));
 	cameraChristmastHouseAutomatic->setPosition(glm::vec3(-72.0461, -6.87082, 86.0336));
@@ -673,7 +679,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture7.freeImage(bitmap);
 
-	Texture texture8("../Textures/piel.jpg");
+	Texture texture8("../Textures/nacimiento/aserrin.jpg");
 	bitmap = texture8.loadImage(true);
 	data = texture8.convertToData(bitmap, imageWidth, imageHeight);
 	glGenTextures(1, &textureID8);
@@ -1708,7 +1714,231 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	else
 		std::cout << "Failed to load texture" << std::endl;
 	texture70.freeImage(bitmap);
+
+	//pasto nacimeinto
+	Texture texture73("../Textures/grass.jpg");
+	bitmap = texture73.loadImage(true);
+	data = texture73.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID73);
+	glBindTexture(GL_TEXTURE_2D, textureID73);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture73.freeImage(bitmap);
 	/*------------------------------------------------------------------------------------------------------------*/
+	//pasto nacimeinto
+	Texture texture74("../Textures/nacimiento/1burro.png");
+	bitmap = texture74.loadImage(true);
+	data = texture74.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID74);
+	glBindTexture(GL_TEXTURE_2D, textureID74);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture74.freeImage(bitmap);
+
+	//pasto nacimeinto
+	Texture texture75("../Textures/nacimiento/1pastor.png");
+	bitmap = texture75.loadImage(true);
+	data = texture75.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID75);
+	glBindTexture(GL_TEXTURE_2D, textureID75);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture75.freeImage(bitmap);
+
+	//pasto nacimeinto
+	Texture texture76("../Textures/nacimiento/2Jose.png");
+	bitmap = texture76.loadImage(true);
+	data = texture76.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID76);
+	glBindTexture(GL_TEXTURE_2D, textureID76);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture76.freeImage(bitmap);
+
+	//pasto nacimeinto
+	Texture texture77("../Textures/nacimiento/2toro.png");
+	bitmap = texture77.loadImage(true);
+	data = texture77.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID77);
+	glBindTexture(GL_TEXTURE_2D, textureID77);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture77.freeImage(bitmap);
+
+	//pasto nacimeinto
+	Texture texture78("../Textures/nacimiento/3virgen.png");
+	bitmap = texture78.loadImage(true);
+	data = texture78.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID78);
+	glBindTexture(GL_TEXTURE_2D, textureID78);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture78.freeImage(bitmap);
+
+	//pasto nacimeinto
+	Texture texture79("../Textures/nacimiento/ninoAnimado.png");
+	bitmap = texture79.loadImage(true);
+	data = texture79.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID79);
+	glBindTexture(GL_TEXTURE_2D, textureID79);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture79.freeImage(bitmap);
+
+
+	//pasto nacimeinto
+	Texture texture80("../Textures/nacimiento/4pastor.png");
+	bitmap = texture80.loadImage(true);
+	data = texture80.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID80);
+	glBindTexture(GL_TEXTURE_2D, textureID80);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture80.freeImage(bitmap);
+
+	Texture texture81("../Textures/nacimiento/5pastor.png");
+	bitmap = texture81.loadImage(true);
+	data = texture81.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID81);
+	glBindTexture(GL_TEXTURE_2D, textureID81);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture81.freeImage(bitmap);
+
+	Texture texture82("../Textures/nacimiento/primero.jpg");
+	bitmap = texture82.loadImage(true);
+	data = texture82.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID82);
+	glBindTexture(GL_TEXTURE_2D, textureID82);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture82.freeImage(bitmap);
+
+	Texture texture83("../Textures/nacimiento/segundo.jpg");
+	bitmap = texture83.loadImage(true);
+	data = texture83.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID83);
+	glBindTexture(GL_TEXTURE_2D, textureID83);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture83.freeImage(bitmap);
+
+	Texture texture84("../Textures/nacimiento/tercero.jpg");
+	bitmap = texture84.loadImage(true);
+	data = texture84.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID84);
+	glBindTexture(GL_TEXTURE_2D, textureID84);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture84.freeImage(bitmap);
 
 	// Carga de texturas para el skybox
 	Texture skyboxTexture = Texture("");
@@ -7137,7 +7367,7 @@ void applicationLoop() {
 
 		glm::mat4 modelCylinder = glm::mat4(1.0);
 		modelCylinder = glm::translate(modelCylinder,
-			glm::vec3(-3.0, 0.0, 0.0));
+			glm::vec3(-3.0, 2.0, 0.0));
 		// Envolvente desde el indice 0, el tamanio es 20 * 20 * 6
 		// Se usa la textura 1 ( Bon sponja)
 		glBindTexture(GL_TEXTURE_2D, textureID1);
@@ -7156,7 +7386,7 @@ void applicationLoop() {
 			+ cylinder2.getSlices() * 3, cylinder2.getSlices() * 3,
 			modelCylinder);
 		glBindTexture(GL_TEXTURE_2D, 0);
-
+		/*
 		// Render del cubo con textura de ladrillos y con repeticion en x
 		glm::mat4 cubeTextureModel = glm::mat4(1.0);
 		cubeTextureModel = glm::translate(cubeTextureModel,
@@ -8584,6 +8814,79 @@ void applicationLoop() {
 		glBindTexture(GL_TEXTURE_2D, 0);
 		shaderMulLighting.setFloat("offsetX", 0);
 
+
+		//Personajes
+		glm::mat4 modelSphere = glm::mat4(1.0);
+		modelSphere = glm::translate(modelSphere, glm::vec3(2.0, 2.5, 5.0));
+		modelSphere = glm::scale(modelSphere, glm::vec3(1.0, 1.3, 1.0));
+		modelSphere = glm::rotate(modelSphere, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		glBindTexture(GL_TEXTURE_2D, textureID74);
+		sphere3.render(modelSphere);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		/*Nacimiento*/
+
+		//Alberc
+		glm::mat4 aguaNacimiento = glm::mat4(1.0);
+		aguaNacimiento = glm::translate(aguaNacimiento, glm::vec3(-8.5,1.05 , 10.0));
+		aguaNacimiento = glm::scale(aguaNacimiento, glm::vec3(15.0, 0.01, 10.0));
+		// Se activa la textura del agua
+		glBindTexture(GL_TEXTURE_2D, textureID2);
+		///Le cambiamos el shader con multiples luces
+		shaderMulLighting.setFloat("offsetX", offX);
+		box2.render(aguaNacimiento);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		shaderMulLighting.setFloat("offsetX", 0);
+
+		//________________________Pastle
+		glBindTexture(GL_TEXTURE_2D, textureID73);
+		cylinder3.setPosition(glm::vec3(-8.0, 1.05, 5.50));
+		cylinder3.setScale(glm::vec3(14.0, 0.05, 12.00));
+		cylinder3.render();
+
+		//________________________paja cuna nino dios
+		glBindTexture(GL_TEXTURE_2D, textureID8);
+		cylinder3.setPosition(glm::vec3(-6.0, 1.1, 5.50));
+		cylinder3.setScale(glm::vec3(3.0, 0.05, 3.00));
+		cylinder3.render();
+
+		//Casita de Madera Nino izq
+		glBindTexture(GL_TEXTURE_2D, textureID63);
+		box9.setPosition(glm::vec3(-14.0, 3.10, 7.70));
+		box9.setScale(glm::vec3(3.0, 4.0, 0.15));
+		box9.render();
+
+		//Casita de Madera Nino der 
+		glBindTexture(GL_TEXTURE_2D, textureID63);
+		box9.setPosition(glm::vec3(-14.0, 3.10, 1.70));
+		box9.setScale(glm::vec3(3.0, 4.0, 0.15));
+		box9.render();
+
+		//Casita de Madera Nino techo
+		glBindTexture(GL_TEXTURE_2D, textureID63);
+		box9.setPosition(glm::vec3(-014.0, 5.10, 4.75));
+		box9.setScale(glm::vec3(3.0, 0.1, 6.00));
+		box9.render();
+
+		//Casita de Madera Nino piso
+		glBindTexture(GL_TEXTURE_2D, textureID63);
+		box9.setPosition(glm::vec3(-014.0, 1.150, 4.75));
+		box9.setScale(glm::vec3(3.0, 0.1, 6.00));
+		box9.render();
+
+		//Casita de Madera Nino izq pico
+		glm::mat4 modelP = glm::mat4(1.0f);
+		modelP = glm::translate(modelP, glm::vec3(-12.0, 3.10, 7.70));
+		modelP = glm::rotate(modelP, glm::radians(45.0f), glm::vec3(0.0, 0.0, 1.0));
+		glBindTexture(GL_TEXTURE_2D, textureID63);
+		box9.render(glm::scale(modelP, glm::vec3(3.0, 4.0, 0.15)));
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		//Casita de Madera Nino der pico
+
+
+	
+
 		///----------------------------------------------------------------------Bob
 
 		/*
@@ -9134,6 +9437,15 @@ void applicationLoop() {
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
 
+		
+		//ModelChimenea
+		glm::mat4 fuego = glm::mat4(1.0);
+		fuego = glm::translate(fuego, glm::vec3(-4.0, -10.0, 35.0));
+		fuego = glm::rotate(fuego, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		fuego = glm::scale(fuego, glm::vec3(0.10, 0.100,0.100));
+		ModelChimenea.render(fuego);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
 
 
 

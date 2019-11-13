@@ -1,0 +1,140 @@
+#
+#
+#
+
+newmtl Malla de 13110_fireplace_base_13110_fireplace_base
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_base_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_bricks_13110_fireplace_marblegreen
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.378000 0.378000 0.378000
+Ns 38.000000
+map_Kd 13110_fireplace_marbleg_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_fire_13110_fireplace_fire
+illum 2
+Ka 0.937300 0.702000 0.196100
+Kd 0.937300 0.702000 0.196100
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_fire_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_middle_13110_fireplace_marblewhite
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.378000 0.378000 0.378000
+Ns 38.000000
+map_Kd 13110_fireplace_marblew_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_top_13110_fireplace_marblewhite
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.378000 0.378000 0.378000
+Ns 38.000000
+map_Kd 13110_fireplace_marblew_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_underfire_13110_fireplace_metal
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.396000 0.396000 0.396000
+Ns 21.000000
+map_Kd 13110_fireplace_metals_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_underfirelegs_13110_fireplace_metal
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.396000 0.396000 0.396000
+Ns 21.000000
+map_Kd 13110_fireplace_metals_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_woods_01_13110_fireplace_woods
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_woods_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_woods_02_13110_fireplace_woods
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_woods_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_woods_03_13110_fireplace_woods
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_woods_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_woods_04_13110_fireplace_woods
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_woods_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_woods_05_13110_fireplace_woods
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_woods_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_woodsburn_01_13110_fireplace_woodsburn
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_woodsburne_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_woodsburn_02_13110_fireplace_woodsburn
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_woodsburne_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_woodsburn_03_13110_fireplace_woodsburn
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_woodsburne_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_woodsburn_04_13110_fireplace_woodsburn
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_woodsburne_diffuse.jpg
+
+newmtl Malla de 13110_fireplace_woodsburn_05_13110_fireplace_woodsburn
+illum 2
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 10.000000
+map_Kd 13110_fireplace_woodsburne_diffuse.jpg
+

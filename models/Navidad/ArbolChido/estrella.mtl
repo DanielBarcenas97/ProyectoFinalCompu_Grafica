@@ -1,0 +1,18 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 25.10.2019 01:50:25
+
+newmtl bubble
+	Ns 41.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.9647 0.7412 0.2627
+	Kd 0.9647 0.7412 0.2627
+	Ks 0.5800 0.5800 0.5800
+	Ke 0.0000 0.0000 0.0000
+	map_Ke dorado1.jpg
+	map_Ks dorado1.jpg
+	map_Kd dorado1.jpg
+	map_Ka dorado1.jpg
