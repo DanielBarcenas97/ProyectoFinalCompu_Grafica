@@ -148,7 +148,15 @@ textureID32, textureID33, textureID34, textureID35, textureID36, textureID37, te
 //Naciminto
 , textureID75, textureID76, textureID77, textureID78, textureID79, textureID81, textureID80, textureID82, textureID83, textureID84, textureID85, textureID86
 
-, textureID87, textureID88, textureID89, textureID90, textureID91, textureID92;
+, textureID87, textureID88, textureID89, textureID90, textureID91, textureID92
+
+
+//cuadros NAV
+, textureID93, textureID94, textureID95, textureID96
+
+, textureID97, textureID98, textureID99, textureID100, textureID101, textureID102;
+
+
 Cylinder torsoR2D2(20, 20, 0.5, 0.5);//se declara el torso de nuevo modelo
 Sphere cabezaR2D2(20, 20);//se declara la cabeza del modelo
 Sphere articulacionR2D2(20, 20);//se declara la articulacion del modelo
@@ -1976,7 +1984,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	else
 		std::cout << "Failed to load texture" << std::endl;
 	texture86.freeImage(bitmap);
-	///////////////
+
 	Texture texture87("../Textures/nacimiento/fondoNac.png");
 	bitmap = texture87.loadImage(true);
 	data = texture87.convertToData(bitmap, imageWidth, imageHeight);
@@ -2012,7 +2020,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	else
 		std::cout << "Failed to load texture" << std::endl;
 	texture88.freeImage(bitmap);
-	////////////////////------------------->>>>>>>>>>>>>>>>>>>
+
 	Texture texture89("../Textures/nacimiento/1pollo.png");
 	bitmap = texture89.loadImage(true);
 	data = texture89.convertToData(bitmap, imageWidth, imageHeight);
@@ -2067,7 +2075,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture91.freeImage(bitmap);
 	////Libre
-	Texture texture92("../Textures/nacimiento/fonfoGra.png");
+	Texture texture92("../Textures/cuadros/1.jfif");
 	bitmap = texture92.loadImage(true);
 	data = texture92.convertToData(bitmap, imageWidth, imageHeight);
 	glGenTextures(1, &textureID92);
@@ -2084,6 +2092,196 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	else
 		std::cout << "Failed to load texture" << std::endl;
 	texture92.freeImage(bitmap);
+
+	////Libre
+	Texture texture93("../Textures/cuadros/2.jfif");
+	bitmap = texture93.loadImage(true);
+	data = texture93.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID93);
+	glBindTexture(GL_TEXTURE_2D, textureID93);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture93.freeImage(bitmap);
+
+	////Libre
+	Texture texture94("../Textures/cuadros/3.jfif");
+	bitmap = texture94.loadImage(true);
+	data = texture94.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID94);
+	glBindTexture(GL_TEXTURE_2D, textureID94);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture94.freeImage(bitmap);
+
+	////Libre
+	Texture texture95("../Textures/cuadros/4.jfif");
+	bitmap = texture95.loadImage(true);
+	data = texture95.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID95);
+	glBindTexture(GL_TEXTURE_2D, textureID95);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture95.freeImage(bitmap);
+
+	////Libre
+	Texture texture96("../Textures/cuadros/5.jfif");
+	bitmap = texture96.loadImage(true);
+	data = texture96.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID96);
+	glBindTexture(GL_TEXTURE_2D, textureID96);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture96.freeImage(bitmap);
+
+	////Libre
+	Texture texture97("../Textures/cuadros/cuadro1.jpg");
+	bitmap = texture97.loadImage(true);
+	data = texture97.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID97);
+	glBindTexture(GL_TEXTURE_2D, textureID97);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture97.freeImage(bitmap);
+
+	////Libre
+	Texture texture98("../Textures/cuadros/cuadro2.jpg");
+	bitmap = texture98.loadImage(true);
+	data = texture98.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID98);
+	glBindTexture(GL_TEXTURE_2D, textureID98);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture98.freeImage(bitmap);
+
+
+	Texture texture99("../Textures/cuadros/peliNav.jpg");
+	bitmap = texture99.loadImage(true);
+	data = texture99.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID99);
+	glBindTexture(GL_TEXTURE_2D, textureID99);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture99.freeImage(bitmap);
+
+	////Libre ------------------------------>>>>>>>>>>>>>>>>>>>>>>>>>>
+	Texture texture100("../Textures/cuadros/peliNav2.jpg");
+	bitmap = texture100.loadImage(true);
+	data = texture100.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID100);
+	glBindTexture(GL_TEXTURE_2D, textureID100);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture100.freeImage(bitmap);
+
+	////Libre
+	Texture texture101("../Textures/cuadros/tv.jpg");
+	bitmap = texture101.loadImage(true);
+	data = texture101.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID101);
+	glBindTexture(GL_TEXTURE_2D, textureID101);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture101.freeImage(bitmap);
+
+	////Libre
+	Texture texture102("../Textures/cuadros/peliNav.jpg");
+	bitmap = texture102.loadImage(true);
+	data = texture102.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID102);
+	glBindTexture(GL_TEXTURE_2D, textureID102);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture102.freeImage(bitmap);
 
 
 	// Carga de texturas para el skybox
@@ -6741,41 +6939,41 @@ void applicationLoop() {
 		/*Comedor*/
 
 		//___________________Cuadros  Sala
-		glBindTexture(GL_TEXTURE_2D, textureID35);
+		glBindTexture(GL_TEXTURE_2D, textureID92);
 		box9.setPosition(glm::vec3(-14.4, -5.4, -22.00));
 		box9.setScale(glm::vec3(0.1, 3.2, 3.0));
 		box9.render();
 
-		glBindTexture(GL_TEXTURE_2D, textureID36);
+		glBindTexture(GL_TEXTURE_2D, textureID93);
 		box9.setPosition(glm::vec3(-14.4, -4.5, -19.00));
 		box9.setScale(glm::vec3(0.1, 1.5, 1.7));
 		box9.render();
 
-		glBindTexture(GL_TEXTURE_2D, textureID37);
+		glBindTexture(GL_TEXTURE_2D, textureID94);
 		box9.setPosition(glm::vec3(-14.4, -6.2, -19.00));
 		box9.setScale(glm::vec3(0.1, 1.5, 1.7));
 		box9.render();
 
 		//___________________Cuadros  comedor
 
-		glBindTexture(GL_TEXTURE_2D, textureID35);
+		glBindTexture(GL_TEXTURE_2D, textureID95);
 		box9.setPosition(glm::vec3(-14.4, -5.4, 4.00));
 		box9.setScale(glm::vec3(0.1, 3.2, 3.0));
 		box9.render();
 
-		glBindTexture(GL_TEXTURE_2D, textureID35);
+		glBindTexture(GL_TEXTURE_2D, textureID98);
 		box9.setPosition(glm::vec3(-14.4, -5.4, 8.00));
 		box9.setScale(glm::vec3(0.1, 3.2, 3.0));
 		box9.render();
 
-		glBindTexture(GL_TEXTURE_2D, textureID35);
+		glBindTexture(GL_TEXTURE_2D, textureID96);
 		box9.setPosition(glm::vec3(-14.4, -5.4, 12.00));
 		box9.setScale(glm::vec3(0.1, 3.2, 3.0));
 		box9.render();
 
 		//___________________Cuadros  comedor frente 
 
-		glBindTexture(GL_TEXTURE_2D, textureID35);
+		glBindTexture(GL_TEXTURE_2D, textureID97);
 		box9.setPosition(glm::vec3(10.0, -4.4, 22.00));
 		box9.setScale(glm::vec3(0.1, 3.2, 3.0));
 		box9.render();
@@ -6784,10 +6982,15 @@ void applicationLoop() {
 
 		/* init  Sala */
 
-		//______________________TV Sala
-		glBindTexture(GL_TEXTURE_2D, textureID47);
+		//______________________TV Sala peli
+		glBindTexture(GL_TEXTURE_2D, textureID99);
 		box9.setPosition(glm::vec3(10.0, -6.0, -21.0));
 		box9.setScale(glm::vec3(0.15, 4.5, 8.0));
+		box9.render();
+		//______________________TV Sala tv
+		glBindTexture(GL_TEXTURE_2D, textureID101);
+		box9.setPosition(glm::vec3(10.0, -6.0, -21.0));
+		box9.setScale(glm::vec3(0.10, 4.9, 8.4));
 		box9.render();
 
 		/* Primer Cuarto */
@@ -6951,7 +7154,7 @@ void applicationLoop() {
 		box9.render(24, 6);
 
 		//______________________TV
-		glBindTexture(GL_TEXTURE_2D, textureID47);
+		glBindTexture(GL_TEXTURE_2D, textureID100);
 		box9.setPosition(glm::vec3(4.5 + 1.0, 7.5, -14.0));
 		box9.setScale(glm::vec3(0.15, 3.0, 6.0));
 		box9.render();
@@ -7087,7 +7290,7 @@ void applicationLoop() {
 		box9.render(24, 6);
 
 		//______________________TV
-		glBindTexture(GL_TEXTURE_2D, textureID47);
+		glBindTexture(GL_TEXTURE_2D, textureID101);
 		box9.setPosition(glm::vec3(4.95 + 39.5, 7.5, -14.0));
 		box9.setScale(glm::vec3(0.15, 4.0, 8.0));
 		box9.render();
@@ -9065,8 +9268,8 @@ void applicationLoop() {
 
 		//pollo
 		glm::mat4 pollo = glm::mat4(1.0);
-		pollo = glm::translate(pollo, glm::vec3(-4.0, 1.6, 3.0));
-		pollo = glm::scale(pollo, glm::vec3(1.0, 1.2, 1.0));
+		pollo = glm::translate(pollo, glm::vec3(-3.5, 1.6, 3.0));
+		pollo = glm::scale(pollo, glm::vec3(0.80, 1.0, 0.80));
 		pollo = glm::rotate(pollo, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
 		glBindTexture(GL_TEXTURE_2D, textureID89);
 		box3.render(18, 6, pollo);
