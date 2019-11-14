@@ -403,28 +403,30 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelLamboWheelsFrontal.setShader(&shaderMulLighting);
 	modelLamboWheelsRear.loadModel("../models/Lamborginhi_Aventador_OBJ/Lamborghini_Aventador_wheels.obj");
 	modelLamboWheelsRear.setShader(&shaderMulLighting);
+	*/
 
-	/*Modelos de la Casa
-	modelMesa.loadModel("../models/table/table.obj");
-	modelMesa.setShader(&shaderMulLighting);
+	//Modelos de la Casa
+	
+	//modelMesa.loadModel("../models/table/table.obj");
+	//modelMesa.setShader(&shaderMulLighting);
 
-	ModelSilla.loadModel("../models/SillaComedor/Chair.obj");
-	ModelSilla.setShader(&shaderMulLighting);
+	//ModelSilla.loadModel("../models/SillaComedor/Chair.obj");
+	//ModelSilla.setShader(&shaderMulLighting);
 
-	ModelWC.loadModel("../models/toilet/toilet.obj");
-	ModelWC.setShader(&shaderMulLighting);
+	//ModelWC.loadModel("../models/toilet/toilet.obj");
+	//ModelWC.setShader(&shaderMulLighting);
 
-	ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
-	ModelSofa.setShader(&shaderMulLighting);
+	//ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
+	//ModelSofa.setShader(&shaderMulLighting);
 
-	ModelSofaP.loadModel("../models/Navidad/sofap/sofap.obj");
-	ModelSofaP.setShader(&shaderMulLighting);
+	//ModelSofaP.loadModel("../models/Navidad/sofap/sofap.obj");
+	//ModelSofaP.setShader(&shaderMulLighting);
 
-	ModelMesa.loadModel("../models/Wood_Table/Wood_Table.obj");
-	ModelMesa.setShader(&shaderMulLighting);
+	//ModelMesa.loadModel("../models/Wood_Table/Wood_Table.obj");
+	//ModelMesa.setShader(&shaderMulLighting);
 
-	ModelEjemplo.loadModel("../models/silla/10239_Office_Chair_v1_L3.obj");
-	ModelEjemplo.setShader(&shaderMulLighting);
+	//ModelEjemplo.loadModel("../models/silla/10239_Office_Chair_v1_L3.obj");
+	//ModelEjemplo.setShader(&shaderMulLighting);
 
 	/*Modelos Otros /Plantas/Roca/Perro/ViasDelTren
 	Modeljardinera.loadModel("../models/Navidad/jardinera/jardinera.obj");
@@ -2301,7 +2303,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	texture101.freeImage(bitmap);
 
 	////Libre
-	Texture texture102("../Textures/cuadros/peliNav.jpg");
+	Texture texture102("../Textures/nacimiento/rosca.png");
 	bitmap = texture102.loadImage(true);
 	data = texture102.convertToData(bitmap, imageWidth, imageHeight);
 	glGenTextures(1, &textureID102);
@@ -8191,7 +8193,20 @@ void applicationLoop() {
 		box9.setScale(glm::vec3(0.1, 3.2, 3.0));
 		box9.render();
 
+		/*matel Navidad*/
 
+		glBindTexture(GL_TEXTURE_2D, textureID97);
+		box9.setPosition(glm::vec3(-3.95, -9.05, 9.50));
+		box9.setScale(glm::vec3(7.1, 0.02, 12.0));
+		box9.render();
+
+		/*Rosca de Reyes*/
+		glm::mat4 rosca = glm::mat4(1.0);
+		rosca = glm::translate(rosca, glm::vec3(-3.95, -9.050, 9.50));
+		rosca = glm::scale(rosca, glm::vec3(3.0, 3.0, 3.0));
+		//rosca = glm::rotate(rosca, glm::radians(180.0f), glm::vec3(1.0, 0.0, 0.00));
+		glBindTexture(GL_TEXTURE_2D, textureID102);
+		box9.render(rosca);
 
 		/* init  Sala */
 
@@ -10673,7 +10688,7 @@ void applicationLoop() {
 		glm::mat4 a2 = glm::translate(a1, glm::vec3(-0.5f, 0.0f, 0.0f));
 		sphere1.enableWireMode();
 		sphere1.render(glm::scale(a2, glm::vec3(0.1, 0.1, 0.1)));
-		a2 = glm::rotate(a2, rot4, glm::vec3(1, 0, 0));///1
+		a2 = glm::rotate(a2, rot4, glm::r(1, 0, 0));///1
 		a2 = glm::rotate(a2, rot4, glm::vec3(0, 1, 0));///1
 
 		//hueso2 Izq
