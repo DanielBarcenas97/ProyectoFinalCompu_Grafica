@@ -31,6 +31,7 @@
     <ClCompile Include="src\TimeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\external\OpenAL\include\al.h" />
     <ClInclude Include="src\Headers\AbstractModel.h" />
     <ClInclude Include="src\Headers\AnimationUtils.h" />
     <ClInclude Include="src\Headers\Box.h" />

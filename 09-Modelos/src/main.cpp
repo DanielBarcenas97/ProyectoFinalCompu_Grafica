@@ -26,6 +26,39 @@
 #include "Headers/Texture.h"
 /// Include Loader Model Class
 #include "Headers/Model.h"
+
+/*-------------------------AUDIO----------------------------------*/
+#include <AL/alut.h>
+
+#define NUM_BUFFERS 2
+#define NUM_SOURCES 2
+#define NUM_ENVRIONMENTS 1
+
+// Config OpenAL
+ALfloat listenerPos[] = { 0.0, 0.0, 0.0 };
+ALfloat listenerVel[] = { 0.0, 0.0, 0.0 };
+ALfloat listenerOri[] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+// Source 0
+ALfloat source0Pos[] = { 0.0, 0.0, 0.0 };
+ALfloat source0Vel[] = { 0.0, 0.0, 0.0 };
+// Source 1
+ALfloat source1Pos[] = { 0.0, 0.0, 0.0 };
+ALfloat source1Vel[] = { 0.0, 0.0, 0.0 };
+// Buffers
+ALuint buffers[NUM_BUFFERS];
+ALuint sources[NUM_SOURCES];
+ALuint enviornment[NUM_ENVRIONMENTS];
+// variables para inicializar audios
+ALsizei size, freq;
+ALenum format;
+ALvoid* data;
+int ch;
+ALboolean loop;
+
+
+/*-------------------------FIn AUDIO----------------------------------*/
+
+
 #define ARRAY_SIZE_IN_ELEMENTS(a) (sizeof(a)/sizeof(a[0]))
 
 int screenWidth;
@@ -149,13 +182,16 @@ textureID32, textureID33, textureID34, textureID35, textureID36, textureID37, te
 , textureID75, textureID76, textureID77, textureID78, textureID79, textureID81, textureID80, textureID82, textureID83, textureID84, textureID85, textureID86
 
 , textureID87, textureID88, textureID89, textureID90, textureID91, textureID92
-
-
 //cuadros NAV
 , textureID93, textureID94, textureID95, textureID96
 
-, textureID97, textureID98, textureID99, textureID100, textureID101, textureID102;
+, textureID97, textureID98, textureID99, textureID100, textureID101, textureID102
+//Pista de aterrizaje
+, textureID103
 
+//Dia de Muertos
+, textureID104, textureID105, textureID106, textureID107, textureID108, textureID109,
+textureID110, textureID111, textureID112;
 
 Cylinder torsoR2D2(20, 20, 0.5, 0.5);//se declara el torso de nuevo modelo
 Sphere cabezaR2D2(20, 20);//se declara la cabeza del modelo
@@ -2283,6 +2319,213 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture102.freeImage(bitmap);
 
+	//pista helicoptero 103
+	Texture texture103("../Textures/logo.png");
+	bitmap = texture103.loadImage(true);
+	data = texture103.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID103);
+	glBindTexture(GL_TEXTURE_2D, textureID103);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture103.freeImage(bitmap);
+
+	//papel picado-rojo 104
+	Texture texture104("../Textures/deco_muertos/pp_1.png");
+	bitmap = texture104.loadImage(true);
+	data = texture104.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID104);
+	glBindTexture(GL_TEXTURE_2D, textureID104);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture104.freeImage(bitmap);
+	//papel picado-verde 105
+	Texture texture105("../Textures/deco_muertos/pp_2.png");
+	bitmap = texture105.loadImage(true);
+	data = texture105.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID105);
+	glBindTexture(GL_TEXTURE_2D, textureID105);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture105.freeImage(bitmap);
+	//papel picado-azul 106
+	Texture texture106("../Textures/deco_muertos/pp_3.png");
+	bitmap = texture106.loadImage(true);
+	data = texture106.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID106);
+	glBindTexture(GL_TEXTURE_2D, textureID106);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture106.freeImage(bitmap);
+	//papel picado-rosa 107
+	Texture texture107("../Textures/deco_muertos/pp_4.png");
+	bitmap = texture107.loadImage(true);
+	data = texture107.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID107);
+	glBindTexture(GL_TEXTURE_2D, textureID107);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture107.freeImage(bitmap);
+	//papel picado-morado 108
+	Texture texture108("../Textures/deco_muertos/pp_5.png");
+	bitmap = texture108.loadImage(true);
+	data = texture108.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID108);
+	glBindTexture(GL_TEXTURE_2D, textureID108);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture108.freeImage(bitmap);
+	//papel picado-amarillo 109
+	Texture texture109("../Textures/deco_muertos/pp_6.png");
+	bitmap = texture109.loadImage(true);
+	data = texture109.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID109);
+	glBindTexture(GL_TEXTURE_2D, textureID109);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture109.freeImage(bitmap);
+	//papel picado-completo 110
+	Texture texture110("../Textures/deco_muertos/pp_largo.png");
+	bitmap = texture110.loadImage(true);
+	data = texture110.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID110);
+	glBindTexture(GL_TEXTURE_2D, textureID110);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture110.freeImage(bitmap);
+
+	/*-------------------------AUDIO----------------------------------*/
+	// OpenAL init
+	alutInit(0, nullptr);
+	alListenerfv(AL_POSITION, listenerPos);
+	alListenerfv(AL_VELOCITY, listenerVel);
+	alListenerfv(AL_ORIENTATION, listenerOri);
+	alGetError(); // Limpiamos los errores previos de OpenAL
+	if (alGetError() != AL_NO_ERROR) {
+		printf("Error al crear los buffers");
+		exit(1);
+	}
+	else
+		printf("Se crearon los buffers");
+
+	alGenBuffers(NUM_BUFFERS, buffers);
+	buffers[0] = alutCreateBufferFromFile("../sounds/fondo.wav");
+	buffers[1] = alutCreateBufferFromFile("../sounds/fondo.wav");
+
+	int errorAlut = alutGetError();
+
+	if (errorAlut != ALUT_ERROR_NO_ERROR) {
+		printf("Error al crear los buffers %d", errorAlut);
+		exit(2);
+	}
+	else
+		printf("Se crearon los buffers");
+
+	glGetError();
+	alGenSources(NUM_SOURCES, sources);
+
+	if (alutGetError() != AL_NO_ERROR) {
+		printf("Error al crear las fuentes de sonidos");
+		exit(2);
+	}
+	else
+		printf("Se crearon las fuentes de sonido");
+
+
+	//alSourcef(sources[0], AL_PITCH, 0.7f);
+	alSourcef(sources[0], AL_PITCH, 1.0f);
+	//alSourcef(sources[0], AL_GAIN, 0.1f);
+	alSourcef(sources[0], AL_GAIN, 1.0f);
+
+
+	alSourcefv(sources[0], AL_VELOCITY, source0Vel);
+	alSourcefv(sources[0], AL_POSITION, source0Pos);
+	alSourcei(sources[0], AL_BUFFER, buffers[0]);
+	alSourcei(sources[0], AL_LOOPING, AL_TRUE);
+	alSourcei(sources[0], AL_MAX_DISTANCE, 2000);
+
+	alSourcef(sources[1], AL_PITCH, 0.7f);
+	alSourcef(sources[1], AL_GAIN, 0.1f);
+	alSourcefv(sources[1], AL_VELOCITY, source0Vel);
+	alSourcefv(sources[1], AL_POSITION, source0Pos);
+	alSourcei(sources[1], AL_BUFFER, buffers[0]);
+	alSourcei(sources[1], AL_LOOPING, AL_TRUE);
+	alSourcei(sources[1], AL_MAX_DISTANCE, 2000);
+
+
+
+	/*----------------------------------------------------------------------------------------*/
 
 	// Carga de texturas para el skybox
 	Texture skyboxTexture = Texture("");
@@ -2509,6 +2752,12 @@ bool processInput(bool continueApplication) {
 		dza = 0.01;
 	if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)///3
 		dza = -0.01;
+	/*----------------AUDIO---------------*/
+	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
+		alSourcePlay(sources[0]);
+	if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
+		alSourcePlay(sources[1]);
+	/*----------------FIn AUDIO---------------*/
 	glfwPollEvents();
 	return continueApplication;
 }
@@ -10109,7 +10358,7 @@ void applicationLoop() {
 				if (cambioCamara == 2) {
 					cameraHorrorHouseAutomatic->mouseMoveCamera(1.0f, 0.0f, 0.01);
 				}
-				else if (cambioCamara = 3) {
+				else if (cambioCamara == 3) {
 					//cameraChristmastHouseAutomatic->moveRightCamera(true, deltaTime);
 					cameraChristmastHouseAutomatic->mouseMoveCamera(1.0f, 0.0f, 0.01);
 				}
@@ -10125,6 +10374,34 @@ void applicationLoop() {
 		}
 
 		/////////////////////////////
+
+		/////////////////////////////
+		/*-------------------------AUDIO----------------------------------*/
+		// Libreria de audio
+		// openal sound data
+		source0Pos[0] = modelMatrixEclipse[3].x;
+		source0Pos[1] = modelMatrixEclipse[3].y;
+		source0Pos[2] = modelMatrixEclipse[3].z;
+		alSourcefv(sources[0], AL_POSITION, source0Pos);
+		source1Pos[0] = modelMatrixHeli[3].x;
+		source1Pos[1] = modelMatrixHeli[3].y;
+		source1Pos[2] = modelMatrixHeli[3].z;
+		alSourcefv(sources[1], AL_POSITION, source1Pos);
+
+
+		// Position listener
+		listenerPos[0] = cameraHorrorHouseFree->getPosition().x;
+		listenerPos[1] = cameraHorrorHouseFree->getPosition().y;
+		listenerPos[2] = cameraHorrorHouseFree->getPosition().z;
+		alListenerfv(AL_POSITION, listenerPos);
+		// Orientation listener
+		listenerOri[0] = cameraHorrorHouseFree->getFront().x;
+		listenerOri[1] = cameraHorrorHouseFree->getFront().y;
+		listenerOri[2] = cameraHorrorHouseFree->getFront().z;
+		listenerOri[3] = cameraHorrorHouseFree->getUp().x;
+		listenerOri[4] = cameraHorrorHouseFree->getUp().y;
+		listenerOri[5] = cameraHorrorHouseFree->getUp().z;
+		alListenerfv(AL_ORIENTATION, listenerOri);
 
 		glfwSwapBuffers(window);
 	}

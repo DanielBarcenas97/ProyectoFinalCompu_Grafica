@@ -83,6 +83,9 @@
     <ClInclude Include="src\Headers\TimeManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\external\OpenAL\include\al.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Shaders\colorShader.fs">
