@@ -146,8 +146,9 @@ textureID32, textureID33, textureID34, textureID35, textureID36, textureID37, te
 //cocina
 , textureID67, textureID68, textureID69, textureID70, textureID71, textureID72, textureID73, textureID74
 //Naciminto
-,textureID75, textureID76, textureID77, textureID78, textureID79, textureID81, textureID80, textureID82, textureID83, textureID84;
+, textureID75, textureID76, textureID77, textureID78, textureID79, textureID81, textureID80, textureID82, textureID83, textureID84, textureID85, textureID86
 
+, textureID87, textureID88, textureID89, textureID90, textureID91, textureID92;
 Cylinder torsoR2D2(20, 20, 0.5, 0.5);//se declara el torso de nuevo modelo
 Sphere cabezaR2D2(20, 20);//se declara la cabeza del modelo
 Sphere articulacionR2D2(20, 20);//se declara la articulacion del modelo
@@ -1886,7 +1887,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture81.freeImage(bitmap);
 
-	Texture texture82("../Textures/nacimiento/primero.jpg");
+	Texture texture82("../Textures/nacimiento/rey1.png");
 	bitmap = texture82.loadImage(true);
 	data = texture82.convertToData(bitmap, imageWidth, imageHeight);
 	glGenTextures(1, &textureID82);
@@ -1904,7 +1905,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture82.freeImage(bitmap);
 
-	Texture texture83("../Textures/nacimiento/segundo.jpg");
+	Texture texture83("../Textures/nacimiento/rey2.png");
 	bitmap = texture83.loadImage(true);
 	data = texture83.convertToData(bitmap, imageWidth, imageHeight);
 	glGenTextures(1, &textureID83);
@@ -1922,7 +1923,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture83.freeImage(bitmap);
 
-	Texture texture84("../Textures/nacimiento/tercero.jpg");
+	Texture texture84("../Textures/nacimiento/rey3.png");
 	bitmap = texture84.loadImage(true);
 	data = texture84.convertToData(bitmap, imageWidth, imageHeight);
 	glGenTextures(1, &textureID84);
@@ -1939,6 +1940,151 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	else
 		std::cout << "Failed to load texture" << std::endl;
 	texture84.freeImage(bitmap);
+
+	Texture texture85("../Textures/nacimiento/paja.png");
+	bitmap = texture85.loadImage(true);
+	data = texture85.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID85);
+	glBindTexture(GL_TEXTURE_2D, textureID85);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture85.freeImage(bitmap);
+
+	Texture texture86("../Textures/nacimiento/fonfoGra.png");
+	bitmap = texture86.loadImage(true);
+	data = texture86.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID86);
+	glBindTexture(GL_TEXTURE_2D, textureID86);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture86.freeImage(bitmap);
+	///////////////
+	Texture texture87("../Textures/nacimiento/fondoNac.png");
+	bitmap = texture87.loadImage(true);
+	data = texture87.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID87);
+	glBindTexture(GL_TEXTURE_2D, textureID87);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture87.freeImage(bitmap);
+
+	Texture texture88("../Textures/nacimiento/fondoGre.png");
+	bitmap = texture88.loadImage(true);
+	data = texture88.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID88);
+	glBindTexture(GL_TEXTURE_2D, textureID88);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture88.freeImage(bitmap);
+	////////////////////------------------->>>>>>>>>>>>>>>>>>>
+	Texture texture89("../Textures/nacimiento/1pollo.png");
+	bitmap = texture89.loadImage(true);
+	data = texture89.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID89);
+	glBindTexture(GL_TEXTURE_2D, textureID89);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture89.freeImage(bitmap);
+
+	Texture texture90("../Textures/nacimiento/2siervo.png");
+	bitmap = texture90.loadImage(true);
+	data = texture90.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID90);
+	glBindTexture(GL_TEXTURE_2D, textureID90);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture90.freeImage(bitmap);
+
+	Texture texture91("../Textures/nacimiento/3conejo.png");
+	bitmap = texture91.loadImage(true);
+	data = texture91.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID91);
+	glBindTexture(GL_TEXTURE_2D, textureID91);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture91.freeImage(bitmap);
+	////Libre
+	Texture texture92("../Textures/nacimiento/fonfoGra.png");
+	bitmap = texture92.loadImage(true);
+	data = texture92.convertToData(bitmap, imageWidth, imageHeight);
+	glGenTextures(1, &textureID92);
+	glBindTexture(GL_TEXTURE_2D, textureID92);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+			GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+		std::cout << "Failed to load texture" << std::endl;
+	texture92.freeImage(bitmap);
+
 
 	// Carga de texturas para el skybox
 	Texture skyboxTexture = Texture("");
@@ -8814,14 +8960,134 @@ void applicationLoop() {
 		glBindTexture(GL_TEXTURE_2D, 0);
 		shaderMulLighting.setFloat("offsetX", 0);
 
-
-		//Personajes
-		glm::mat4 modelSphere = glm::mat4(1.0);
-		modelSphere = glm::translate(modelSphere, glm::vec3(2.0, 2.5, 5.0));
-		modelSphere = glm::scale(modelSphere, glm::vec3(1.0, 1.3, 1.0));
-		modelSphere = glm::rotate(modelSphere, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		/*Personajes Nacimiento*/
+		//Burro
+		glm::mat4 Burro = glm::mat4(1.0);
+		Burro = glm::translate(Burro, glm::vec3(-13.3, 1.75, 7.0));
+		Burro = glm::scale(Burro, glm::vec3(1.7, 2.0, 1.7));
+		Burro = glm::rotate(Burro, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
 		glBindTexture(GL_TEXTURE_2D, textureID74);
-		sphere3.render(modelSphere);
+		box3.render(18, 6, Burro);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		//Maria
+		glm::mat4 Maria = glm::mat4(1.0);
+		Maria = glm::translate(Maria, glm::vec3(-13.2, 1.75, 5.80));
+		Maria = glm::scale(Maria, glm::vec3(2.0, 2.4,2.0));
+		Maria = glm::rotate(Maria, glm::radians(180.0f), glm::vec3(0.0,0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID78);
+		box3.render(18, 6, Maria);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		//Jose
+		glm::mat4 Jose = glm::mat4(1.0);
+		Jose = glm::translate(Jose, glm::vec3(-13.2, 1.75, 3.9));
+		Jose = glm::scale(Jose, glm::vec3(2.0, 2.4, 2.0));
+		Jose = glm::rotate(Jose, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID76);
+		box3.render(18, 6, Jose);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		///Nino
+		glm::mat4 Nino = glm::mat4(1.0);
+		Nino = glm::translate(Nino, glm::vec3(-13.3, 2.15, 4.80));
+		Nino = glm::scale(Nino, glm::vec3(1.3, 1.7, 1.3));
+		Nino = glm::rotate(Nino, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID79);
+		box3.render(18, 6, Nino);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		
+		
+		//Toro
+		glm::mat4 Toro = glm::mat4(1.0);
+		Toro = glm::translate(Toro, glm::vec3(-13.3, 1.75, 2.7));
+		Toro = glm::scale(Toro, glm::vec3(1.7, 2.0, 1.7));
+		Toro = glm::rotate(Toro, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID77);
+		box3.render(18, 6, Toro);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		//Pastor
+		glm::mat4 Pastor = glm::mat4(1.0);
+		Pastor = glm::translate(Pastor, glm::vec3(-10.0, 1.6, 10.0));
+		Pastor = glm::scale(Pastor, glm::vec3(1.7, 1.9, 1.7));
+		Pastor = glm::rotate(Pastor, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID80);
+		box3.render(18, 6, Pastor);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		//Pastor2
+		glm::mat4 Pastor2 = glm::mat4(1.0);
+		Pastor2 = glm::translate(Pastor2, glm::vec3(-5.5, 1.6, 3.0));
+		Pastor2 = glm::scale(Pastor2, glm::vec3(1.7, 1.9, 1.7));
+		Pastor2 = glm::rotate(Pastor2, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID81);
+		box3.render(18, 6, Pastor2);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		//ReyMago
+		glm::mat4 ReyMago = glm::mat4(1.0);
+		ReyMago = glm::translate(ReyMago, glm::vec3(-8.0, 1.6, 5.0));
+		ReyMago = glm::scale(ReyMago, glm::vec3(0.7, 1.4, 0.7));
+		ReyMago = glm::rotate(ReyMago, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID82);
+		box3.render(18, 6, ReyMago);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+
+		//ReyMago2
+		glm::mat4 ReyMago2 = glm::mat4(1.0);
+		ReyMago2 = glm::translate(ReyMago2, glm::vec3(-6.0, 1.6, 6.0));
+		ReyMago2 = glm::scale(ReyMago2, glm::vec3(0.70, 1.4, 0.7));
+		ReyMago2 = glm::rotate(ReyMago2, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID83);
+		box3.render(18, 6, ReyMago2);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+
+		//Mago3
+		glm::mat4 ReyMago3 = glm::mat4(1.0);
+		ReyMago3 = glm::translate(ReyMago3, glm::vec3(-5.0, 1.6, 7.0));
+		ReyMago3 = glm::scale(ReyMago3, glm::vec3(0.7, 1.4, 0.70));
+		ReyMago3 = glm::rotate(ReyMago3, glm::radians(180.0f), glm::vec3(0.0, 0.0, 01.00));
+		glBindTexture(GL_TEXTURE_2D, textureID84);
+		box3.render(18, 6, ReyMago3);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		//paja
+		glm::mat4 paja = glm::mat4(1.0);
+		paja = glm::translate(paja, glm::vec3(-012.8, 6.50, 4.75));
+		paja = glm::scale(paja, glm::vec3(2.0, 3.0, 7.550));
+		paja = glm::rotate(paja, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID85);
+		box3.render(18,6,paja);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		//Animales
+
+		//pollo
+		glm::mat4 pollo = glm::mat4(1.0);
+		pollo = glm::translate(pollo, glm::vec3(-4.0, 1.6, 3.0));
+		pollo = glm::scale(pollo, glm::vec3(1.0, 1.2, 1.0));
+		pollo = glm::rotate(pollo, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID89);
+		box3.render(18, 6, pollo);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		//siervo
+		glm::mat4 siervo = glm::mat4(1.0);
+		siervo = glm::translate(siervo, glm::vec3(-5.5, 1.6, 4.50));
+		siervo = glm::scale(siervo, glm::vec3(1.0, 1.0, 1.0));
+		siervo = glm::rotate(siervo, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID90);
+		box3.render(18, 6, siervo);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		//conejo
+		glm::mat4 conejo = glm::mat4(1.0);
+		conejo = glm::translate(conejo, glm::vec3(-6.5, 1.6, 8.50));
+		conejo = glm::scale(conejo, glm::vec3(1.1, 1.1, 1.1));
+		conejo = glm::rotate(conejo, glm::radians(180.0f), glm::vec3(0.0, 0.0, 1.00));
+		glBindTexture(GL_TEXTURE_2D, textureID91);
+		box3.render(18, 6, conejo);
 		glBindTexture(GL_TEXTURE_2D, 0);
 
 		/*Nacimiento*/
@@ -8846,46 +9112,45 @@ void applicationLoop() {
 
 		//________________________paja cuna nino dios
 		glBindTexture(GL_TEXTURE_2D, textureID8);
-		cylinder3.setPosition(glm::vec3(-6.0, 1.1, 5.50));
-		cylinder3.setScale(glm::vec3(3.0, 0.05, 3.00));
-		cylinder3.render();
+		box9.setPosition(glm::vec3(-13.0, 1.1, 4.80));
+		box9.setScale(glm::vec3(1.20, 1.20, 2.00));
+		box9.render();
 
 		//Casita de Madera Nino izq
-		glBindTexture(GL_TEXTURE_2D, textureID63);
-		box9.setPosition(glm::vec3(-14.0, 3.10, 7.70));
+		glBindTexture(GL_TEXTURE_2D, textureID88);
+		box9.setPosition(glm::vec3(-13.50, 3.10, 7.70));
 		box9.setScale(glm::vec3(3.0, 4.0, 0.15));
 		box9.render();
 
 		//Casita de Madera Nino der 
-		glBindTexture(GL_TEXTURE_2D, textureID63);
-		box9.setPosition(glm::vec3(-14.0, 3.10, 1.70));
+		glBindTexture(GL_TEXTURE_2D, textureID88);
+		box9.setPosition(glm::vec3(-13.5, 3.10, 1.70));
 		box9.setScale(glm::vec3(3.0, 4.0, 0.15));
 		box9.render();
 
 		//Casita de Madera Nino techo
-		glBindTexture(GL_TEXTURE_2D, textureID63);
-		box9.setPosition(glm::vec3(-014.0, 5.10, 4.75));
-		box9.setScale(glm::vec3(3.0, 0.1, 6.00));
+		glBindTexture(GL_TEXTURE_2D, textureID88);
+		box9.setPosition(glm::vec3(-013.5, 5.10, 4.75));
+		box9.setScale(glm::vec3(3.0, 0.2, 6.00));
 		box9.render();
 
 		//Casita de Madera Nino piso
-		glBindTexture(GL_TEXTURE_2D, textureID63);
-		box9.setPosition(glm::vec3(-014.0, 1.150, 4.75));
+		glBindTexture(GL_TEXTURE_2D, textureID88);
+		box9.setPosition(glm::vec3(-013.5, 1.150, 4.75));
 		box9.setScale(glm::vec3(3.0, 0.1, 6.00));
 		box9.render();
 
-		//Casita de Madera Nino izq pico
-		glm::mat4 modelP = glm::mat4(1.0f);
-		modelP = glm::translate(modelP, glm::vec3(-12.0, 3.10, 7.70));
-		modelP = glm::rotate(modelP, glm::radians(45.0f), glm::vec3(0.0, 0.0, 1.0));
-		glBindTexture(GL_TEXTURE_2D, textureID63);
-		box9.render(glm::scale(modelP, glm::vec3(3.0, 4.0, 0.15)));
-		glBindTexture(GL_TEXTURE_2D, 0);
-
-		//Casita de Madera Nino der pico
-
-
-	
+		//Fondo Casa
+		glBindTexture(GL_TEXTURE_2D, textureID86);
+		box9.setPosition(glm::vec3(-14.4, 3.2, 4.750));
+		box9.setScale(glm::vec3(0.1, 4.0, 6.0));
+		box9.render();
+		
+		//Estrella dew Belen
+		glBindTexture(GL_TEXTURE_2D, textureID87);
+		box9.setPosition(glm::vec3(-14.5, 6.0, 8.00));
+		box9.setScale(glm::vec3(0.1, 10.0, 14.0));
+		box9.render();
 
 		///----------------------------------------------------------------------Bob
 
