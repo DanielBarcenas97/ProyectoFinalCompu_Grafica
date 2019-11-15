@@ -159,6 +159,16 @@ Model ModelWC;
 Model ModelPinata;
 Model ModelPrueba;
 
+Model modelCalabaza;
+Model modelCandlestick;
+Model modelflower;
+Model modelMango;
+Model modelManzana;
+Model modelSkelet;
+Model modelSkull_v3;
+
+
+
 GLuint skyboxTextureID;
 GLuint textureID1, textureID2, textureID3, textureID4,
 textureID5, textureID6, textureID7, textureID8,
@@ -373,8 +383,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	box7.setShader(&shaderMulLighting);
 
 	
-	//ModelChimenea.loadModel("../models/Navidad/fuego/13110_Fireplace_v2_l3.obj");
-	//ModelChimenea.setShader(&shaderMulLighting);
+	ModelChimenea.loadModel("../models/Navidad/fuego/13110_Fireplace_v2_l3.obj");
+	ModelChimenea.setShader(&shaderMulLighting);
 
 	/*Modelos Transporte
 	ModelAircraft.loadModel("../models/Aircraft_obj/E 45 Aircraft_obj.obj");
@@ -407,28 +417,28 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 
 	//Modelos de la Casa
 	
-	//modelMesa.loadModel("../models/table/table.obj");
-	//modelMesa.setShader(&shaderMulLighting);
+	modelMesa.loadModel("../models/table/table.obj");
+	modelMesa.setShader(&shaderMulLighting);
 
-	//ModelSilla.loadModel("../models/SillaComedor/Chair.obj");
-	//ModelSilla.setShader(&shaderMulLighting);
+	ModelSilla.loadModel("../models/SillaComedor/Chair.obj");
+	ModelSilla.setShader(&shaderMulLighting);
 
-	//ModelWC.loadModel("../models/toilet/toilet.obj");
-	//ModelWC.setShader(&shaderMulLighting);
+	ModelWC.loadModel("../models/toilet/toilet.obj");
+	ModelWC.setShader(&shaderMulLighting);
 
-	//ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
-	//ModelSofa.setShader(&shaderMulLighting);
+	ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
+	ModelSofa.setShader(&shaderMulLighting);
 
-	//ModelSofaP.loadModel("../models/Navidad/sofap/sofap.obj");
-	//ModelSofaP.setShader(&shaderMulLighting);
+	ModelSofaP.loadModel("../models/Navidad/sofap/sofap.obj");
+	ModelSofaP.setShader(&shaderMulLighting);
 
-	//ModelMesa.loadModel("../models/Wood_Table/Wood_Table.obj");
-	//ModelMesa.setShader(&shaderMulLighting);
+	ModelMesa.loadModel("../models/Wood_Table/Wood_Table.obj");
+	ModelMesa.setShader(&shaderMulLighting);
 
-	//ModelEjemplo.loadModel("../models/silla/10239_Office_Chair_v1_L3.obj");
-	//ModelEjemplo.setShader(&shaderMulLighting);
+	ModelEjemplo.loadModel("../models/silla/10239_Office_Chair_v1_L3.obj");
+	ModelEjemplo.setShader(&shaderMulLighting);
 
-	/*Modelos Otros /Plantas/Roca/Perro/ViasDelTren
+	/*Modelos Otros /Plantas/Roca/Perro/ViasDelTren*/
 	Modeljardinera.loadModel("../models/Navidad/jardinera/jardinera.obj");
 	Modeljardinera.setShader(&shaderMulLighting);
 
@@ -441,7 +451,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelRailRoad.loadModel("../models/railroad/railroad_track.obj");
 	modelRailRoad.setShader(&shaderMulLighting);
 
-	/*Cosas de Navidad
+	/*Cosas de Navidad*/
 	ModelPinata.loadModel("../models/Navidad/pinata/pinata.obj");
 	ModelPinata.setShader(&shaderMulLighting);
 
@@ -457,60 +467,81 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	ModelBell.loadModel("../models/Navidad/bell/11566_Bell_V5_l3.obj");
 	ModelBell.setShader(&shaderMulLighting);
 
-	*/
+	ModelBaston.loadModel("../models/Navidad/baston/baston1.obj");
+	ModelBaston.setShader(&shaderMulLighting);
+
+	//ModelCaballito.loadModel("../models/Navidad/caballito/caballito.obj");
+	//ModelCaballito.setShader(&shaderMulLighting);
+
+	//ModelHat.loadModel("../models/Navidad/hat/santa_hat(BLENDER).obj");
+	//ModelHat.setShader(&shaderMulLighting);
+
+	//ModelSpiderman.loadModel("../models/Navidad/spiderman/M-CoC_iOS_HERO_Peter_Parker_Spider-Man_Stark_Enhanced.obj");
+	//ModelSpiderman.setShader(&shaderMulLighting);
+
+	ModelRegaloUno.loadModel("../models/Navidad/regalo2/regalo.obj");
+	ModelRegaloUno.setShader(&shaderMulLighting);
+
+	ModelRegaloDos.loadModel("../models/Navidad/regalo2/regalo.obj");
+	ModelRegaloDos.setShader(&shaderMulLighting);
+
+	//ModelRosa.loadModel("../models/Navidad/rosa/rosa.obj");
+	//ModelRosa.setShader(&shaderMulLighting);
+
+	//ModelNochebuena.loadModel("../models/Navidad/nochebuena/nochebuena.obj");
+	//ModelNochebuena.setShader(&shaderMulLighting);
+
+	//ModelDinosaur.loadModel("../models/Navidad/Dinosaur/Dinosaur.obj");
+	//ModelDinosaur.setShader(&shaderMulLighting);
 
 	//---------------------------------------------------------------------
 	//ModelEsfera.loadModel("../models/Navidad/ArbolNavidad/11.obj");
 	//ModelEsfera.setShader(&shaderMulLighting);
 
 	/*
-
-	ModelBaston.loadModel("../models/Navidad/baston/baston1.obj");
-	ModelBaston.setShader(&shaderMulLighting);
-
-	ModelCaballito.loadModel("../models/Navidad/caballito/caballito.obj");
-	ModelCaballito.setShader(&shaderMulLighting);
-
 	ModelPinoNavidad.loadModel("../models/Navidad/pino/pine_tree.obj");
 	ModelPinoNavidad.setShader(&shaderMulLighting);
 
-	ModelHat.loadModel("../models/Navidad/hat/santa_hat(BLENDER).obj");
-	ModelHat.setShader(&shaderMulLighting);
-
-	ModelSpiderman.loadModel("../models/Navidad/spiderman/M-CoC_iOS_HERO_Peter_Parker_Spider-Man_Stark_Enhanced.obj");
-	ModelSpiderman.setShader(&shaderMulLighting);
-
-	ModelRegaloUno.loadModel("../models/Navidad/regalo/REGALO_Alex.obj");
-	ModelRegaloUno.setShader(&shaderMulLighting);
-
-	ModelRegaloDos.loadModel("../models/Navidad/regalo2/regalo.obj");
-	ModelRegaloDos.setShader(&shaderMulLighting);
-
-	ModelRosa.loadModel("../models/Navidad/rosa/rosa.obj");
-	ModelRosa.setShader(&shaderMulLighting);
-
-	ModelNochebuena.loadModel("../models/Navidad/nochebuena/nochebuena.obj");
-	ModelNochebuena.setShader(&shaderMulLighting);
-
-	ModelDinosaur.loadModel("../models/Navidad/Dinosaur/Dinosaur.obj");
-	ModelDinosaur.setShader(&shaderMulLighting);
-
 	ModelTren.loadModel("../models/Navidad/rock/rock.obj");
 	ModelTren.setShader(&shaderMulLighting);
-
-
 
 	ModelPrueba.loadModel("../models/Navidad/calceta/calceta_roja.obj");
 	ModelPrueba.setShader(&shaderMulLighting);
 	*/
 	/*Fin cosas de Navidad*/
 
-	/*Dia de Muertos*/
+	/*Dia de Muertos
+	modelCalabaza;
+	modelCandlestick;
+
+	modelMango;
+	modelManzana;
+	modelSkelet;
+	modelSkull_v3;
+	*/
+	modelSkelet.loadModel("../models/DiaDeMuertos/Skull_v3/12140_Skull_v3_L2.obj");
+	modelSkelet.setShader(&shaderMulLighting);
+	//inicializacion del candelabro
+	modelCandlestick.loadModel("../models/DiaDeMuertos/Candlestick/candlestick.obj");
+	modelCandlestick.setShader(&shaderMulLighting);
+	//modelCalabaza.loadModel("../models/DiaDeMuertos/calabaza/pumpkin.obj");
+	//modelCalabaza.setShader(&shaderMulLighting);
+
+	//modelCandlestick.loadModel("../models/DiaDeMuertos/Candlestick/candlestick.obj");
+	//modelCandlestick.setShader(&shaderMulLighting);
+
+	//modelMango.loadModel("../models/DiaDeMuertos/Mango/10190_Mango-L3.obj");
+	//modelMango.setShader(&shaderMulLighting);
+
+	//modelManzana.loadModel("../models/DiaDeMuertos/manzana/Manzana.obj");
+	//modelManzana.setShader(&shaderMulLighting);
+
+	//modelSkelet.loadModel("../models/DiaDeMuertos/Skelet/Skelet.obj");
+	//modelSkelet.setShader(&shaderMulLighting);
 
 
-
-
-
+	//modelSkull_v3.loadModel("../models/DiaDeMuertos/Skull_v3/12140_Skull_v3_L2.obj");
+	//modelSkull_v3.setShader(&shaderMulLighting);
 
 	//Se inicializan los objetos para el modelo de R2D2
 	torsoR2D2.init();
@@ -2303,7 +2334,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	texture101.freeImage(bitmap);
 
 	////Libre
-	Texture texture102("../Textures/nacimiento/rosca.png");
+	Texture texture102("../Textures/nacimiento/rosca.jpg");
 	bitmap = texture102.loadImage(true);
 	data = texture102.convertToData(bitmap, imageWidth, imageHeight);
 	glGenTextures(1, &textureID102);
@@ -2815,6 +2846,26 @@ void applicationLoop() {
 	float recorridoCamara = 0;
 	float giroCamaraY = 0;
 
+	//matriz de craneo y animacion
+	glm::mat4 modelMatrixSkeleto = glm::mat4(1.0);
+	modelMatrixSkeleto = glm::translate(modelMatrixSkeleto, glm::vec3(0.0, 4.0, -4.0));
+	modelMatrixSkeleto = glm::rotate(modelMatrixSkeleto, glm::radians(-90.0f), glm::vec3(1, 0, 0));
+	modelMatrixSkeleto = glm::scale(modelMatrixSkeleto, glm::vec3(0.05, 0.05, 0.05));
+	int stateMachineCraneo = 0;
+	float avanzaCraneo = 0.0f;
+	int rotaCraneo = 0;
+
+	//matriz del candelabro y animacion
+	glm::mat4 modelMatrixCandelabro = glm::mat4(1.0);
+	modelMatrixCandelabro = glm::translate(modelMatrixCandelabro, glm::vec3(0.0, 4.0, -4.0));
+	float	posicionCandelabroY = 0.0f,
+		posicionCandelabroInicialY = 0.0f,
+		velocidadInicialCandelabro = 1.0f,
+		anguloCandelabro = 30.0f * 3.1416 / 180.0,//angulo del salto
+		gravedad = 9.81f, //gravedad
+		tiempoCandelabro = 0.0f;//tiempo
+	int stateCandelabro = 0;
+
 	/////////////////////////
 	while (psi) {
 		psi = processInput(true);
@@ -3059,7 +3110,7 @@ void applicationLoop() {
 		//Numero de luces a utilizar de tipo poinlights=3
 			shaderMulLighting.setInt("pointLightCount", 104);   //Multiple Light .fs
 			//01Verde
-			shaderMulLighting.setVectorFloat3("pointLights[0].position", glm::value_ptr((glm::vec3(-14.4, 13, 4.0))));  //  position de la luz
+			shaderMulLighting.setVectorFloat3("pointLights[0].position", glm::value_ptr((glm::vec3(-14.4, 11, 4.0))));  //  position de la luz
 			shaderMulLighting.setVectorFloat3("pointLights[0].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[0].light.diffuse", glm::value_ptr(glm::vec3(0.0, 0.01, 0.0)));
 			shaderMulLighting.setVectorFloat3("pointLights[0].light.specular", glm::value_ptr(glm::vec3(0.0, 0.6, 0.0))); //Brilla la luz
@@ -3069,7 +3120,7 @@ void applicationLoop() {
 			luces2 -= 0.001;
 			luces += 0.001;
 			//02 Roja
-			shaderMulLighting.setVectorFloat3("pointLights[1].position", glm::value_ptr((glm::vec3(-14.4, 13, 4.7))));
+			shaderMulLighting.setVectorFloat3("pointLights[1].position", glm::value_ptr((glm::vec3(-14.4, 11, 4.7))));
 			shaderMulLighting.setVectorFloat3("pointLights[1].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[1].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.0, 0.0)));  //Red
 			shaderMulLighting.setVectorFloat3("pointLights[1].light.specular", glm::value_ptr(glm::vec3(0.6, 0.0, 0.0)));
@@ -3079,7 +3130,7 @@ void applicationLoop() {
 			luces2 -= 0.001;
 			luces += 0.001;
 			//03 Azul
-			shaderMulLighting.setVectorFloat3("pointLights[2].position", glm::value_ptr((glm::vec3(-14.4, 13, 5.4))));
+			shaderMulLighting.setVectorFloat3("pointLights[2].position", glm::value_ptr((glm::vec3(-14.4, 11, 5.4))));
 			shaderMulLighting.setVectorFloat3("pointLights[2].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[2].light.diffuse", glm::value_ptr(glm::vec3(0.0, 0.0, 0.01)));  //BLUE
 			shaderMulLighting.setVectorFloat3("pointLights[2].light.specular", glm::value_ptr(glm::vec3(0.0, 0.0, 0.6)));
@@ -3089,7 +3140,7 @@ void applicationLoop() {
 			luces2 -= 0.001;
 			luces += 0.001;
 			//04 Amarilla
-			shaderMulLighting.setVectorFloat3("pointLights[3].position", glm::value_ptr((glm::vec3(-14.4, 13, 6.1))));
+			shaderMulLighting.setVectorFloat3("pointLights[3].position", glm::value_ptr((glm::vec3(-14.4, 11, 6.1))));
 			shaderMulLighting.setVectorFloat3("pointLights[3].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[3].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.0)));
 			shaderMulLighting.setVectorFloat3("pointLights[3].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.0)));
@@ -3099,7 +3150,7 @@ void applicationLoop() {
 			luces2 -= 0.001;
 			luces += 0.001;
 			//05  Morada
-			shaderMulLighting.setVectorFloat3("pointLights[4].position", glm::value_ptr((glm::vec3(-14.4, 13, 6.8))));
+			shaderMulLighting.setVectorFloat3("pointLights[4].position", glm::value_ptr((glm::vec3(-14.4, 11, 6.10))));
 			shaderMulLighting.setVectorFloat3("pointLights[4].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[4].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.1)));
 			shaderMulLighting.setVectorFloat3("pointLights[4].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.6)));
@@ -3109,7 +3160,7 @@ void applicationLoop() {
 			luces2 -= 0.001;
 			luces += 0.001;
 			//06Verde
-			shaderMulLighting.setVectorFloat3("pointLights[5].position", glm::value_ptr((glm::vec3(-14.4, 13, 7.5))));  //  position de la luz
+			shaderMulLighting.setVectorFloat3("pointLights[5].position", glm::value_ptr((glm::vec3(-14.4, 11, 7.5))));  //  position de la luz
 			shaderMulLighting.setVectorFloat3("pointLights[5].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[5].light.diffuse", glm::value_ptr(glm::vec3(0.0, 0.01, 0.0)));
 			shaderMulLighting.setVectorFloat3("pointLights[5].light.specular", glm::value_ptr(glm::vec3(0.0, 0.6, 0.0))); //Brilla la luz
@@ -3119,7 +3170,7 @@ void applicationLoop() {
 			luces2 -= 0.001;
 			luces += 0.001;
 			//07 Roja
-			shaderMulLighting.setVectorFloat3("pointLights[6].position", glm::value_ptr((glm::vec3(-14.4, 13, 8.2))));
+			shaderMulLighting.setVectorFloat3("pointLights[6].position", glm::value_ptr((glm::vec3(-14.4,11, 8.2))));
 			shaderMulLighting.setVectorFloat3("pointLights[6].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[6].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.0, 0.0)));  //Red
 			shaderMulLighting.setVectorFloat3("pointLights[6].light.specular", glm::value_ptr(glm::vec3(0.6, 0.0, 0.0)));
@@ -3129,7 +3180,7 @@ void applicationLoop() {
 			luces2 -= 0.001;
 			luces += 0.001;
 			//08 Azul
-			shaderMulLighting.setVectorFloat3("pointLights[7].position", glm::value_ptr((glm::vec3(-14.4, 13, 8.9))));
+			shaderMulLighting.setVectorFloat3("pointLights[7].position", glm::value_ptr((glm::vec3(-14.4, 11, 8.9))));
 			shaderMulLighting.setVectorFloat3("pointLights[7].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[7].light.diffuse", glm::value_ptr(glm::vec3(0.0, 0.0, 0.01)));  //BLUE
 			shaderMulLighting.setVectorFloat3("pointLights[7].light.specular", glm::value_ptr(glm::vec3(0.0, 0.0, 0.6)));
@@ -3139,7 +3190,7 @@ void applicationLoop() {
 			luces2 -= 0.001;
 			luces += 0.001;
 			//09 Amarilla
-			shaderMulLighting.setVectorFloat3("pointLights[8].position", glm::value_ptr((glm::vec3(-14.4, 13, 9.6))));
+			shaderMulLighting.setVectorFloat3("pointLights[8].position", glm::value_ptr((glm::vec3(-14.4, 11, 9.6))));
 			shaderMulLighting.setVectorFloat3("pointLights[8].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[8].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.0)));
 			shaderMulLighting.setVectorFloat3("pointLights[8].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.0)));
@@ -3149,7 +3200,7 @@ void applicationLoop() {
 			luces2 -= 0.001;
 			luces += 0.001;
 			//010  Morada
-			shaderMulLighting.setVectorFloat3("pointLights[9].position", glm::value_ptr((glm::vec3(-14.4, 13, 10.3))));
+			shaderMulLighting.setVectorFloat3("pointLights[9].position", glm::value_ptr((glm::vec3(-14.4, 11, 10.3))));
 			shaderMulLighting.setVectorFloat3("pointLights[9].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[9].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.1)));
 			shaderMulLighting.setVectorFloat3("pointLights[9].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.6)));
@@ -3159,7 +3210,7 @@ void applicationLoop() {
 			luces2 -= 0.001;
 			luces += 0.001;
 			//////LUZ nueva 11
-			shaderMulLighting.setVectorFloat3("pointLights[10].position", glm::value_ptr((glm::vec3(-14.4, 13, 11.0))));
+			shaderMulLighting.setVectorFloat3("pointLights[10].position", glm::value_ptr((glm::vec3(-14.4, 11, 11.0))));
 			shaderMulLighting.setVectorFloat3("pointLights[10].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[10].light.diffuse", glm::value_ptr(glm::vec3(0.0, 0.01, 0.0)));
 			shaderMulLighting.setVectorFloat3("pointLights[10].light.specular", glm::value_ptr(glm::vec3(0.0, 0.6, 0.0))); //Brilla la luz
@@ -8195,18 +8246,16 @@ void applicationLoop() {
 
 		/*matel Navidad*/
 
-		glBindTexture(GL_TEXTURE_2D, textureID97);
-		box9.setPosition(glm::vec3(-3.95, -9.05, 9.50));
-		box9.setScale(glm::vec3(7.1, 0.02, 12.0));
-		box9.render();
+		//glBindTexture(GL_TEXTURE_2D, textureID97);
+		//box9.setPosition(glm::vec3(-3.95, -9.05, 9.50));
+		//box9.setScale(glm::vec3(7.1, 0.02, 12.0));
+		//box9.render();
 
 		/*Rosca de Reyes*/
-		glm::mat4 rosca = glm::mat4(1.0);
-		rosca = glm::translate(rosca, glm::vec3(-3.95, -9.050, 9.50));
-		rosca = glm::scale(rosca, glm::vec3(3.0, 3.0, 3.0));
-		//rosca = glm::rotate(rosca, glm::radians(180.0f), glm::vec3(1.0, 0.0, 0.00));
 		glBindTexture(GL_TEXTURE_2D, textureID102);
-		box9.render(rosca);
+		box9.setPosition(glm::vec3(-3.95, -9.0,09.50));
+		box9.setScale(glm::vec3(3.1, 0.4, 4.0));
+		box9.render();
 
 		/* init  Sala */
 
@@ -11103,7 +11152,7 @@ void applicationLoop() {
 
 		//ModelTrineo
 		glm::mat4 trineo = glm::mat4(1.0);
-		trineo = glm::translate(trineo, glm::vec3(-12.0, 6.0, -44.0));
+		trineo = glm::translate(trineo, glm::vec3(-8.0, 1.1, -44.0));
 		trineo = glm::scale(trineo, glm::vec3(0.02, 0.02, 0.020));
 		ModelTrineo.render(trineo);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
@@ -11117,57 +11166,300 @@ void applicationLoop() {
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
 
-		//ModelPinoNavidad
-		glm::mat4 estrella = glm::mat4(1.0);
-		estrella = glm::translate(estrella, glm::vec3(-11.0, -14.0, 30.0));
-		estrella = glm::scale(estrella, glm::vec3(3.0, 3.0, 3.00));
-		ModelBell.render(estrella);
+		//estrella
+		glm::mat4 Bell = glm::mat4(1.0);
+		Bell = glm::translate(Bell, glm::vec3(-12.0, -10.0, 28.0));
+		Bell = glm::scale(Bell, glm::vec3(0.10, 0.10, 0.100));
+		ModelBell.render(Bell);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
 
 		//ModelPinoNavidad
 		glm::mat4 esfera = glm::mat4(1.0);
-		esfera = glm::translate(esfera, glm::vec3(-11.0, -14.0, 30.0));
-		esfera = glm::scale(esfera, glm::vec3(3.0, 3.0, 3.00));
-		ModelEsfera.render(esfera);
+		esfera = glm::translate(esfera, glm::vec3(-11.0, -4.0, 30.0));
+		esfera = glm::scale(esfera, glm::vec3(0.0250, 0.0250, 0.02500));
+		ModelEstrella.render(esfera);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
 
 		
 		//ModelChimenea
 		glm::mat4 fuego = glm::mat4(1.0);
-		fuego = glm::translate(fuego, glm::vec3(-4.0, -10.0, 35.0));
+		fuego = glm::translate(fuego, glm::vec3(-3.0, -14.0, 35.0));
 		fuego = glm::rotate(fuego, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
 		fuego = glm::scale(fuego, glm::vec3(0.10, 0.100,0.100));
 		ModelChimenea.render(fuego);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
+		//////////////////////////////////////////////////////////////////////////////////
+		//ModelBaston
+		glm::mat4 Baston = glm::mat4(1.0);
+		Baston = glm::translate(Baston, glm::vec3(-11.0, -10.0, 28.0));
+		Baston = glm::rotate(Baston, glm::radians(90.0f), glm::vec3(1.0, 0.0, 0.00));
+		Baston = glm::scale(Baston, glm::vec3(0.50, 0.50, 0.500));
+		ModelBaston.render(Baston);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+		//ModelCaballito
+		glm::mat4 caballo = glm::mat4(1.0);
+		caballo = glm::translate(caballo, glm::vec3(-4.0, -10.0, 25.0));
+		caballo = glm::rotate(caballo, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		caballo = glm::scale(caballo, glm::vec3(0.10, 0.100, 0.100));
+		ModelCaballito.render(caballo);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
 
 
 
-		/*
+		//ModelCalceta
+		glm::mat4 calceta = glm::mat4(1.0);
+		calceta = glm::translate(calceta, glm::vec3(-5.0, -10.0, 20.0));
+		calceta = glm::rotate(calceta, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.00));
+		calceta = glm::scale(calceta, glm::vec3(2.10, 2.100, 2.100));
+		ModelCalceta.render(calceta);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
 
-		;
-		;
-		ModelBaston;
-		ModelCaballito;
-		ModelCalceta;
-		ModelChimenea;
-		ModelPinoNavidad;
-		ModelHat;
-		ModelDinosaur;
-		ModelNochebuena;
-		ModelRegaloUno;
-		ModelRegaloDos;
-		ModelRosa;
-		ModelSpiderman;
-		ModelTren;
-		ModelTrineo;
+		//ModelDinosaur
+		glm::mat4 dinor = glm::mat4(1.0);
+		dinor = glm::translate(dinor, glm::vec3(0.0, -10.0, 25.0));
+		dinor = glm::rotate(dinor, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		dinor = glm::scale(dinor, glm::vec3(1.10, 1.100, 1.100));
+		ModelDinosaur.render(dinor);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
 
-		ModelPrueba;
 
-		*/
+		//ModelHat
+		glm::mat4 hat = glm::mat4(1.0);
+		hat = glm::translate(hat, glm::vec3(-4.0, -8.0, 20.0));
+		hat = glm::rotate(hat, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		hat = glm::scale(hat, glm::vec3(0.10, 0.100, 0.100));
+		ModelHat.render(hat);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+		//ModelRegaloDos
+		glm::mat4 dos = glm::mat4(1.0);
+		dos = glm::translate(dos, glm::vec3(-9.0, -10.0, 25.0));
+		//dos = glm::rotate(dos, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		dos = glm::scale(dos, glm::vec3(0.020, 0.0200, 0.0200));
+		ModelRegaloDos.render(dos);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+
+		//ModelRegaloUno
+		glm::mat4 uno = glm::mat4(1.0);
+		uno = glm::translate(uno, glm::vec3(-5.0, -10.0, 25.0));
+		//uno = glm::rotate(uno, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		uno = glm::scale(uno, glm::vec3(0.020, 0.0200, 0.0200));
+		ModelRegaloUno.render(uno);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+		//ModelSpiderman
+		glm::mat4 spidey = glm::mat4(1.0);
+		spidey = glm::translate(spidey, glm::vec3(-4.0, -10.0, 25.0));
+		spidey = glm::rotate(spidey, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		spidey = glm::scale(spidey, glm::vec3(1.10, 1.100, 1.100));
+		ModelSpiderman.render(spidey);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+		//ModelNochebuena
+		glm::mat4 noceB = glm::mat4(1.0);
+		noceB = glm::translate(noceB, glm::vec3(-4.0, -8.0, 15.0));
+		noceB = glm::rotate(noceB, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		noceB = glm::scale(noceB, glm::vec3(0.10, 0.100, 0.100));
+		ModelNochebuena.render(noceB);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+
+		//Esferas
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-11.0, -7.0, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-11.0, -6, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-11.0, -4, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-11.0, -5, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-11.0, -3, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-11.0, -4, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-11.0, -5, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-11.0, -6, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-11.0, -7, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-11.0, -8, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-9.0, -9, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-10.0, -10, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-8.0, -11, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-9.0, -12, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+
+		//Roja
+		sphereLamp.setScale(glm::vec3(0.35, 0.35, 0.35));
+		sphereLamp.setPosition(glm::vec3(-10.0, -13, 30.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+		sphereLamp.render();
+		sphereLamp.render();
+
+
 		/*Fin de objetos Navidad*/
+
+		/*Modelos Dia de Muertos
+		modelCalabaza;
+		modelCandlestick;
+		modelMango;
+		modelManzana;
+		modelSkelet;
+		modelSkull_v3;
+		*/
+		/*fin dia d emuertos*/
+
+		/*********************Objetos para dia de muertos**********************************/
+		//esqueleto
+		modelSkelet.render(modelMatrixSkeleto);
+		glActiveTexture(GL_TEXTURE0);
+
+		//candelabro
+		modelMatrixCandelabro = glm::scale(modelMatrixCandelabro, glm::vec3(1.0, 1.0, 1.0));
+		modelCandlestick.render(modelMatrixCandelabro);
+		glActiveTexture(GL_TEXTURE0);
+
+		//*********************************************************************************
+		/*
+		//modelCalabaza
+		glm::mat4 cala = glm::mat4(1.0);
+		cala = glm::translate(cala, glm::vec3(35.0, -10.0, 25.0));
+		cala = glm::rotate(cala, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
+		cala = glm::scale(cala, glm::vec3(0.10, 0.100, 0.100));
+		modelCalabaza.render(cala);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+		//modelCandlestick
+		glm::mat4 nad = glm::mat4(1.0);
+		nad = glm::translate(nad, glm::vec3(35.0, -10.0, 25.0));
+		nad = glm::rotate(nad, glm::radians(180.0f), glm::vec3(0.0, 0.0, 0.00));
+		nad = glm::scale(nad, glm::vec3(0.10, 0.100, 0.100));
+		modelCandlestick.render(nad);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+		//modelMango
+		glm::mat4 mango = glm::mat4(1.0);
+		mango = glm::translate(mango, glm::vec3(42, -10.0, 35.0));
+		mango = glm::rotate(mango, glm::radians(180.0f), glm::vec3(0.0, 0.0, 0.00));
+		mango = glm::scale(mango, glm::vec3(0.10, 0.100, 0.100));
+		modelMango.render(mango);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+		//modelManzana
+		glm::mat4 manzana = glm::mat4(1.0);
+		manzana = glm::translate(manzana, glm::vec3(40.0, -10.0, 35.0));
+		manzana = glm::rotate(manzana, glm::radians(180.0f), glm::vec3(0.0, 0.0, 0.00));
+		manzana = glm::scale(manzana, glm::vec3(0.10, 0.100, 0.100));
+		modelManzana.render(manzana);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+		//modelSkelet
+		glm::mat4 skelet = glm::mat4(1.0);
+		skelet = glm::translate(skelet, glm::vec3(30.0, -10.0, 35.0));
+		skelet = glm::rotate(skelet, glm::radians(180.0f), glm::vec3(0.0, 0.0, 0.00));
+		skelet = glm::scale(skelet, glm::vec3(0.10, 0.100, 0.100));
+		modelSkelet.render(skelet);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+
+		//modelSkull_v3
+		glm::mat4 skelet2 = glm::mat4(1.0);
+		skelet2 = glm::translate(skelet2, glm::vec3(35.0, -10.0, 35.0));
+		skelet2 = glm::rotate(skelet2, glm::radians(180.0f), glm::vec3(0.0, 0.0, 0.00));
+		skelet2 = glm::scale(skelet2, glm::vec3(0.10, 0.100, 0.100));
+		modelSkull_v3.render(skelet2);
+		//Forze to enable the unit texture 0 always ............ IMPORTANT
+		glActiveTexture(GL_TEXTURE0);
+		*/
 
 		// Se Dibuja el Skybox
 		GLint oldCullFaceMode;
@@ -11308,6 +11600,65 @@ void applicationLoop() {
 				dorRotCount = 0.0;
 				stateDoor = 0;
 			}
+			break;
+		}
+		switch (stateMachineCraneo) {
+		case 0://avanza hacia enfrente
+			modelMatrixSkeleto = glm::translate(modelMatrixSkeleto, glm::vec3(0.0, -0.1, 0.0));
+			avanzaCraneo += 0.1f;
+			if (avanzaCraneo > 5.0f) {
+				//avanzaCraneo = 0.0f;
+				stateMachineCraneo = 1;
+			}
+			break;
+
+		case 1://retrosede hacia atras
+			modelMatrixSkeleto = glm::translate(modelMatrixSkeleto, glm::vec3(0.0, 0.1, 0.0));
+			avanzaCraneo -= 0.1f;
+			if (avanzaCraneo < 0.0f) {
+				avanzaCraneo = 0.0f;
+				stateMachineCraneo = 2;
+			}
+			break;
+		case 2:
+			modelMatrixSkeleto = glm::rotate(modelMatrixSkeleto, glm::radians(1.0f), glm::vec3(0, 0, 1));
+			rotaCraneo += 1;
+			if (rotaCraneo > 90) {
+				stateMachineCraneo = 0;
+				rotaCraneo = 0;
+			}
+		default:
+			break;
+		}
+
+		//animacion del candelabro
+		switch (stateCandelabro)
+		{
+		case 0://avanza en una direccion
+			posicionCandelabroY = posicionCandelabroInicialY + (velocidadInicialCandelabro * tiempoCandelabro * sin(anguloCandelabro)) - (0.5 * gravedad * tiempoCandelabro * tiempoCandelabro);
+			modelMatrixCandelabro = glm::translate(modelMatrixCandelabro, glm::vec3(0.01, posicionCandelabroY, 0.0));
+			if (posicionCandelabroY >= 0.0f) {
+				tiempoCandelabro += 0.0001f;
+			}
+			else {
+				posicionCandelabroInicialY = 0.0f;
+				tiempoCandelabro = 0.0f;
+				stateCandelabro = 1;
+			}
+			break;
+		case 1://avanza en direccion contraria
+			posicionCandelabroY = posicionCandelabroInicialY + (velocidadInicialCandelabro * tiempoCandelabro * sin(anguloCandelabro)) - (0.5 * gravedad * tiempoCandelabro * tiempoCandelabro);
+			modelMatrixCandelabro = glm::translate(modelMatrixCandelabro, glm::vec3(-0.01, posicionCandelabroY, 0.0));
+			if (posicionCandelabroY >= 0.0f) {
+				tiempoCandelabro += 0.0001f;
+			}
+			else {
+				posicionCandelabroInicialY = 0.0f;
+				tiempoCandelabro = 0.0f;
+				stateCandelabro = 0;
+			}
+			break;
+		default:
 			break;
 		}
 

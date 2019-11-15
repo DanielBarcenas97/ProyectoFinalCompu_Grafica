@@ -1,0 +1,171 @@
+# Materials for file plants2.obj
+# Created by PlantStudio http://www.kurtz-fernhout.com
+# These files must be in the same directory for the materials to be read correctly.
+newmtl 1tree-lik_Intrnd
+Ka  0.1921 0.1921 0.0
+Kd  0.1921 0.1921 0.0
+Ks  0.1921 0.1921 0.0
+d 1.0
+illum 1
+
+newmtl 1tree-lik_Mrstm
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_Mrstm
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_Petiole
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_Petiole
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_Leaf
+Ka  0.0 0.2509 0.0
+Kd  0.0 0.2509 0.0
+Ks  0.0 0.2509 0.0
+d 1.0
+illum 1
+
+newmtl 1tree-lik_Leaf
+Ka  0.0 0.2509 0.0
+Kd  0.0 0.2509 0.0
+Ks  0.0 0.2509 0.0
+d 1.0
+illum 1
+
+newmtl 1tree-lik_1Pdncle
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_1InfInt
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_1InfInt
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_1Pdcel
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_1Pdcel
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_1Bud
+Ka  0.3215 0.8862 0.8039
+Kd  0.3215 0.8862 0.8039
+Ks  0.3215 0.8862 0.8039
+d 1.0
+illum 1
+
+newmtl 1tree-lik_1Bud
+Ka  0.3215 0.8862 0.8039
+Kd  0.3215 0.8862 0.8039
+Ks  0.3215 0.8862 0.8039
+d 1.0
+illum 1
+
+newmtl 1tree-lik_1Petal1
+Ka  1.0 1.0 0.6235
+Kd  1.0 1.0 0.6235
+Ks  1.0 1.0 0.6235
+d 1.0
+illum 1
+
+newmtl 1tree-lik_1Petal1
+Ka  1.0 1.0 0.6235
+Kd  1.0 1.0 0.6235
+Ks  1.0 1.0 0.6235
+d 1.0
+illum 1
+
+newmtl 1tree-lik_2Pdncle
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_2InfInt
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_2InfInt
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_2Pdcel
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_2Pdcel
+Ka  0.196 0.3921 0.196
+Kd  0.196 0.3921 0.196
+Ks  0.196 0.3921 0.196
+d 1.0
+illum 1
+
+newmtl 1tree-lik_2Petal1
+Ka  0.3921 0.3921 0.0
+Kd  0.3921 0.3921 0.0
+Ks  0.3921 0.3921 0.0
+d 1.0
+illum 1
+
+newmtl 1tree-lik_2Petal1
+Ka  0.3921 0.3921 0.0
+Kd  0.3921 0.3921 0.0
+Ks  0.3921 0.3921 0.0
+d 1.0
+illum 1
+
+newmtl 1tree-lik_2Bud
+Ka  0.3921 0.3921 0.0
+Kd  0.3921 0.3921 0.0
+Ks  0.3921 0.3921 0.0
+d 1.0
+illum 1
+
