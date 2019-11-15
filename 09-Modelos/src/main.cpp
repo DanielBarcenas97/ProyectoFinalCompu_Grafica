@@ -28,6 +28,7 @@
 #include "Headers/Model.h"
 
 /*-------------------------AUDIO----------------------------------*/
+/*
 #include <AL/alut.h>
 
 #define NUM_BUFFERS 2
@@ -54,7 +55,7 @@ ALenum format;
 ALvoid* data;
 int ch;
 ALboolean loop;
-
+*/
 
 /*-------------------------FIn AUDIO----------------------------------*/
 
@@ -115,12 +116,8 @@ Box box8, box9, box10, box4, box5, box6, box7;
 Box boxMaterials;
 
 //// Models Complex instances
-Model modelRock;
-Model modelCami;
-Model modelRailRoad;
-Model ModelAircraft;
-Model ModelMesa;
-Model ModelEjemplo;
+/*
+
 Model modelEclipseChasis;
 Model modelEclipseRearWheels;
 Model modelEclipseFrontalWheels;
@@ -131,16 +128,23 @@ Model modelLamboLeftDor;
 Model modelLamboRightDor;
 Model modelLamboWheelsFrontal;
 Model modelLamboWheelsRear;
+*/
 
+//Model ModelAircraft;
+//Model modelRailRoad;
+//Model modelRock;
+//Model modelCami;
+/*Model ModelEjemplo;
+Model ModelMesa;
 Model ModelBell;
 Model modelMesa;
 Model ModelSilla;
 Model ModelBaston;
 Model ModelCaballito;
-Model ModelCalceta;
+Model ModelCalceta;*/
 Model ModelChimenea;
 Model ModelPinoNavidad;
-Model ModelEstrella;
+/*Model ModelEstrella;
 Model ModelEsfera;
 Model ModelHat;
 Model ModelDinosaur;
@@ -152,12 +156,18 @@ Model ModelRosa;
 
 Model ModelSpiderman;
 Model ModelTren;
-Model ModelTrineo;
+Model ModelTrineo;*/
 Model ModelSofa;
+/*
 Model ModelSofaP;
 Model ModelWC;
 Model ModelPinata;
-Model ModelPrueba;
+Model ModelPrueba;*/
+
+// Skeleto model
+Model skeleto;
+//Candelabro model
+Model candelabro;
 
 GLuint skyboxTextureID;
 GLuint textureID1, textureID2, textureID3, textureID4,
@@ -192,12 +202,13 @@ textureID32, textureID33, textureID34, textureID35, textureID36, textureID37, te
 //Dia de Muertos
 , textureID104, textureID105, textureID106, textureID107, textureID108, textureID109,
 textureID110, textureID111, textureID112;
-
+/*
 Cylinder torsoR2D2(20, 20, 0.5, 0.5);//se declara el torso de nuevo modelo
 Sphere cabezaR2D2(20, 20);//se declara la cabeza del modelo
 Sphere articulacionR2D2(20, 20);//se declara la articulacion del modelo
 Cylinder brazoR2D2(20, 20, 0.5, 0.5);//se declara el brazo del modelo
 Box pieR2D2;//se declara los pies de soporte del modelo
+*/
 
 GLenum types[6] = {
 GL_TEXTURE_CUBE_MAP_POSITIVE_X,
@@ -372,10 +383,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	box7.init();
 	box7.setShader(&shaderMulLighting);
 
-	
-	//ModelChimenea.loadModel("../models/Navidad/fuego/13110_Fireplace_v2_l3.obj");
-	//ModelChimenea.setShader(&shaderMulLighting);
-
 	/*Modelos Transporte
 	ModelAircraft.loadModel("../models/Aircraft_obj/E 45 Aircraft_obj.obj");
 	ModelAircraft.setShader(&shaderMulLighting);
@@ -406,74 +413,75 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	*/
 
 	//Modelos de la Casa
-	
-	//modelMesa.loadModel("../models/table/table.obj");
-	//modelMesa.setShader(&shaderMulLighting);
+	ModelChimenea.loadModel("../models/Navidad/fuego/13110_Fireplace_v2_l3.obj");
+	ModelChimenea.setShader(&shaderMulLighting);
+	/*
+	modelMesa.loadModel("../models/table/table.obj");
+	modelMesa.setShader(&shaderMulLighting);
 
-	//ModelSilla.loadModel("../models/SillaComedor/Chair.obj");
-	//ModelSilla.setShader(&shaderMulLighting);
+	ModelSilla.loadModel("../models/SillaComedor/Chair.obj");
+	ModelSilla.setShader(&shaderMulLighting);
 
-	//ModelWC.loadModel("../models/toilet/toilet.obj");
-	//ModelWC.setShader(&shaderMulLighting);
+	ModelWC.loadModel("../models/toilet/toilet.obj");
+	ModelWC.setShader(&shaderMulLighting);
+	*/
+	ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
+	ModelSofa.setShader(&shaderMulLighting);
+	/*
+	ModelSofaP.loadModel("../models/Navidad/sofap/sofap.obj");
+	ModelSofaP.setShader(&shaderMulLighting);
 
-	//ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
-	//ModelSofa.setShader(&shaderMulLighting);
+	ModelMesa.loadModel("../models/Wood_Table/Wood_Table.obj");
+	ModelMesa.setShader(&shaderMulLighting);
 
-	//ModelSofaP.loadModel("../models/Navidad/sofap/sofap.obj");
-	//ModelSofaP.setShader(&shaderMulLighting);
+	ModelEjemplo.loadModel("../models/silla/10239_Office_Chair_v1_L3.obj");
+	ModelEjemplo.setShader(&shaderMulLighting);
 
-	//ModelMesa.loadModel("../models/Wood_Table/Wood_Table.obj");
-	//ModelMesa.setShader(&shaderMulLighting);
-
-	//ModelEjemplo.loadModel("../models/silla/10239_Office_Chair_v1_L3.obj");
-	//ModelEjemplo.setShader(&shaderMulLighting);
-
-	/*Modelos Otros /Plantas/Roca/Perro/ViasDelTren
+	//Modelos Otros /Plantas/Roca/Perro/ViasDelTren
 	Modeljardinera.loadModel("../models/Navidad/jardinera/jardinera.obj");
 	Modeljardinera.setShader(&shaderMulLighting);
-
+	/*
 	modelRock.loadModel("../models/rock/rock.obj");
-	modelRock.setShader(&shaderMulLighting);
+	modelRock.setShader(&shaderMulLighting); 
 
 	modelCami.loadModel("../models/dog/12228_Dog_v1_L2.obj");
-	modelCami.setShader(&shaderMulLighting);
+	modelCami.setShader(&shaderMulLighting);  */
 
+	/*
 	modelRailRoad.loadModel("../models/railroad/railroad_track.obj");
 	modelRailRoad.setShader(&shaderMulLighting);
+	*/
 
-	/*Cosas de Navidad
+	//Cosas de Navidad
+	/*
 	ModelPinata.loadModel("../models/Navidad/pinata/pinata.obj");
 	ModelPinata.setShader(&shaderMulLighting);
 
 	ModelTrineo.loadModel("../models/Navidad/trineo/trineo.obj");
 	ModelTrineo.setShader(&shaderMulLighting);
-
+	*/
 	ModelPinoNavidad.loadModel("../models/Navidad/christmas_tree/Christmas+tree.obj");
 	ModelPinoNavidad.setShader(&shaderMulLighting);
-
+	/*
 	ModelEstrella.loadModel("../models/Navidad/ArbolChido/estrella.obj");
 	ModelEstrella.setShader(&shaderMulLighting);
 
 	ModelBell.loadModel("../models/Navidad/bell/11566_Bell_V5_l3.obj");
 	ModelBell.setShader(&shaderMulLighting);
 
-	*/
-
 	//---------------------------------------------------------------------
-	//ModelEsfera.loadModel("../models/Navidad/ArbolNavidad/11.obj");
-	//ModelEsfera.setShader(&shaderMulLighting);
-
-	/*
+	ModelEsfera.loadModel("../models/Navidad/ArbolNavidad/11.obj");
+	ModelEsfera.setShader(&shaderMulLighting);
 
 	ModelBaston.loadModel("../models/Navidad/baston/baston1.obj");
 	ModelBaston.setShader(&shaderMulLighting);
 
 	ModelCaballito.loadModel("../models/Navidad/caballito/caballito.obj");
 	ModelCaballito.setShader(&shaderMulLighting);
-
+	
 	ModelPinoNavidad.loadModel("../models/Navidad/pino/pine_tree.obj");
 	ModelPinoNavidad.setShader(&shaderMulLighting);
-
+	
 	ModelHat.loadModel("../models/Navidad/hat/santa_hat(BLENDER).obj");
 	ModelHat.setShader(&shaderMulLighting);
 
@@ -503,16 +511,21 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	ModelPrueba.loadModel("../models/Navidad/calceta/calceta_roja.obj");
 	ModelPrueba.setShader(&shaderMulLighting);
 	*/
+	
 	/*Fin cosas de Navidad*/
 
 	/*Dia de Muertos*/
 
-
-
-
-
+	//modelos a animar
+	// inicializacion del skeleto
+	skeleto.loadModel("../models/DiaMuertos/Skull_v3/12140_Skull_v3_L2.obj");
+	skeleto.setShader(&shaderMulLighting);
+	//inicializacion del candelabro
+	candelabro.loadModel("../models/DiaMuertos/Candlestick/Model and Textures/candlestick.obj");
+	candelabro.setShader(&shaderMulLighting);
 
 	//Se inicializan los objetos para el modelo de R2D2
+	/*
 	torsoR2D2.init();
 	torsoR2D2.setShader(&shader);
 	torsoR2D2.setColor(glm::vec4(255, 255, 255, 255));
@@ -528,6 +541,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	pieR2D2.init();
 	pieR2D2.setShader(&shader);
 	pieR2D2.setColor(glm::vec4(0.6f, 0.6f, 0.6f, 1.0f));
+	*/
 
 	//Posicion inicial de la camaras**********************
 	cameraHorrorHouseFree->setPosition(glm::vec3(3.077236, -2.52848, 30.0336));
@@ -2468,6 +2482,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	texture110.freeImage(bitmap);
 
 	/*-------------------------AUDIO----------------------------------*/
+	/*
 	// OpenAL init
 	alutInit(0, nullptr);
 	alListenerfv(AL_POSITION, listenerPos);
@@ -2525,7 +2540,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	alSourcei(sources[1], AL_LOOPING, AL_TRUE);
 	alSourcei(sources[1], AL_MAX_DISTANCE, 2000);
 
-
+	*/
 
 	/*----------------------------------------------------------------------------------------*/
 
@@ -2577,12 +2592,12 @@ void destroy() {
 	box6.destroy();
 	box7.destroy();
 
-	torsoR2D2.destroy();
+	//torsoR2D2.destroy();
 	sphere3.destroy();
-	cabezaR2D2.destroy();
-	articulacionR2D2.destroy();
-	brazoR2D2.destroy();
-	pieR2D2.destroy();
+	//cabezaR2D2.destroy();
+	//articulacionR2D2.destroy();
+	//brazoR2D2.destroy();
+	//pieR2D2.destroy();
 
 	shader.destroy();
 	shaderMulLighting.destroy();
@@ -2755,10 +2770,12 @@ bool processInput(bool continueApplication) {
 	if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)///3
 		dza = -0.01;
 	/*----------------AUDIO---------------*/
+	/*
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		alSourcePlay(sources[0]);
 	if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
 		alSourcePlay(sources[1]);
+		*/
 	/*----------------FIn AUDIO---------------*/
 	glfwPollEvents();
 	return continueApplication;
@@ -2788,7 +2805,7 @@ void applicationLoop() {
 	Helicopter = glm::rotate(Helicopter, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.00));
 	float pos = -20;
 
-	//////((///////////////////////////
+	///////////////////////////////////
 	model = glm::translate(model, glm::vec3(0.0, 1.5, 0.0));
 	glm::mat4 modelMatrixEclipse = glm::mat4(1.0f);
 	modelMatrixEclipse = glm::translate(modelMatrixEclipse, glm::vec3(-73.0, -14.0, -82.0));
@@ -2814,6 +2831,26 @@ void applicationLoop() {
 	int stateHouseRecorrido = 0;
 	float recorridoCamara = 0;
 	float giroCamaraY = 0;
+
+	//matriz de craneo y animacion
+	glm::mat4 modelMatrixSkeleto = glm::mat4(1.0);
+	modelMatrixSkeleto = glm::translate(modelMatrixSkeleto, glm::vec3(0.0, 4.0, -4.0));
+	modelMatrixSkeleto = glm::rotate(modelMatrixSkeleto, glm::radians(-90.0f), glm::vec3(1, 0, 0));
+	modelMatrixSkeleto = glm::scale(modelMatrixSkeleto, glm::vec3(0.05, 0.05, 0.05));
+	int stateMachineCraneo = 0;
+	float avanzaCraneo = 0.0f;
+	int rotaCraneo = 0;
+
+	//matriz del candelabro y animacion
+	glm::mat4 modelMatrixCandelabro = glm::mat4(1.0);
+	modelMatrixCandelabro = glm::translate(modelMatrixCandelabro, glm::vec3(0.0, 4.0, -4.0));
+	float	posicionCandelabroY = 0.0f,
+			posicionCandelabroInicialY = 0.0f,
+			velocidadInicialCandelabro = 1.0f,
+			anguloCandelabro = 30.0f*3.1416 / 180.0,//angulo del salto
+			gravedad = 9.81f, //gravedad
+			tiempoCandelabro = 0.0f;//tiempo
+	int stateCandelabro = 0;
 
 	/////////////////////////
 	while (psi) {
@@ -8973,7 +9010,8 @@ void applicationLoop() {
 			glm::value_ptr(glm::vec2(2.0, 1.0)));
 		box3.render(cubeTextureModel);
 		glBindTexture(GL_TEXTURE_2D, 0);
-
+		*/
+		/*
 		// Render del cyindro con materiales
 		glm::mat4 cylinderMaterialModel = glm::mat4(1.0);
 		cylinderMaterialModel = glm::translate(cylinderMaterialModel, glm::vec3(3.0, 2.0, -3.0));
@@ -8990,10 +9028,9 @@ void applicationLoop() {
 		shaderMaterialLighting.setVectorFloat3("material.specular", glm::value_ptr(glm::vec3(0.727811f, 0.626959f, 0.626959f)));
 		shaderMaterialLighting.setFloat("material.shininess", 76.8f);
 		boxMaterials.render(boxMaterialModel);
-
 		*/
-
 		//Perro
+		/*
 		glm::mat4 perro = glm::mat4(1.0);
 		perro = glm::translate(perro, glm::vec3(35.0, 1.0, -42.0));
 		perro = glm::scale(perro, glm::vec3(0.10, 0.10, 0.10));
@@ -9011,6 +9048,7 @@ void applicationLoop() {
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
 
+		*/
 
 		/*------------------------------------------------------------------Inicio de segunda casa ---------------------------------------------------------------------------*/
 
@@ -10347,14 +10385,17 @@ void applicationLoop() {
 
 
 		//Aircraf Real
+		/*
 		glm::mat4 Air = glm::mat4(1.0);
 		Air = glm::translate(Air, glm::vec3(70.0, -10.0, -55.0));
 		//Air = glm::scale(Air, glm::vec3(0.10, 0.10, 0.10));
 		ModelAircraft.render(Air);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
+		*/
 
 		//Modelo de pruebas
+		/*
 		glm::mat4 silla = glm::mat4(1.0);
 		silla = glm::translate(silla, glm::vec3(-12.0, 2.0, 8.0));
 		silla = glm::scale(silla, glm::vec3(0.10, 0.10, 0.10));
@@ -10377,6 +10418,7 @@ void applicationLoop() {
 		modelRailRoad.render(matrixModelRailroad);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
+		*/
 
 
 		//Alberc
@@ -10392,6 +10434,7 @@ void applicationLoop() {
 		shaderMulLighting.setFloat("offsetX", 0);
 
 		/*Personajes Nacimiento*/
+		/*
 		//Burro
 		glm::mat4 Burro = glm::mat4(1.0);
 		Burro = glm::translate(Burro, glm::vec3(-13.3, 1.75, 7.0));
@@ -10520,6 +10563,7 @@ void applicationLoop() {
 		glBindTexture(GL_TEXTURE_2D, textureID91);
 		box3.render(18, 6, conejo);
 		glBindTexture(GL_TEXTURE_2D, 0);
+		*/
 
 		/*Nacimiento*/
 
@@ -10813,6 +10857,7 @@ void applicationLoop() {
 		*/
 
 		// Render for the eclipse car
+		/*
 		glm::mat4 modelMatrixEclipseChasis = glm::mat4(modelMatrixEclipse);
 		modelMatrixEclipseChasis = glm::scale(modelMatrixEclipse, glm::vec3(0.5, 0.5, 0.5));
 		modelEclipseChasis.render(modelMatrixEclipseChasis);
@@ -10879,6 +10924,7 @@ void applicationLoop() {
 		glActiveTexture(GL_TEXTURE0);
 
 		rotWheelsXlamb += 0.05;
+		
 		/////////////////////////////////////////////////////
 
 
@@ -10887,9 +10933,12 @@ void applicationLoop() {
 		else
 			angle += 0.0001;
 
+		*/
+
 		/*Objetos de Sala y comedor Casa 1*/
 
 		//Mesa Comedor
+		/*
 		glm::mat4 mesa = glm::mat4(1.0);
 		mesa = glm::translate(mesa, glm::vec3(-4.0, -14.0, 10.0));
 		mesa = glm::scale(mesa, glm::vec3(8.0, 6.5, 8.00));
@@ -10897,7 +10946,7 @@ void applicationLoop() {
 		modelMesa.render(mesa);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-
+		*/
 		glm::mat4 sofas = glm::mat4(1.0);
 		sofas = glm::translate(sofas, glm::vec3(-7.0, -12.0, -33.0));
 		sofas = glm::scale(sofas, glm::vec3(2.50, 3.00, 3.00));
@@ -10905,7 +10954,6 @@ void applicationLoop() {
 		ModelSofa.render(sofas);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-
 
 		glm::mat4 sofas2 = glm::mat4(1.0);
 		sofas2 = glm::translate(sofas2, glm::vec3(-7.0, -12.0, -10.0));
@@ -10915,7 +10963,7 @@ void applicationLoop() {
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
 
-
+		/*
 		glm::mat4 sofa = glm::mat4(1.0);
 		sofa = glm::translate(sofa, glm::vec3(-12.0, -14.0, -21.0));
 		sofa = glm::scale(sofa, glm::vec3(1.8000, 2.000, 2.00));
@@ -10923,7 +10971,7 @@ void applicationLoop() {
 		ModelSofaP.render(sofa);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-
+		
 		//Silla Cafe
 		glm::mat4 sillaC = glm::mat4(1.0);
 		sillaC = glm::translate(sillaC, glm::vec3(-6.0, -11.0, 20.0));
@@ -10941,11 +10989,13 @@ void applicationLoop() {
 		ModelMesa.render(Mesa2);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
+		*/
 
 		//--------------------------
 		/*Objetos de Sala y comedor Casa 2*/
 
 		//Mesa Comedor
+		/*
 		glm::mat4 mesa2 = glm::mat4(1.0);
 		mesa2 = glm::translate(mesa2, glm::vec3(-4.0 + suma, -14.0, 10.0));
 		mesa2 = glm::scale(mesa2, glm::vec3(8.0, 6.5, 8.00));
@@ -10997,11 +11047,12 @@ void applicationLoop() {
 		ModelMesa.render(Mesa3);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-
+		*/
 
 		/*Objetos para Casa 1*/
 
 		//WC
+		/*
 		glm::mat4 wc = glm::mat4(1.0);
 		wc = glm::translate(wc, glm::vec3(-13.0, 1.1, 24.5));
 		wc = glm::scale(wc, glm::vec3(1.5, 1.5, 1.50));
@@ -11032,9 +11083,11 @@ void applicationLoop() {
 		Modeljardinera.render(JardineraB);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
+		*/
 
 		/*Objetos para casa 2 */
 		//WC
+		/*
 		glm::mat4 wc2 = glm::mat4(1.0);
 		wc2 = glm::translate(wc2, glm::vec3(-13.0 + suma, 1.1, 24.5));
 		wc2 = glm::scale(wc2, glm::vec3(1.5, 1.5, 1.50));
@@ -11065,10 +11118,12 @@ void applicationLoop() {
 		Modeljardinera.render(JardineraB2);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
+		*/
 
 		/*Objetos de Navidad*/
 
 		//PINATA
+		/*
 		glm::mat4 pinata = glm::mat4(1.0);
 		pinata = glm::translate(pinata, glm::vec3(-12.0, 9.0, -44.0));
 		pinata = glm::scale(pinata, glm::vec3(1.2, 1.2, 1.20));
@@ -11108,7 +11163,7 @@ void applicationLoop() {
 		ModelTrineo.render(trineo);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-
+		*/
 		//ModelPinoNavidad
 		glm::mat4 pino = glm::mat4(1.0);
 		pino = glm::translate(pino, glm::vec3(-11.0, -14.0, 30.0));
@@ -11116,7 +11171,7 @@ void applicationLoop() {
 		ModelPinoNavidad.render(pino);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-
+		/*
 		//ModelPinoNavidad
 		glm::mat4 estrella = glm::mat4(1.0);
 		estrella = glm::translate(estrella, glm::vec3(-11.0, -14.0, 30.0));
@@ -11132,7 +11187,7 @@ void applicationLoop() {
 		ModelEsfera.render(esfera);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-
+		*/
 		
 		//ModelChimenea
 		glm::mat4 fuego = glm::mat4(1.0);
@@ -11142,9 +11197,7 @@ void applicationLoop() {
 		ModelChimenea.render(fuego);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-
-
-
+		
 		/*
 
 		;
@@ -11169,6 +11222,18 @@ void applicationLoop() {
 		*/
 		/*Fin de objetos Navidad*/
 
+		/*********************Objetos para dia de muertos**********************************/
+		//esqueleto
+		skeleto.render(modelMatrixSkeleto);
+		glActiveTexture(GL_TEXTURE0);
+
+		//candelabro
+		modelMatrixCandelabro = glm::scale(modelMatrixCandelabro, glm::vec3(1.0, 1.0, 1.0));
+		candelabro.render(modelMatrixCandelabro);
+		glActiveTexture(GL_TEXTURE0);
+
+		//*********************************************************************************
+
 		// Se Dibuja el Skybox
 		GLint oldCullFaceMode;
 		GLint oldDepthFuncMode;
@@ -11190,7 +11255,7 @@ void applicationLoop() {
 		rotHelHelY += 0.5;
 
 
-
+		/*
 		switch (state2) {
 		case 3:
 			//std::cout << "Land the plane" << std::endl;
@@ -11261,10 +11326,114 @@ void applicationLoop() {
 		modelMatrixHeliHeli = glm::translate(modelMatrixHeliHeli, glm::vec3(0.0, 0.0, 0.249548));
 		modelHeliHeli.render(modelMatrixHeliHeli);
 		glActiveTexture(GL_TEXTURE0);
+
+		*/
 		/*******************************************
 		 * State machines
 		 *******************************************/
+		 //state Machine for craneo
+		switch (stateMachineCraneo) {
+		case 0://avanza hacia enfrente
+			modelMatrixSkeleto = glm::translate(modelMatrixSkeleto, glm::vec3(0.0, -0.1, 0.0));
+			avanzaCraneo += 0.1f;
+			if (avanzaCraneo > 5.0f) {
+				//avanzaCraneo = 0.0f;
+				stateMachineCraneo = 1;
+			}
+			break;
+		case 1://retrosede hacia atras
+			modelMatrixSkeleto = glm::translate(modelMatrixSkeleto, glm::vec3(0.0, 0.1, 0.0));
+			avanzaCraneo -= 0.1f;
+			if (avanzaCraneo < 0.0f) {
+				avanzaCraneo = 0.0f;
+				stateMachineCraneo = 2;
+			}
+			break;
+		case 2:
+			modelMatrixSkeleto = glm::rotate(modelMatrixSkeleto, glm::radians(1.0f), glm::vec3(0, 0, 1));
+			rotaCraneo += 1;
+			if (rotaCraneo > 90) {
+				stateMachineCraneo = 0;
+				rotaCraneo = 0;
+			}
+		default:
+			break;
+		}
+
+		//machine state for the tour casa
+		if (cambioCamara == 2 || cambioCamara == 3) {
+			//TimeManager::Instance().CalculateFrameRate(false);
+			deltaTime = TimeManager::Instance().DeltaTime;
+			switch (stateHouseRecorrido) {
+			case 0:
+				recorridoCamara += 0.1;
+
+				if (cambioCamara == 2) {
+					cameraHorrorHouseAutomatic->moveFrontCamera(true, deltaTime);
+				}
+				else if (cambioCamara == 3) {
+					cameraChristmastHouseAutomatic->moveFrontCamera(true, deltaTime);
+				}
+
+				if (recorridoCamara > 90) {
+					recorridoCamara = 0;
+					stateHouseRecorrido = 1;
+				}
+				break;
+			case 1:
+				giroCamaraY += glm::radians(1.0f);
+
+				if (cambioCamara == 2) {
+					cameraHorrorHouseAutomatic->mouseMoveCamera(1.0f, 0.0f, 0.01);
+				}
+				else if (cambioCamara == 3) {
+					//cameraChristmastHouseAutomatic->moveRightCamera(true, deltaTime);
+					cameraChristmastHouseAutomatic->mouseMoveCamera(1.0f, 0.0f, 0.01);
+				}
+
+				if (giroCamaraY > glm::radians(90.0f)) {
+					giroCamaraY = 0.0f;
+					stateHouseRecorrido = 0;
+				}
+				break;
+			default:
+				break;
+			}
+		}
+
+		//animacion del candelabro
+		switch (stateCandelabro)
+		{
+		case 0://avanza en una direccion
+			posicionCandelabroY = posicionCandelabroInicialY + (velocidadInicialCandelabro * tiempoCandelabro * sin(anguloCandelabro)) - (0.5* gravedad * tiempoCandelabro * tiempoCandelabro);
+			modelMatrixCandelabro = glm::translate(modelMatrixCandelabro, glm::vec3(0.01, posicionCandelabroY, 0.0));
+			if (posicionCandelabroY >= 0.0f) {
+				tiempoCandelabro += 0.0001f;
+			}
+			else {
+				posicionCandelabroInicialY = 0.0f;
+				tiempoCandelabro = 0.0f;
+				stateCandelabro = 1;
+			}
+			break;
+		case 1://avanza en direccion contraria
+			posicionCandelabroY = posicionCandelabroInicialY + (velocidadInicialCandelabro * tiempoCandelabro * sin(anguloCandelabro)) - (0.5* gravedad * tiempoCandelabro * tiempoCandelabro);
+			modelMatrixCandelabro = glm::translate(modelMatrixCandelabro, glm::vec3(-0.01, posicionCandelabroY, 0.0));
+			if (posicionCandelabroY >= 0.0f) {
+				tiempoCandelabro += 0.0001f;
+			}
+			else {
+				posicionCandelabroInicialY = 0.0f;
+				tiempoCandelabro = 0.0f;
+				stateCandelabro = 0;
+			}
+			break;
+		default:
+			break;
+		}
+
 		 // State machine for eclipse car
+		/*
 		switch (state) {
 		case 0:
 			//std::cout << "Advance" << std::endl;
@@ -11310,52 +11479,13 @@ void applicationLoop() {
 			}
 			break;
 		}
-
-		//machine state for the tour casa
-		if (cambioCamara == 2 || cambioCamara == 3) {
-			//TimeManager::Instance().CalculateFrameRate(false);
-			deltaTime = TimeManager::Instance().DeltaTime;
-			switch (stateHouseRecorrido) {
-			case 0:
-				recorridoCamara += 0.1;
-
-				if (cambioCamara == 2) {
-					cameraHorrorHouseAutomatic->moveFrontCamera(true, deltaTime);
-				}
-				else if (cambioCamara == 3) {
-					cameraChristmastHouseAutomatic->moveFrontCamera(true, deltaTime);
-				}
-
-				if (recorridoCamara > 90) {
-					recorridoCamara = 0;
-					stateHouseRecorrido = 1;
-				}
-				break;
-			case 1:
-				giroCamaraY += glm::radians(1.0f);
-
-				if (cambioCamara == 2) {
-					cameraHorrorHouseAutomatic->mouseMoveCamera(1.0f, 0.0f, 0.01);
-				}
-				else if (cambioCamara == 3) {
-					//cameraChristmastHouseAutomatic->moveRightCamera(true, deltaTime);
-					cameraChristmastHouseAutomatic->mouseMoveCamera(1.0f, 0.0f, 0.01);
-				}
-
-				if (giroCamaraY > glm::radians(90.0f)) {
-					giroCamaraY = 0.0f;
-					stateHouseRecorrido = 0;
-				}
-				break;
-			default:
-				break;
-			}
-		}
+		*/
 
 		/////////////////////////////
 
 		/////////////////////////////
 		/*-------------------------AUDIO----------------------------------*/
+		/*
 		// Libreria de audio
 		// openal sound data
 		source0Pos[0] = modelMatrixEclipse[3].x;
@@ -11381,6 +11511,7 @@ void applicationLoop() {
 		listenerOri[4] = cameraHorrorHouseFree->getUp().y;
 		listenerOri[5] = cameraHorrorHouseFree->getUp().z;
 		alListenerfv(AL_ORIENTATION, listenerOri);
+		*/
 
 		glfwSwapBuffers(window);
 	}

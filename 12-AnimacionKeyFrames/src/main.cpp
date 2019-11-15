@@ -31,8 +31,9 @@
 #include "Headers/Texture.h"
 
 // Include loader Model class
-#include "Headers/Model.h"
 
+#include "Headers/Model.h"
+/*
 #include <AL/alut.h>
 
 #define NUM_BUFFERS 2
@@ -58,7 +59,7 @@ ALsizei size, freq;
 ALenum format;
 ALvoid* data;
 int ch;
-ALboolean loop;
+ALboolean loop;*/
 
 #include "Headers/AnimationUtils.h"
 
@@ -554,7 +555,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 			std::cout << "Failed to load texture" << std::endl;
 		skyboxTexture.freeImage(bitmap);
 	}
-
+	/*
 	// OpenAL init
 	alutInit(0, nullptr);
 	alListenerfv(AL_POSITION, listenerPos);
@@ -569,8 +570,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		printf("Se crearon los buffers");
 
 	alGenBuffers(NUM_BUFFERS, buffers);
-	buffers[0] = alutCreateBufferFromFile("../sounds/silbato.wav");
-	buffers[1] = alutCreateBufferFromFile("../sounds/silbato.wav");
+	buffers[0] = alutCreateBufferFromFile("../sounds/fondo.wav");
+	buffers[1] = alutCreateBufferFromFile("../sounds/fondo.wav");
 
 	int errorAlut = alutGetError();
 
@@ -607,6 +608,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	alSourcei(sources[1], AL_BUFFER, buffers[0]);
 	alSourcei(sources[1], AL_LOOPING, AL_TRUE);
 	alSourcei(sources[1], AL_MAX_DISTANCE, 2000);
+	*/
 }
 
 void destroy() {
@@ -813,12 +815,12 @@ bool processInput(bool continueApplication) {
 		advanceDartBody = -0.02;
 	else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 		advanceDartBody = 0.02;
-
+	/*
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		alSourcePlay(sources[0]);
 	if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
 		alSourcePlay(sources[1]);
-
+	*/
 	glfwPollEvents();
 	return continueApplication;
 }
@@ -1458,7 +1460,7 @@ void applicationLoop() {
 		}
 
 		glfwSwapBuffers(window);
-
+		/*
 		// Libreria de audio
 		// openal sound data
 		source0Pos[0] = modelMatrixEclipse[3].x;
@@ -1483,7 +1485,7 @@ void applicationLoop() {
 		listenerOri[3] = camera->getUp().x;
 		listenerOri[4] = camera->getUp().y;
 		listenerOri[5] = camera->getUp().z;
-		alListenerfv(AL_ORIENTATION, listenerOri);
+		alListenerfv(AL_ORIENTATION, listenerOri);7*/
 	}
 }
 
