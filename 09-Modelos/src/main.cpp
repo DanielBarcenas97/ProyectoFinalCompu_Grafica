@@ -130,11 +130,11 @@ Model modelLamboWheelsFrontal;
 Model modelLamboWheelsRear;
 */
 
-//Model ModelAircraft;
-//Model modelRailRoad;
-//Model modelRock;
-//Model modelCami;
-/*Model ModelEjemplo;
+Model ModelAircraft;
+Model modelRailRoad;
+Model modelRock;
+Model modelCami;
+Model ModelEjemplo;
 Model ModelMesa;
 Model ModelBell;
 Model modelMesa;
@@ -144,7 +144,7 @@ Model ModelCaballito;
 Model ModelCalceta;*/
 Model ModelChimenea;
 Model ModelPinoNavidad;
-/*Model ModelEstrella;
+Model ModelEstrella;
 Model ModelEsfera;
 Model ModelHat;
 Model ModelDinosaur;
@@ -158,7 +158,7 @@ Model ModelSpiderman;
 Model ModelTren;
 Model ModelTrineo;*/
 Model ModelSofa;
-/*
+
 Model ModelSofaP;
 Model ModelWC;
 Model ModelPinata;
@@ -393,13 +393,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	box7.init();
 	box7.setShader(&shaderMulLighting);
 
-<<<<<<< HEAD
-	
-	ModelChimenea.loadModel("../models/Navidad/fuego/13110_Fireplace_v2_l3.obj");
-	ModelChimenea.setShader(&shaderMulLighting);
-
-=======
->>>>>>> 4d57eccd61f5f9a6f1100a61790b7a645c324c39
 	/*Modelos Transporte
 	ModelAircraft.loadModel("../models/Aircraft_obj/E 45 Aircraft_obj.obj");
 	ModelAircraft.setShader(&shaderMulLighting);
@@ -430,7 +423,21 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	*/
 
 	//Modelos de la Casa
-<<<<<<< HEAD
+
+	modelMesa.loadModel("../models/table/table.obj");
+	modelMesa.setShader(&shaderMulLighting);
+
+	ModelSilla.loadModel("../models/SillaComedor/Chair.obj");
+	ModelSilla.setShader(&shaderMulLighting);
+
+	ModelWC.loadModel("../models/toilet/toilet.obj");
+	ModelWC.setShader(&shaderMulLighting);
+
+	ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
+	ModelSofa.setShader(&shaderMulLighting);
+
+	ModelChimenea.loadModel("../models/Navidad/fuego/13110_Fireplace_v2_l3.obj");
+	ModelChimenea.setShader(&shaderMulLighting);
 	
 	modelMesa.loadModel("../models/table/table.obj");
 	modelMesa.setShader(&shaderMulLighting);
@@ -440,27 +447,10 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 
 	ModelWC.loadModel("../models/toilet/toilet.obj");
 	ModelWC.setShader(&shaderMulLighting);
-
-	ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
-	ModelSofa.setShader(&shaderMulLighting);
-
-=======
-	ModelChimenea.loadModel("../models/Navidad/fuego/13110_Fireplace_v2_l3.obj");
-	ModelChimenea.setShader(&shaderMulLighting);
-	/*
-	modelMesa.loadModel("../models/table/table.obj");
-	modelMesa.setShader(&shaderMulLighting);
-
-	ModelSilla.loadModel("../models/SillaComedor/Chair.obj");
-	ModelSilla.setShader(&shaderMulLighting);
-
-	ModelWC.loadModel("../models/toilet/toilet.obj");
-	ModelWC.setShader(&shaderMulLighting);
 	*/
 	ModelSofa.loadModel("../models/Navidad/sofa/sofa.obj");
 	ModelSofa.setShader(&shaderMulLighting);
-	/*
->>>>>>> 4d57eccd61f5f9a6f1100a61790b7a645c324c39
+	
 	ModelSofaP.loadModel("../models/Navidad/sofap/sofap.obj");
 	ModelSofaP.setShader(&shaderMulLighting);
 
@@ -470,47 +460,37 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	ModelEjemplo.loadModel("../models/silla/10239_Office_Chair_v1_L3.obj");
 	ModelEjemplo.setShader(&shaderMulLighting);
 
-<<<<<<< HEAD
+
 	/*Modelos Otros /Plantas/Roca/Perro/ViasDelTren*/
-=======
-	//Modelos Otros /Plantas/Roca/Perro/ViasDelTren
->>>>>>> 4d57eccd61f5f9a6f1100a61790b7a645c324c39
 	Modeljardinera.loadModel("../models/Navidad/jardinera/jardinera.obj");
 	Modeljardinera.setShader(&shaderMulLighting);
-	/*
 	modelRock.loadModel("../models/rock/rock.obj");
 	modelRock.setShader(&shaderMulLighting); 
 
 	modelCami.loadModel("../models/dog/12228_Dog_v1_L2.obj");
 	modelCami.setShader(&shaderMulLighting);  */
 
-	/*
+
 	modelRailRoad.loadModel("../models/railroad/railroad_track.obj");
 	modelRailRoad.setShader(&shaderMulLighting);
-	*/
 
-<<<<<<< HEAD
-	/*Cosas de Navidad*/
-=======
 	//Cosas de Navidad
-	/*
->>>>>>> 4d57eccd61f5f9a6f1100a61790b7a645c324c39
 	ModelPinata.loadModel("../models/Navidad/pinata/pinata.obj");
 	ModelPinata.setShader(&shaderMulLighting);
 
 	ModelTrineo.loadModel("../models/Navidad/trineo/trineo.obj");
 	ModelTrineo.setShader(&shaderMulLighting);
-	*/
+
 	ModelPinoNavidad.loadModel("../models/Navidad/christmas_tree/Christmas+tree.obj");
 	ModelPinoNavidad.setShader(&shaderMulLighting);
-	/*
+
 	ModelEstrella.loadModel("../models/Navidad/ArbolChido/estrella.obj");
 	ModelEstrella.setShader(&shaderMulLighting);
 
 	ModelBell.loadModel("../models/Navidad/bell/11566_Bell_V5_l3.obj");
 	ModelBell.setShader(&shaderMulLighting);
 
-<<<<<<< HEAD
+
 	ModelBaston.loadModel("../models/Navidad/baston/baston1.obj");
 	ModelBaston.setShader(&shaderMulLighting);
 
@@ -519,7 +499,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 
 	//ModelHat.loadModel("../models/Navidad/hat/santa_hat(BLENDER).obj");
 	//ModelHat.setShader(&shaderMulLighting);
-=======
+
 	//---------------------------------------------------------------------
 	ModelEsfera.loadModel("../models/Navidad/ArbolNavidad/11.obj");
 	ModelEsfera.setShader(&shaderMulLighting);
@@ -535,7 +515,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	
 	ModelHat.loadModel("../models/Navidad/hat/santa_hat(BLENDER).obj");
 	ModelHat.setShader(&shaderMulLighting);
->>>>>>> 4d57eccd61f5f9a6f1100a61790b7a645c324c39
+
 
 	//ModelSpiderman.loadModel("../models/Navidad/spiderman/M-CoC_iOS_HERO_Peter_Parker_Spider-Man_Stark_Enhanced.obj");
 	//ModelSpiderman.setShader(&shaderMulLighting);
@@ -581,18 +561,12 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelSkelet;
 	modelSkull_v3;
 	*/
-	modelSkelet.loadModel("../models/DiaDeMuertos/Skull_v3/12140_Skull_v3_L2.obj");
-	modelSkelet.setShader(&shaderMulLighting);
-	//inicializacion del candelabro
-	modelCandlestick.loadModel("../models/DiaDeMuertos/Candlestick/candlestick.obj");
-	modelCandlestick.setShader(&shaderMulLighting);
 	//modelCalabaza.loadModel("../models/DiaDeMuertos/calabaza/pumpkin.obj");
 	//modelCalabaza.setShader(&shaderMulLighting);
 
 	//modelCandlestick.loadModel("../models/DiaDeMuertos/Candlestick/candlestick.obj");
 	//modelCandlestick.setShader(&shaderMulLighting);
 
-<<<<<<< HEAD
 	//modelMango.loadModel("../models/DiaDeMuertos/Mango/10190_Mango-L3.obj");
 	//modelMango.setShader(&shaderMulLighting);
 
@@ -605,7 +579,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 
 	//modelSkull_v3.loadModel("../models/DiaDeMuertos/Skull_v3/12140_Skull_v3_L2.obj");
 	//modelSkull_v3.setShader(&shaderMulLighting);
-=======
+
+
 	//modelos a animar
 	// inicializacion del skeleto
 	skeleto.loadModel("../models/DiaMuertos/Skull_v3/12140_Skull_v3_L2.obj");
@@ -613,7 +588,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	//inicializacion del candelabro
 	candelabro.loadModel("../models/DiaMuertos/Candlestick/Model and Textures/candlestick.obj");
 	candelabro.setShader(&shaderMulLighting);
->>>>>>> 4d57eccd61f5f9a6f1100a61790b7a645c324c39
+
 
 	//Se inicializan los objetos para el modelo de R2D2
 	/*
@@ -2936,19 +2911,13 @@ void applicationLoop() {
 	glm::mat4 modelMatrixCandelabro = glm::mat4(1.0);
 	modelMatrixCandelabro = glm::translate(modelMatrixCandelabro, glm::vec3(0.0, 4.0, -4.0));
 	float	posicionCandelabroY = 0.0f,
-<<<<<<< HEAD
+
 		posicionCandelabroInicialY = 0.0f,
 		velocidadInicialCandelabro = 1.0f,
 		anguloCandelabro = 30.0f * 3.1416 / 180.0,//angulo del salto
 		gravedad = 9.81f, //gravedad
 		tiempoCandelabro = 0.0f;//tiempo
-=======
-			posicionCandelabroInicialY = 0.0f,
-			velocidadInicialCandelabro = 1.0f,
-			anguloCandelabro = 30.0f*3.1416 / 180.0,//angulo del salto
-			gravedad = 9.81f, //gravedad
-			tiempoCandelabro = 0.0f;//tiempo
->>>>>>> 4d57eccd61f5f9a6f1100a61790b7a645c324c39
+
 	int stateCandelabro = 0;
 
 	/////////////////////////
@@ -11220,7 +11189,6 @@ void applicationLoop() {
 		/*Objetos de Navidad*/
 
 		//PINATA
-		/*
 		glm::mat4 pinata = glm::mat4(1.0);
 		pinata = glm::translate(pinata, glm::vec3(-12.0, 9.0, -44.0));
 		pinata = glm::scale(pinata, glm::vec3(1.2, 1.2, 1.20));
@@ -11260,7 +11228,7 @@ void applicationLoop() {
 		ModelTrineo.render(trineo);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-		*/
+
 		//ModelPinoNavidad
 		glm::mat4 pino = glm::mat4(1.0);
 		pino = glm::translate(pino, glm::vec3(-11.0, -14.0, 30.0));
@@ -11268,32 +11236,24 @@ void applicationLoop() {
 		ModelPinoNavidad.render(pino);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-<<<<<<< HEAD
+
 
 		//estrella
 		glm::mat4 Bell = glm::mat4(1.0);
 		Bell = glm::translate(Bell, glm::vec3(-12.0, -10.0, 28.0));
 		Bell = glm::scale(Bell, glm::vec3(0.10, 0.10, 0.100));
 		ModelBell.render(Bell);
-=======
-		/*
+
+		
 		//ModelPinoNavidad
 		glm::mat4 estrella = glm::mat4(1.0);
 		estrella = glm::translate(estrella, glm::vec3(-11.0, -14.0, 30.0));
 		estrella = glm::scale(estrella, glm::vec3(3.0, 3.0, 3.00));
 		ModelBell.render(estrella);
->>>>>>> 4d57eccd61f5f9a6f1100a61790b7a645c324c39
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
 
-		//ModelPinoNavidad
-		glm::mat4 esfera = glm::mat4(1.0);
-		esfera = glm::translate(esfera, glm::vec3(-11.0, -4.0, 30.0));
-		esfera = glm::scale(esfera, glm::vec3(0.0250, 0.0250, 0.02500));
-		ModelEstrella.render(esfera);
-		//Forze to enable the unit texture 0 always ............ IMPORTANT
-		glActiveTexture(GL_TEXTURE0);
-		*/
+		
 		
 		//ModelChimenea
 		glm::mat4 fuego = glm::mat4(1.0);
@@ -11303,7 +11263,7 @@ void applicationLoop() {
 		ModelChimenea.render(fuego);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-<<<<<<< HEAD
+
 		//////////////////////////////////////////////////////////////////////////////////
 		//ModelBaston
 		glm::mat4 Baston = glm::mat4(1.0);
@@ -11322,8 +11282,6 @@ void applicationLoop() {
 		ModelCaballito.render(caballo);
 		//Forze to enable the unit texture 0 always ............ IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
-
-
 
 		//ModelCalceta
 		glm::mat4 calceta = glm::mat4(1.0);
@@ -11507,20 +11465,6 @@ void applicationLoop() {
 		*/
 		/*fin dia d emuertos*/
 
-		/*********************Objetos para dia de muertos**********************************/
-		//esqueleto
-		modelSkelet.render(modelMatrixSkeleto);
-		glActiveTexture(GL_TEXTURE0);
-
-		//candelabro
-		modelMatrixCandelabro = glm::scale(modelMatrixCandelabro, glm::vec3(1.0, 1.0, 1.0));
-		modelCandlestick.render(modelMatrixCandelabro);
-		glActiveTexture(GL_TEXTURE0);
-
-		//*********************************************************************************
-=======
-		
->>>>>>> 4d57eccd61f5f9a6f1100a61790b7a645c324c39
 		/*
 		//modelCalabaza
 		glm::mat4 cala = glm::mat4(1.0);
