@@ -3345,7 +3345,7 @@ void applicationLoop() {
 			/*Luces*/
 		// Esto es para la luces pointlights
 		//Numero de luces a utilizar de tipo poinlights=3
-			shaderMulLighting.setInt("pointLightCount", 106);   //Multiple Light .fs
+			shaderMulLighting.setInt("pointLightCount", 110);   //Multiple Light .fs
 			//01Verde
 			shaderMulLighting.setVectorFloat3("pointLights[0].position", glm::value_ptr((glm::vec3(-14.4, 11, 4.0))));  //  position de la luz
 			shaderMulLighting.setVectorFloat3("pointLights[0].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
@@ -4417,7 +4417,7 @@ void applicationLoop() {
 			//Luces para las velas
 
 			//104 Amarilla
-			shaderMulLighting.setVectorFloat3("pointLights[104].position", glm::value_ptr((glm::vec3(21.0 + suma, -8.0, -10.0))));
+			shaderMulLighting.setVectorFloat3("pointLights[104].position", glm::value_ptr((glm::vec3(21.0 + suma-4.5, -6.5, -7.7))));
 			shaderMulLighting.setVectorFloat3("pointLights[104].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[104].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.0)));
 			shaderMulLighting.setVectorFloat3("pointLights[104].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.0)));
@@ -4428,7 +4428,7 @@ void applicationLoop() {
 			luces += 0.001;
 
 			//105
-			shaderMulLighting.setVectorFloat3("pointLights[105].position", glm::value_ptr((glm::vec3(17.0 + suma, -8.0, -10.0))));
+			shaderMulLighting.setVectorFloat3("pointLights[105].position", glm::value_ptr((glm::vec3(17.0 + suma, -6.5, -7.7))));
 			shaderMulLighting.setVectorFloat3("pointLights[105].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
 			shaderMulLighting.setVectorFloat3("pointLights[105].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.0)));
 			shaderMulLighting.setVectorFloat3("pointLights[105].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.0)));
@@ -4439,10 +4439,48 @@ void applicationLoop() {
 			luces += 0.001;
 
 			//106
-			//107
-			//108
-			//109
+			shaderMulLighting.setVectorFloat3("pointLights[106].position", glm::value_ptr((glm::vec3(13.0 + suma, -6.5, -7.7))));
+			shaderMulLighting.setVectorFloat3("pointLights[106].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
+			shaderMulLighting.setVectorFloat3("pointLights[106].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.0)));
+			shaderMulLighting.setVectorFloat3("pointLights[106].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.0)));
+			shaderMulLighting.setFloat("pointLights[106].constant", luces2);
+			shaderMulLighting.setFloat("pointLights[106].linear", 0.04);
+			shaderMulLighting.setFloat("pointLights[106].quadratic", 0.004);
+			luces2 -= 0.001;
+			luces += 0.001;
+			
+			//107 Amarilla
+			shaderMulLighting.setVectorFloat3("pointLights[107].position", glm::value_ptr((glm::vec3(21.0 + suma - 4.5, -6.5, -7.7 - 16))));
+			shaderMulLighting.setVectorFloat3("pointLights[107].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
+			shaderMulLighting.setVectorFloat3("pointLights[107].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.0)));
+			shaderMulLighting.setVectorFloat3("pointLights[107].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.0)));
+			shaderMulLighting.setFloat("pointLights[107].constant", luces);
+			shaderMulLighting.setFloat("pointLights[107].linear", 0.04);
+			shaderMulLighting.setFloat("pointLights[107].quadratic", 0.004);
+			luces2 -= 0.001;
+			luces += 0.001;
 
+			//108
+			shaderMulLighting.setVectorFloat3("pointLights[108].position", glm::value_ptr((glm::vec3(17.0 + suma, -6.5, -7.7 - 16))));
+			shaderMulLighting.setVectorFloat3("pointLights[108].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
+			shaderMulLighting.setVectorFloat3("pointLights[108].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.0)));
+			shaderMulLighting.setVectorFloat3("pointLights[108].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.0)));
+			shaderMulLighting.setFloat("pointLights[108].constant", luces2);
+			shaderMulLighting.setFloat("pointLights[108].linear", 0.04);
+			shaderMulLighting.setFloat("pointLights[108].quadratic", 0.004);
+			luces2 -= 0.001;
+			luces += 0.001;
+
+			//109
+			shaderMulLighting.setVectorFloat3("pointLights[109].position", glm::value_ptr((glm::vec3(13.0 + suma, -6.5, -7.7 - 16))));
+			shaderMulLighting.setVectorFloat3("pointLights[109].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
+			shaderMulLighting.setVectorFloat3("pointLights[109].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.0)));
+			shaderMulLighting.setVectorFloat3("pointLights[109].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.0)));
+			shaderMulLighting.setFloat("pointLights[109].constant", luces);
+			shaderMulLighting.setFloat("pointLights[109].linear", 0.04);
+			shaderMulLighting.setFloat("pointLights[109].quadratic", 0.004);
+			luces2 -= 0.001;
+			luces += 0.001;
 
 			/*Luces en medio 1*/
 			/*Luces Brandal Arriba*/
@@ -10255,15 +10293,16 @@ void applicationLoop() {
 		cylinder2.render();
 
 		//Frutas Amarillas 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(23.5 + suma, -6.680, -22.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(23.5 + suma, -6.680, -22.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0)); //Amarillo
+		sphereLamp.render();
+
 		//Frutas verde 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(23.5 + suma, -6.680, -20.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(23.5 + suma, -6.680, -20.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0)); //Verde
+		sphereLamp.render();
 		
 		//Veladora
 		glBindTexture(GL_TEXTURE_2D, textureID6);
@@ -10284,59 +10323,68 @@ void applicationLoop() {
 		cylinder2.render();
 		
 		//Frutas verde 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(23.5 + suma, -6.680, -14.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(23.5 + suma, -6.680, -14.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0)); //Verde
+		sphereLamp.render();
 		//Frutas roja 
-		glBindTexture(GL_TEXTURE_2D, textureID122);
-		sphere1.setPosition(glm::vec3(23.5 + suma, -6.680, -12.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(23.5 + suma, -6.680, -12.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0)); //Rojo 
+		sphereLamp.render();
 
 		
 		//Frutas Amarillas 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(19.5 + suma, -8.680, -21.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(19.5 + suma, -8.680, -21.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0)); //Amarillo
+		sphereLamp.render();
+
 		//Frutas verde 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(19.5 + suma, -8.680, -19.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(19.5 + suma, -8.680, -19.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0)); //Verde
+		sphereLamp.render();
 		//Frutas roja 
-		glBindTexture(GL_TEXTURE_2D, textureID122);
-		sphere1.setPosition(glm::vec3(19.5 + suma, -8.680, -17.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(19.5 + suma, -8.680, -17.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0)); //Rojo 
+		sphereLamp.render();
 		//Frutas Amarillas 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(19.5 + suma, -8.680, -15.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(19.5 + suma, -8.680, -15.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0)); //Amarillo
+		sphereLamp.render();
+
 		//Frutas verde 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(19.5 + suma, -8.680, -13.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(19.5 + suma, -8.680, -13.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0)); //Verde
+		sphereLamp.render();
 
 
-		//Frutas Amarillas 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(15.5 + suma, -10.680, -22.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+		//Frutas Amarillas
+
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(15.5 + suma, -10.680, -22.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0)); //Amarillo
+		sphereLamp.render();
 		//Frutas Verdes 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(15.5 + suma, -10.680, -20.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(15.5 + suma, -10.680, -20.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0)); //Verde
+		sphereLamp.render();
 		//Frutas Rojo 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(15.5 + suma, -10.6820, -18.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(15.5 + suma, -10.6820, -18.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0)); //Rojo 
+		sphereLamp.render();
 		//Frutas Amarillas 
 		//Amarillo 
 		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
@@ -10413,31 +10461,31 @@ void applicationLoop() {
 		/*Nivel 3*/
 		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(15.00 + suma, -10.50, -23.0));
-		box.setScale(glm::vec3(1.0, 1.0, 1.00));
+		box.setScale(glm::vec3(0.001, 1.0, 1.00));
 		box.render();
 		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(15.00 + suma, -10.50, -11.0));
-		box.setScale(glm::vec3(0.01, 1.0, 1.00));
+		box.setScale(glm::vec3(0.001, 1.0, 1.00));
 		box.render();
 
 		/*Nivel 2*/
 		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(18.00 + suma, -8.50, -23.0));
-		box.setScale(glm::vec3(1.0, 1.0, 1.00));
+		box.setScale(glm::vec3(0.001, 1.0, 1.00));
 		box.render();
 		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(18.00 + suma, -8.50, -11.0));
-		box.setScale(glm::vec3(1.0, 1.0, 1.00));
+		box.setScale(glm::vec3(0.001, 1.0, 1.00));
 		box.render();
 
 		/*Nivel 1*/
 		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(022.00 + suma, -6.50, -23.0));
-		box.setScale(glm::vec3(1.0, 1.0, 1.00));
+		box.setScale(glm::vec3(0.001, 1.0, 1.00));
 		box.render();
 		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(22.00 + suma, -6.50, -11.0));
-		box.setScale(glm::vec3(1.0, 1.0, 1.00));
+		box.setScale(glm::vec3(0.001, 1.0, 1.00));
 		box.render();
 
 		//Aircraf Real
