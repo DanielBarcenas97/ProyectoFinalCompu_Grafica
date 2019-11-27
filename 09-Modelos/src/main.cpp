@@ -208,6 +208,82 @@ textureID113, textureID114, textureID115, textureID116, textureID117, textureID1
 textureID122, textureID123, textureID124, textureID125, textureID126, textureID127, textureID128, textureID129;
 
 
+//Offsets luces navideñas
+int offset1 = 1;
+int offset2 = 4;
+int offset3 = 7;
+int offset4 = 7;
+int offset5 = 4;
+
+//On-off luces 
+int lightState = 100;
+
+float onOffSala = 7;
+float onOffComedor = 7;
+float onOffCocina = 7;
+float onOffBanio = 7;
+float onOffRecamara1 = 7;
+float onOffRecamara2 = 7;
+float onOffRecamara3 = 7;
+float onOffHabitacionArbol = 7;
+float onOffCochera = 7;
+
+//on-off de las luces de la casa de halloween
+float onOffLampara1 = 7;
+float onOffLampara2 = 7;
+float onOffLampara3 = 7;
+//*******************************
+
+float cam1posx = 0.0;
+float cam1posy = 0.0;
+float cam1posz = 0.0;
+////////////////////
+
+int numberCamera = 1;
+float offsetState = 0.0;
+
+// Dart lego
+Model modelDartLegoBody;
+Model modelDartLegoHead;
+Model modelDartLegoMask;
+Model modelDartLegoLeftArm;
+Model modelDartLegoRightArm;
+Model modelDartLegoLeftHand;
+Model modelDartLegoRightHand;
+Model modelDartLegoLeftLeg;
+Model modelDartLegoRightLeg;
+
+float rotDartHead = 0.0, rotDartBody = 0.0, advanceDartBody = 0.0, rotDartLeftArm = 0.0,
+rotDartLeftHand = 0.0, rotDartRightArm = 0.0, rotDartRightHand = 0.0, rotDartLeftLeg = 0.0, rotDartRightLeg = 0.0;
+
+int modelSelected = 0;
+
+// Variables to animations keyframes
+bool saveFrame = false, availableSave = true;
+std::ofstream myfile;
+std::string fileName = "";
+bool record = false;
+
+// Joints interpolations Dart Lego
+std::vector<std::vector<float>> keyFramesJoints;
+std::vector<std::vector<glm::mat4>> keyFramesDart;
+int indexFrameJoints = 0;
+int indexFrameJointsNext = 1;
+float interpolationJoints = 0.0;
+int maxNumPasosJoints = 20;
+int numPasosJoints = 0;
+
+int indexFrameDart = 0;
+int indexFrameDartNext = 1;
+float interpolationDart = 0.0;
+int maxNumPasosDart = 200;
+int numPasosDart = 0;
+
+
+double currTime, lastTime;
+
+bool muestraPosicion = false;
+
 Cylinder torsoR2D2(20, 20, 0.5, 0.5);//se declara el torso de nuevo modelo
 Sphere cabezaR2D2(20, 20);//se declara la cabeza del modelo
 Sphere articulacionR2D2(20, 20);//se declara la articulacion del modelo
@@ -419,7 +495,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelLamboWheelsRear.setShader(&shaderMulLighting);
 	*/
 
-	/*
+	
 	//Modelos de la Casa
 	modelMesa.loadModel("../models/table/table.obj");
 	modelMesa.setShader(&shaderMulLighting);
@@ -435,7 +511,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	ModelMesa.setShader(&shaderMulLighting);
 	ModelEjemplo.loadModel("../models/silla/10239_Office_Chair_v1_L3.obj");
 	ModelEjemplo.setShader(&shaderMulLighting);
-	*/
+
 	//Modelos Otros /Plantas/Roca/Perro/ViasDelTren
 	Modeljardinera.loadModel("../models/Navidad/jardinera/jardinera.obj");
 	Modeljardinera.setShader(&shaderMulLighting);
@@ -445,7 +521,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelCami.setShader(&shaderMulLighting);
 	modelRailRoad.loadModel("../models/railroad/railroad_track.obj");
 	modelRailRoad.setShader(&shaderMulLighting);
-	/*
+	
 	//Cosas de Navidad
 	ModelPinata.loadModel("../models/Navidad/pinata/pinata.obj");
 	ModelPinata.setShader(&shaderMulLighting);
@@ -464,7 +540,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	ModelRegaloDos.setShader(&shaderMulLighting);
 	ModelChimenea.loadModel("../models/Navidad/fuego/13110_Fireplace_v2_l3.obj");
 	ModelChimenea.setShader(&shaderMulLighting);
-	*/
 
 	//ModelRosa.loadModel("../models/Navidad/rosa/rosa.obj");
 	//ModelRosa.setShader(&shaderMulLighting);
@@ -505,8 +580,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	//modelCalabaza.loadModel("../models/DiaDeMuertos/calabaza/pumpkin.obj");
 	//modelCalabaza.setShader(&shaderMulLighting);
 
-	//modelCandlestick.loadModel("../models/DiaDeMuertos/Candlestick/candlestick.obj");
-	//modelCandlestick.setShader(&shaderMulLighting);
 
 	//modelMango.loadModel("../models/DiaDeMuertos/Mango/10190_Mango-L3.obj");
 	//modelMango.setShader(&shaderMulLighting);
@@ -514,12 +587,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	//modelManzana.loadModel("../models/DiaDeMuertos/manzana/Manzana.obj");
 	//modelManzana.setShader(&shaderMulLighting);
 
-	//modelSkull_v3.loadModel("../models/DiaDeMuertos/Skull_v3/12140_Skull_v3_L2.obj");
-	//modelSkull_v3.setShader(&shaderMulLighting);
-
-
 	//Animaciones Dia de Muertos
-	/*
+	
 	modelFantasma.loadModel("../models/DiaDeMuertos/Ghost/ghost.obj");
 	modelFantasma.setShader(&shaderMulLighting);
 
@@ -529,19 +598,18 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelCandlestick.loadModel("../models/DiaDeMuertos/Candlestick/candlestick.obj");
 	modelCandlestick.setShader(&shaderMulLighting);
 	
-	*/
+	
 	//Animaciones Navidad
-	//ModelTrineo.loadModel("../models/Navidad/trineo/trineo.obj");
-	//ModelTrineo.setShader(&shaderMulLighting);
-
+	ModelTrineo.loadModel("../models/Navidad/trineo/trineo.obj");
+	ModelTrineo.setShader(&shaderMulLighting);
 
 	//Posicion inicial de la camaras**********************
 	cameraHorrorHouseFree->setPosition(glm::vec3(55.077236, -2.52848, -25.0336));
-	cameraChristmastHouseFree->setPosition(glm::vec3(-3.077236, -2.52848, -86.0336));
-	cameraHorrorHouseAutomatic->setPosition(glm::vec3(5.077236, -2.52848, 86.0336));
-	cameraChristmastHouseAutomatic->setPosition(glm::vec3(-72.0461, -6.87082, 86.0336));
-	cameraOfrenda->setPosition(glm::vec3(0.0, 0.0, 0.0));
-	cameraChristmasTree->setPosition(glm::vec3(0.0, 0.0, 0.0));
+	cameraChristmastHouseFree->setPosition(glm::vec3(-3.077236, -10.52848, -65.0336));
+	cameraHorrorHouseAutomatic->setPosition(glm::vec3(35.077236, -10.52848, -65.0336));
+	cameraChristmastHouseAutomatic->setPosition(glm::vec3(-10.0461, -10.87082, -65.0336));
+	cameraOfrenda->setPosition(glm::vec3(45.0, -10.0, -45.0));
+	cameraChristmasTree->setPosition(glm::vec3(10.0, -10.0, -45.0));
 	//----------------------------------------------------------------
 
 	/*-----------------------Texturas---------------------------------*/
@@ -2822,12 +2890,34 @@ void destroy() {
 	box6.destroy();
 	box7.destroy();
 
-	torsoR2D2.destroy();
-	sphere3.destroy();
-	cabezaR2D2.destroy();
-	articulacionR2D2.destroy();
-	brazoR2D2.destroy();
-	pieR2D2.destroy();
+	ModelAircraft.destroy();
+	ModelBaston.destroy();
+	ModelBell.destroy();
+	ModelCalceta.destroy();
+	modelCami.destroy();
+	modelCandlestick.destroy();
+	ModelChimenea.destroy();
+	ModelEstrella.destroy();
+	Modeljardinera.destroy();
+	modelFantasma.destroy();
+	ModelPinata.destroy();
+	modelSkelet.destroy();
+	ModelRegaloUno.destroy();
+	ModelWC.destroy();
+	ModelPinoNavidad.destroy();
+	ModelTrineo.destroy();
+
+	
+	// Dart Lego
+	modelDartLegoBody.destroy();
+	modelDartLegoMask.destroy();
+	modelDartLegoHead.destroy();
+	modelDartLegoLeftArm.destroy();
+	modelDartLegoRightArm.destroy();
+	modelDartLegoLeftHand.destroy();
+	modelDartLegoRightHand.destroy();
+	modelDartLegoLeftLeg.destroy();
+	modelDartLegoRightLeg.destroy();
 
 	shader.destroy();
 	shaderMulLighting.destroy();
