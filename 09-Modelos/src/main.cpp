@@ -1733,7 +1733,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	texture68.freeImage(bitmap);
 	//refri_frente
-	Texture texture69("../Textures/cocina/refrigerador.jpg");
+	Texture texture69("../Textures/Muertos/calavera.png");
 	bitmap = texture69.loadImage(true);
 	data = texture69.convertToData(bitmap, imageWidth, imageHeight);
 	glGenTextures(1, &textureID69);
@@ -3345,7 +3345,7 @@ void applicationLoop() {
 			/*Luces*/
 		// Esto es para la luces pointlights
 		//Numero de luces a utilizar de tipo poinlights=3
-			shaderMulLighting.setInt("pointLightCount", 104);   //Multiple Light .fs
+			shaderMulLighting.setInt("pointLightCount", 106);   //Multiple Light .fs
 			//01Verde
 			shaderMulLighting.setVectorFloat3("pointLights[0].position", glm::value_ptr((glm::vec3(-14.4, 11, 4.0))));  //  position de la luz
 			shaderMulLighting.setVectorFloat3("pointLights[0].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
@@ -4414,6 +4414,34 @@ void applicationLoop() {
 			shaderMulLighting.setFloat("pointLights[103].quadratic", 0.004);
 			luces2 -= 0.001;
 			luces += 0.001;
+			//Luces para las velas
+
+			//104 Amarilla
+			shaderMulLighting.setVectorFloat3("pointLights[104].position", glm::value_ptr((glm::vec3(21.0 + suma, -8.0, -10.0))));
+			shaderMulLighting.setVectorFloat3("pointLights[104].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
+			shaderMulLighting.setVectorFloat3("pointLights[104].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.0)));
+			shaderMulLighting.setVectorFloat3("pointLights[104].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.0)));
+			shaderMulLighting.setFloat("pointLights[104].constant", luces2);
+			shaderMulLighting.setFloat("pointLights[104].linear", 0.04);
+			shaderMulLighting.setFloat("pointLights[104].quadratic", 0.004);
+			luces2 -= 0.001;
+			luces += 0.001;
+
+			//105
+			shaderMulLighting.setVectorFloat3("pointLights[105].position", glm::value_ptr((glm::vec3(17.0 + suma, -8.0, -10.0))));
+			shaderMulLighting.setVectorFloat3("pointLights[105].light.ambient", glm::value_ptr(glm::vec3(0.001, 0.001, 0.001)));
+			shaderMulLighting.setVectorFloat3("pointLights[105].light.diffuse", glm::value_ptr(glm::vec3(0.01, 0.01, 0.0)));
+			shaderMulLighting.setVectorFloat3("pointLights[105].light.specular", glm::value_ptr(glm::vec3(0.6, 0.6, 0.0)));
+			shaderMulLighting.setFloat("pointLights[105].constant", luces);
+			shaderMulLighting.setFloat("pointLights[105].linear", 0.04);
+			shaderMulLighting.setFloat("pointLights[105].quadratic", 0.004);
+			luces2 -= 0.001;
+			luces += 0.001;
+
+			//106
+			//107
+			//108
+			//109
 
 
 			/*Luces en medio 1*/
@@ -10310,20 +10338,23 @@ void applicationLoop() {
 		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
 		sphere1.render();
 		//Frutas Amarillas 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(15.5 + suma, -10.6820, -16.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+		//Amarillo 
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(15.5 + suma, -10.6820, -16.0));
+		sphereLamp.setColor(glm::vec4(0.8, 0.8, 0.0, 1.0)); //Amarillo
+		sphereLamp.render();
+
 		//Frutas Verdes 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(15.5 + suma, -10.6820, -14.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(15.5 + suma, -10.6820, -14.0));
+		sphereLamp.setColor(glm::vec4(0.0, 1.0, 0.0, 1.0)); //Verde
+		sphereLamp.render();
+
 		//Frutas Rojo 
-		glBindTexture(GL_TEXTURE_2D, textureID47);
-		sphere1.setPosition(glm::vec3(15.5 + suma, -10.6820, -12.0));
-		sphere1.setScale(glm::vec3(0.6, 0.60, 0.60));
-		sphere1.render();
+		sphereLamp.setScale(glm::vec3(0.6, 0.6, 0.6));
+		sphereLamp.setPosition(glm::vec3(15.5 + suma, -10.6820, -12.0));
+		sphereLamp.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0)); //Rojo 
+		sphereLamp.render();
 
 		//Comida p1
 		//
@@ -10380,31 +10411,31 @@ void applicationLoop() {
 
 		//Calaveras Azucar
 		/*Nivel 3*/
-		glBindTexture(GL_TEXTURE_2D, textureID47);
+		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(15.00 + suma, -10.50, -23.0));
 		box.setScale(glm::vec3(1.0, 1.0, 1.00));
 		box.render();
-		glBindTexture(GL_TEXTURE_2D, textureID47);
+		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(15.00 + suma, -10.50, -11.0));
-		box.setScale(glm::vec3(1.0, 1.0, 1.00));
+		box.setScale(glm::vec3(0.01, 1.0, 1.00));
 		box.render();
 
 		/*Nivel 2*/
-		glBindTexture(GL_TEXTURE_2D, textureID47);
+		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(18.00 + suma, -8.50, -23.0));
 		box.setScale(glm::vec3(1.0, 1.0, 1.00));
 		box.render();
-		glBindTexture(GL_TEXTURE_2D, textureID47);
+		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(18.00 + suma, -8.50, -11.0));
 		box.setScale(glm::vec3(1.0, 1.0, 1.00));
 		box.render();
 
 		/*Nivel 1*/
-		glBindTexture(GL_TEXTURE_2D, textureID47);
+		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(022.00 + suma, -6.50, -23.0));
 		box.setScale(glm::vec3(1.0, 1.0, 1.00));
 		box.render();
-		glBindTexture(GL_TEXTURE_2D, textureID47);
+		glBindTexture(GL_TEXTURE_2D, textureID69);
 		box.setPosition(glm::vec3(22.00 + suma, -6.50, -11.0));
 		box.setScale(glm::vec3(1.0, 1.0, 1.00));
 		box.render();
